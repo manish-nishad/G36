@@ -142,7 +142,7 @@ export default function MacNavbar() {
       height="72px"
       align="center"
       justify="center"
-      bg="rgba(255,255,255,0.75)"
+      bg="WHITE"
       backdropFilter="blur(18px)"
       borderBottom="1px solid rgba(255,255,255,0.4)"
       boxShadow="0 10px 30px rgba(0,0,0,0.12)"
