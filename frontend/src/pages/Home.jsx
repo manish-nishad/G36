@@ -22,7 +22,6 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle,
-  Award,
   Users,
   Globe,
   Headphones,
@@ -34,7 +33,10 @@ import Seo from "../seo/Seo";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { LuCheck, LuX } from "react-icons/lu"
+import Lottie from "lottie-react";
+import WebsiteDesign from "../assets/lottie/Website Design Lottie Animation.json";
+import Laptop from "../assets/lottie/Laptop.json";
+import Award from "../assets/lottie/Award.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -108,6 +110,7 @@ export default function Home() {
           position="absolute"
           inset="0"
           bgImage={`url(${heroImages.primary})`}
+          bgColor="seashell"
           bgSize="cover"
           bgPosition="center"
           willChange="transform"
@@ -122,17 +125,16 @@ export default function Home() {
 
         <Container maxW="7xl" position="relative" zIndex={1} py={24}>
           <VStack spacing={6} textAlign="center" padding={20}>
-            <Heading color="white" fontSize={{ base: "3xl", md: "5xl" }}>
+            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }}>
               Transform Your Business
             </Heading>
-            <Text color="gray.200" maxW="3xl">
-              Cutting-edge IT solutions, software development & training across
-              India.
+            <Text color="white" maxW="4xl" padding={4} textStyle="xl">
+              Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs.
             </Text>
 
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
               <Link to="/services">
-                <Button bg="white" color="blue.600">
+                <Button bg="#0951d8" color="white">
                   Explore Services <ArrowRight size={16} />
                 </Button>
               </Link>
@@ -146,7 +148,7 @@ export default function Home() {
             <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} pt={10}>
               {stats.map((s, i) => (
                 <Box key={i}>
-                  <Heading color="white">{s.value}</Heading>
+                  <Heading color="#0951d8">{s.value}</Heading>
                   <Text color="blue.200">{s.label}</Text>
                 </Box>
               ))}
@@ -198,19 +200,20 @@ export default function Home() {
                 //   </VStack>
                 // </Box>
                  <Card.Root maxW="sm" overflow="hidden">
-      <Image
+      {/* <Image
         src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
         alt="Green double couch with wooden legs"
-      />
+      /> */}
+      <Lottie animationData={Laptop} />
       <Card.Body gap="2">
-        <Card.Title>Living room Sofa</Card.Title>
+        <Card.Title>Lab Setup</Card.Title>
         <Card.Description>
           This sofa is perfect for modern tropical spaces, baroque inspired
           spaces.
         </Card.Description>
-        <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
+        {/* <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
           $450
-        </Text>
+        </Text> */}
       </Card.Body>
       <Card.Footer gap="2">
         <Button variant="solid">Get Details</Button>
@@ -242,7 +245,8 @@ export default function Home() {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Icon as={item.icon} color="white" boxSize={10} />
+                  {/* <Icon as={item.icon} color="white" boxSize={10} /> */}
+                  <Lottie animationData={Award} />
                 </Box>
                 <Heading size="lg">{item.title}</Heading>
               </VStack>
