@@ -9,6 +9,14 @@ import {
   Container,
   Icon,
   Stack,
+  Image,
+  Card,
+  CardBody,
+  Avatar,
+  Strong,
+  Blockquote,
+  Float, 
+  Span,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import {
@@ -26,6 +34,7 @@ import Seo from "../seo/Seo";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LuCheck, LuX } from "react-icons/lu"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,16 +70,16 @@ export default function Home() {
     });
 
     // WHY CHOOSE US
-    gsap.from(".why-item", {
-      scrollTrigger: {
-        trigger: whyRef.current,
-        start: "top 80%",
-      },
-      scale: 0.85,
-      opacity: 0,
-      stagger: 0.15,
-      duration: 0.5,
-    });
+    // gsap.from(".why-item", {
+    //   scrollTrigger: {
+    //     trigger: whyRef.current,
+    //     start: "top 80%",
+    //   },
+    //   scale: 0.85,
+    //   opacity: 0,
+    //   stagger: 0.15,
+    //   duration: 0.5,
+    // });
 
     // TESTIMONIALS
     gsap.from(".testimonial-card", {
@@ -112,7 +121,7 @@ export default function Home() {
         </Box>
 
         <Container maxW="7xl" position="relative" zIndex={1} py={24}>
-          <VStack spacing={6} textAlign="center">
+          <VStack spacing={6} textAlign="center" padding={20}>
             <Heading color="white" fontSize={{ base: "3xl", md: "5xl" }}>
               Transform Your Business
             </Heading>
@@ -128,7 +137,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button variant="outline" colorScheme="whiteAlpha">
+                <Button variant="outline" colorScheme="whiteAlpha" color="white">
                   Free Consultation
                 </Button>
               </Link>
@@ -149,45 +158,64 @@ export default function Home() {
       {/* SERVICES */}
       <Box py={20} bg="gray.50" ref={servicesRef}>
         <Container maxW="7xl">
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+          <SimpleGrid columns={[2, null, 4]} gap="40px">
             {services.map((s) => {
               const IconComp = LucideIcons[s.icon];
               return (
-                <Box
-                  key={s.id}
-                  className="service-card"
-                  bg="white"
-                  p={6}
-                  borderRadius="xl"
-                  boxShadow="md"
-                >
-                  <Box
-                    w="56px"
-                    h="56px"
-                    bgGradient="linear(to-br, blue.500, blue.700)"
-                    borderRadius="xl"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    mb={4}
-                  >
-                    <Icon as={IconComp} color="white" />
-                  </Box>
+                // <Box
+                //   key={s.id}
+                //   className="service-card"
+                //   bg="white"
+                //   p={6}
+                //   borderRadius="xl"
+                //   boxShadow="md"
+                // >
+                //   <Box
+                //     w="56px"
+                //     h="56px"
+                //     bgGradient="linear(to-br, blue.500, blue.700)"
+                //     borderRadius="xl"
+                //     display="flex"
+                //     alignItems="center"
+                //     justifyContent="center"
+                //     mb={4}
+                //   >
+                //     <Icon as={IconComp} color="white" />
+                //   </Box>
 
-                  <Heading size="md">{s.title}</Heading>
-                  <Text fontSize="sm" color="gray.600" mb={3}>
-                    {s.description}
-                  </Text>
+                //   <Heading size="md">{s.title}</Heading>
+                //   <Text fontSize="sm" color="gray.600" mb={3}>
+                //     {s.description}
+                //   </Text>
 
-                  <VStack align="start">
-                    {s.features.slice(0, 3).map((f, i) => (
-                      <HStack key={i}>
-                        <Icon as={CheckCircle} color="blue.500" />
-                        <Text fontSize="sm">{f}</Text>
-                      </HStack>
-                    ))}
-                  </VStack>
-                </Box>
+                //   <VStack align="start">
+                //     {s.features.slice(0, 3).map((f, i) => (
+                //       <HStack key={i}>
+                //         <Icon as={CheckCircle} color="blue.500" />
+                //         <Text fontSize="sm">{f}</Text>
+                //       </HStack>
+                //     ))}
+                //   </VStack>
+                // </Box>
+                 <Card.Root maxW="sm" overflow="hidden">
+      <Image
+        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+        alt="Green double couch with wooden legs"
+      />
+      <Card.Body gap="2">
+        <Card.Title>Living room Sofa</Card.Title>
+        <Card.Description>
+          This sofa is perfect for modern tropical spaces, baroque inspired
+          spaces.
+        </Card.Description>
+        <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
+          $450
+        </Text>
+      </Card.Body>
+      <Card.Footer gap="2">
+        <Button variant="solid">Get Details</Button>
+        </Card.Footer>
+    </Card.Root>
               );
             })}
           </SimpleGrid>
@@ -226,24 +254,50 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <Box py={20} bg="gray.50" ref={testimonialRef}>
         <Container maxW="7xl">
-          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
+          <SimpleGrid columns={[2, null, 3]} gap="40px">
             {testimonials.map((t) => (
-              <Box
-                key={t.id}
-                className="testimonial-card"
-                bg="white"
-                p={8}
-                borderRadius="xl"
-                boxShadow="lg"
-              >
-                <Text mb={4} fontStyle="italic">
-                  "{t.text}"
-                </Text>
-                <Heading size="sm">{t.name}</Heading>
-                <Text fontSize="sm" color="gray.500">
-                  {t.company}
-                </Text>
-              </Box>
+              // <Box
+              //   key={t.id}
+              //   className="testimonial-card"
+              //   bg="white"
+              //   p={8}
+              //   borderRadius="xl"
+              //   boxShadow="lg"
+              // >
+              //   <Text mb={4} fontStyle="italic">
+              //     "{t.text}"
+              //   </Text>
+              //   <Heading size="sm">{t.name}</Heading>
+              //   <Text fontSize="sm" color="gray.500">
+              //     {t.company}
+              //   </Text>
+              // </Box>
+             <Blockquote.Root 
+             key={t.id}
+             bg="bg.subtle" padding="8">
+      <Float placement="bottom-end" offset="10">
+        <Blockquote.Icon opacity="0.4" boxSize="10" rotate="180deg" />
+      </Float>
+      <Blockquote.Content cite="Uzumaki Naruto">
+        {t.text}
+      </Blockquote.Content>
+      <Blockquote.Caption>
+        <cite>
+          <HStack mt="2" gap="13px">
+            <Avatar.Root size="lg">
+              <Avatar.Fallback name="Emily Jones" />
+              <Avatar.Image src="https://i.pravatar.cc/150?u=re" />
+            </Avatar.Root>
+            <VStack>
+                <Span fontWeight="medium">{t.name}</Span>
+                <Span fontWeight="medium">{t.company}</Span>
+            </VStack>
+            
+            
+          </HStack>
+        </cite>
+      </Blockquote.Caption>
+    </Blockquote.Root>
             ))}
           </SimpleGrid>
         </Container>
