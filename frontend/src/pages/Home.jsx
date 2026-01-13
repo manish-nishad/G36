@@ -15,7 +15,7 @@ import {
   Avatar,
   Strong,
   Blockquote,
-  Float, 
+  Float,
   Span,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -129,7 +129,9 @@ export default function Home() {
               Transform Your Business
             </Heading>
             <Text color="white" maxW="4xl" padding={4} textStyle="xl">
-              Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs.
+              Delivering cutting-edge IT solutions, software development, and
+              training across India. We provide comprehensive technology
+              solutions tailored to empower your business and educational needs.
             </Text>
 
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
@@ -139,7 +141,11 @@ export default function Home() {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button variant="outline" colorScheme="whiteAlpha" color="white">
+                <Button
+                  variant="outline"
+                  colorScheme="whiteAlpha"
+                  color="white"
+                >
                   Free Consultation
                 </Button>
               </Link>
@@ -158,7 +164,33 @@ export default function Home() {
       </Box>
 
       {/* SERVICES */}
-      <Box py={20} bg="gray.50" ref={servicesRef}>
+
+      <Box py={10} bg="gray.50" ref={servicesRef}>
+        <Heading
+          color="black"
+          textAlign="center"
+          fontSize={{ base: "1xl", md: "3xl" }}
+          padding={5}
+        >
+          Services
+        </Heading>
+        <Text
+          color="#0951d8"
+          maxW="4xl"
+          padding={4}
+          textStyle="md"
+          textAlign="center"
+          margin="0 auto"
+          pb={10}
+        >
+          Genius36 Technologies offers comprehensive IT services including
+          custom software development, web solutions, digital marketing, SEO,
+          computer services, and professional training. We deliver innovative,
+          scalable, and cost-effective technology solutions across India,
+          helping businesses and institutions improve efficiency, growth, and
+          digital transformation through reliable IT expertise.
+        </Text>
+
         <Container maxW="7xl">
           <SimpleGrid columns={[2, null, 4]} gap="40px">
             {services.map((s) => {
@@ -199,26 +231,38 @@ export default function Home() {
                 //     ))}
                 //   </VStack>
                 // </Box>
-                 <Card.Root maxW="sm" overflow="hidden">
-      {/* <Image
-        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        alt="Green double couch with wooden legs"
-      /> */}
-      <Lottie animationData={Laptop} />
-      <Card.Body gap="2">
-        <Card.Title>Lab Setup</Card.Title>
-        <Card.Description>
-          This sofa is perfect for modern tropical spaces, baroque inspired
-          spaces.
-        </Card.Description>
-        {/* <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
-          $450
-        </Text> */}
-      </Card.Body>
-      <Card.Footer gap="2">
-        <Button variant="solid">Get Details</Button>
-        </Card.Footer>
-    </Card.Root>
+                <Link to="/services" style={{ textDecoration: "none" }}>
+                  <Card.Root
+                    maxW="sm"
+                    overflow="hidden"
+                    cursor="pointer"
+                    transition="all 0.3s ease"
+                    _hover={{
+                      transform: "translateY(-6px)",
+                      boxShadow: "xl",
+                    }}
+                    _active={{
+                      transform: "scale(0.98)",
+                    }}
+                  >
+                    {/* LOTTIE */}
+                    <Lottie animationData={Laptop} />
+
+                    <Card.Body gap="2">
+                      <Card.Title>Lab Setup</Card.Title>
+                      <Card.Description>
+                        Professional computer lab setup, networking, and
+                        maintenance services for schools and institutions.
+                      </Card.Description>
+                    </Card.Body>
+
+                    <Card.Footer>
+                      <Button variant="solid" width="100%" pointerEvents="none">
+                        Get Details
+                      </Button>
+                    </Card.Footer>
+                  </Card.Root>
+                </Link>
               );
             })}
           </SimpleGrid>
@@ -276,32 +320,28 @@ export default function Home() {
               //     {t.company}
               //   </Text>
               // </Box>
-             <Blockquote.Root 
-             key={t.id}
-             bg="bg.subtle" padding="8">
-      <Float placement="bottom-end" offset="10">
-        <Blockquote.Icon opacity="0.4" boxSize="10" rotate="180deg" />
-      </Float>
-      <Blockquote.Content cite="Uzumaki Naruto">
-        {t.text}
-      </Blockquote.Content>
-      <Blockquote.Caption>
-        <cite>
-          <HStack mt="2" gap="13px">
-            <Avatar.Root size="lg">
-              <Avatar.Fallback name="Emily Jones" />
-              <Avatar.Image src="https://i.pravatar.cc/150?u=re" />
-            </Avatar.Root>
-            <VStack>
-                <Span fontWeight="medium">{t.name}</Span>
-                <Span fontWeight="medium">{t.company}</Span>
-            </VStack>
-            
-            
-          </HStack>
-        </cite>
-      </Blockquote.Caption>
-    </Blockquote.Root>
+              <Blockquote.Root key={t.id} bg="bg.subtle" padding="8">
+                <Float placement="bottom-end" offset="10">
+                  <Blockquote.Icon opacity="0.4" boxSize="10" rotate="180deg" />
+                </Float>
+                <Blockquote.Content cite="Uzumaki Naruto">
+                  {t.text}
+                </Blockquote.Content>
+                <Blockquote.Caption>
+                  <cite>
+                    <HStack mt="2" gap="13px">
+                      <Avatar.Root size="lg">
+                        <Avatar.Fallback name="Emily Jones" />
+                        <Avatar.Image src="https://i.pravatar.cc/150?u=re" />
+                      </Avatar.Root>
+                      <VStack>
+                        <Span fontWeight="medium">{t.name}</Span>
+                        <Span fontWeight="medium">{t.company}</Span>
+                      </VStack>
+                    </HStack>
+                  </cite>
+                </Blockquote.Caption>
+              </Blockquote.Root>
             ))}
           </SimpleGrid>
         </Container>
