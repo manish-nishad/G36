@@ -159,7 +159,7 @@ const Contact = () => {
                       placeholder="Full Name"
                       value={formData.fullName}
                       onChange={handleChange}
-                      size="lg"
+                      size="md"
                       required
                       bg="white"
                       borderColor="gray.300"
@@ -176,7 +176,7 @@ const Contact = () => {
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={handleChange}
-                      size="lg"
+                      size="md"
                       required
                       bg="white"
                       borderColor="gray.300"
@@ -193,7 +193,7 @@ const Contact = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
-                      size="lg"
+                      size="md"
                       required
                       bg="white"
                       borderColor="gray.300"
@@ -226,7 +226,7 @@ const Contact = () => {
                       }}
                     >
                       <option value="">Select a subject</option>
-                      <option value="Lab Setup">Lab Setup</option>
+                      <option value="Lab Setup">Lab Setup & AMC</option>
                       <option value="Security Systems">Security Systems</option>
                       <option value="Training Programs">
                         Training Programs
@@ -239,7 +239,7 @@ const Contact = () => {
                       placeholder="Message"
                       value={formData.message}
                       onChange={handleChange}
-                      size="lg"
+                      size="xs"
                       rows={6}
                       required
                       bg="white"
@@ -253,7 +253,7 @@ const Contact = () => {
 
                     <Button
                       type="submit"
-                      size="lg"
+                      size="md"
                       w="full"
                       bg="brand.500"
                       color="white"
@@ -266,6 +266,28 @@ const Contact = () => {
                       Send Message
                     </Button>
                   </VStack>
+                </Box>
+                <Box borderRadius="xl" boxShadow="md" mt={4} p={4} bg="white">
+                  <Text fontSize="sm" color="gray.800" mt={2} fontWeight="800">
+                    Find Us on the Map:{" "}
+                    <Box
+                      borderRadius="lg"
+                      overflow="hidden"
+                      w="100%"
+                      h={{ base: "300px", md: "220px" }}
+                    >
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25923.979038964844!2d81.32175730489945!3d21.157357643339893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfcc82501b9f%3A0xeb84b5c363036f34!2sGenius36%20Technolgies%20India%20LLP!5e0!3m2!1sen!2sin!4v1768401597073!5m2!1sen!2sin"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Genius36 Technologies Location"
+                      />
+                    </Box>
+                  </Text>
                 </Box>
               </Box>
 
