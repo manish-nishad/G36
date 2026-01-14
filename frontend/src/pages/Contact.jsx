@@ -12,20 +12,16 @@ import {
   Icon,
   Link,
 } from "@chakra-ui/react";
-import {
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaClock,
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaYoutube,
-  FaLinkedinIn,
-} from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 import Seo from "../seo/Seo";
+import Lottie from "lottie-react";
+import Facebook from "../assets/lottie/Facebook.json";
+import Instagram from "../assets/lottie/Instagram.json";
+import Youtube from "../assets/lottie/Youtube.json";
+import LinkedIn from "../assets/lottie/Linkdin.json";
+import Whatsapp from "../assets/lottie/Whatsapp.json";
+// import Twitter from "../assets/lottie/Twitter.json";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -55,14 +51,16 @@ const Contact = () => {
 
     try {
       const response = await axios.post(`${API_URL}/api/contact`, formData);
-      
+
       if (response.data.success) {
         setAlert({
           show: true,
           type: "success",
-          message: response.data.message || "Thank you for contacting us! We'll get back to you soon.",
+          message:
+            response.data.message ||
+            "Thank you for contacting us! We'll get back to you soon.",
         });
-        
+
         // Reset form
         setFormData({
           fullName: "",
@@ -81,7 +79,9 @@ const Contact = () => {
       setAlert({
         show: true,
         type: "error",
-        message: error.response?.data?.message || "Failed to send message. Please try again later.",
+        message:
+          error.response?.data?.message ||
+          "Failed to send message. Please try again later.",
       });
 
       // Hide alert after 5 seconds
@@ -108,7 +108,8 @@ const Contact = () => {
                 Get In Touch
               </Heading>
               <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
-                Have questions or ready to transform your technology infrastructure? Contact us today.
+                Have questions or ready to transform your technology
+                infrastructure? Contact us today.
               </Text>
             </Box>
 
@@ -129,14 +130,16 @@ const Contact = () => {
                 >
                   {alert.type === "success" ? "Success!" : "Error"}
                 </Text>
-                <Text color={alert.type === "success" ? "green.700" : "red.700"}>
+                <Text
+                  color={alert.type === "success" ? "green.700" : "red.700"}
+                >
                   {alert.message}
                 </Text>
               </Box>
             )}
 
             {/* Main Content Grid */}
-            <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={12}>
+            <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={12} gap={20}>
               {/* Contact Form */}
               <Box>
                 <Heading size="lg" mb={6} color="gray.800">
@@ -156,12 +159,15 @@ const Contact = () => {
                       placeholder="Full Name"
                       value={formData.fullName}
                       onChange={handleChange}
-                      size="lg"
+                      size="md"
                       required
                       bg="white"
                       borderColor="gray.300"
                       _hover={{ borderColor: "gray.400" }}
-                      _focus={{ borderColor: "brand.500", boxShadow: "0 0 0 1px #04327b" }}
+                      _focus={{
+                        borderColor: "brand.500",
+                        boxShadow: "0 0 0 1px #04327b",
+                      }}
                     />
 
                     <Input
@@ -170,12 +176,15 @@ const Contact = () => {
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={handleChange}
-                      size="lg"
+                      size="md"
                       required
                       bg="white"
                       borderColor="gray.300"
                       _hover={{ borderColor: "gray.400" }}
-                      _focus={{ borderColor: "brand.500", boxShadow: "0 0 0 1px #04327b" }}
+                      _focus={{
+                        borderColor: "brand.500",
+                        boxShadow: "0 0 0 1px #04327b",
+                      }}
                     />
 
                     <Input
@@ -184,12 +193,15 @@ const Contact = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
-                      size="lg"
+                      size="md"
                       required
                       bg="white"
                       borderColor="gray.300"
                       _hover={{ borderColor: "gray.400" }}
-                      _focus={{ borderColor: "brand.500", boxShadow: "0 0 0 1px #04327b" }}
+                      _focus={{
+                        borderColor: "brand.500",
+                        boxShadow: "0 0 0 1px #04327b",
+                      }}
                     />
 
                     <Box
@@ -207,12 +219,18 @@ const Contact = () => {
                       borderRadius="md"
                       fontSize="md"
                       _hover={{ borderColor: "gray.400" }}
-                      _focus={{ borderColor: "brand.500", boxShadow: "0 0 0 1px #04327b", outline: "none" }}
+                      _focus={{
+                        borderColor: "brand.500",
+                        boxShadow: "0 0 0 1px #04327b",
+                        outline: "none",
+                      }}
                     >
                       <option value="">Select a subject</option>
-                      <option value="Lab Setup">Lab Setup</option>
+                      <option value="Lab Setup">Lab Setup & AMC</option>
                       <option value="Security Systems">Security Systems</option>
-                      <option value="Training Programs">Training Programs</option>
+                      <option value="Training Programs">
+                        Training Programs
+                      </option>
                       <option value="Other">Other</option>
                     </Box>
 
@@ -221,18 +239,21 @@ const Contact = () => {
                       placeholder="Message"
                       value={formData.message}
                       onChange={handleChange}
-                      size="lg"
+                      size="xs"
                       rows={6}
                       required
                       bg="white"
                       borderColor="gray.300"
                       _hover={{ borderColor: "gray.400" }}
-                      _focus={{ borderColor: "brand.500", boxShadow: "0 0 0 1px #04327b" }}
+                      _focus={{
+                        borderColor: "brand.500",
+                        boxShadow: "0 0 0 1px #04327b",
+                      }}
                     />
 
                     <Button
                       type="submit"
-                      size="lg"
+                      size="md"
                       w="full"
                       bg="brand.500"
                       color="white"
@@ -246,6 +267,28 @@ const Contact = () => {
                     </Button>
                   </VStack>
                 </Box>
+                <Box borderRadius="xl" boxShadow="md" mt={4} p={4} bg="white">
+                  <Text fontSize="sm" color="gray.800" mt={2} fontWeight="800">
+                    Find Us on the Map:{" "}
+                    <Box
+                      borderRadius="lg"
+                      overflow="hidden"
+                      w="100%"
+                      h={{ base: "300px", md: "220px" }}
+                    >
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25923.979038964844!2d81.32175730489945!3d21.157357643339893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfcc82501b9f%3A0xeb84b5c363036f34!2sGenius36%20Technolgies%20India%20LLP!5e0!3m2!1sen!2sin!4v1768401597073!5m2!1sen!2sin"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Genius36 Technologies Location"
+                      />
+                    </Box>
+                  </Text>
+                </Box>
               </Box>
 
               {/* Contact Information */}
@@ -257,14 +300,23 @@ const Contact = () => {
                   {/* Address */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
-                      <Icon as={FaMapMarkerAlt} color="brand.500" boxSize={6} mt={1} />
+                      <img
+                        src="public/location.gif"
+                        alt="location"
+                        width={50}
+                        height={50}
+                        style={{ objectFit: "contain" }}
+                      />
                       <VStack align="start" spacing={1}>
                         <Text fontWeight="600" color="gray.800">
                           Address
                         </Text>
                         <Text fontSize="sm" color="gray.600" lineHeight="1.6">
-                          Saty Narayan Sadan, Beside Shiv Temple Near by Police Station Newai<br />
-                          Maroda Tank, Bhilai<br />
+                          Satya Narayan Sadan, Beside Shiv Temple <br />
+                          Near by Police Station Newai
+                          <br />
+                          Maroda Tank, Bhilai
+                          <br />
                           Chhattisgarh 490006
                         </Text>
                       </VStack>
@@ -274,7 +326,13 @@ const Contact = () => {
                   {/* Phone */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
-                      <Icon as={FaPhoneAlt} color="brand.500" boxSize={6} mt={1} />
+                      <img
+                        src="public/phone-contact.gif"
+                        alt="phone"
+                        width={50}
+                        height={50}
+                        style={{ objectFit: "contain" }}
+                      />
                       <VStack align="start" spacing={1}>
                         <Text fontWeight="600" color="gray.800">
                           Phone
@@ -294,7 +352,13 @@ const Contact = () => {
                   {/* Email */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
-                      <Icon as={FaEnvelope} color="brand.500" boxSize={6} mt={1} />
+                      <img
+                        src="public/email.gif"
+                        alt="Email"
+                        width={50}
+                        height={50}
+                        style={{ objectFit: "contain" }}
+                      />
                       <VStack align="start" spacing={1}>
                         <Text fontWeight="600" color="gray.800">
                           Email
@@ -324,13 +388,20 @@ const Contact = () => {
                   {/* Business Hours */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
-                      <Icon as={FaClock} color="brand.500" boxSize={6} mt={1} />
+                      <img
+                        src="public/clock.gif"
+                        alt="clock"
+                        width={50}
+                        height={50}
+                        style={{ objectFit: "contain" }}
+                      />
                       <VStack align="start" spacing={1}>
                         <Text fontWeight="600" color="gray.800">
                           Business Hours
                         </Text>
                         <Text fontSize="sm" color="gray.600" lineHeight="1.6">
-                          Monday - Friday: 9:00 AM - 6:00 PM<br />
+                          Monday - Friday: 9:00 AM - 6:00 PM
+                          <br />
                           Saturday: 10:00 AM - 2:00 PM
                         </Text>
                       </VStack>
@@ -338,7 +409,7 @@ const Contact = () => {
                   </Box>
 
                   {/* Social Media */}
-                  <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
+                  {/* <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <Text fontWeight="600" color="gray.800" mb={4}>
                       Connect With Us
                     </Text>
@@ -373,6 +444,74 @@ const Contact = () => {
                           </Box>
                         );
                       })}
+                    </HStack>
+                  </Box> */}
+
+                  {/* Social Media */}
+                  <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
+                    <Text fontWeight="600" color="gray.800" mb={4}>
+                      Connect With Us
+                    </Text>
+
+                    <HStack spacing={4}>
+                      {[
+                        {
+                          animation: Facebook,
+                          href: "https://facebook.com",
+                          label: "Facebook",
+                        },
+                        {
+                          animation: Instagram,
+                          href: "https://instagram.com",
+                          label: "Instagram",
+                        },
+                        {
+                          animation: Youtube,
+                          href: "https://Youtube.com",
+                          label: "Youtube",
+                        },
+                        {
+                          animation: LinkedIn,
+                          href: "https://LinkedIn.com",
+                          label: "LinkedIn",
+                        },
+                        // {
+                        //   animation: Twitter,
+                        //   href: "https://Twitter.com",
+                        //   label: "Twitter",
+                        // },
+                        {
+                          animation: Whatsapp,
+                          href: "https://Whatsapp.com",
+                          label: "Whatsapp",
+                        },
+                      ].map((social, index) => (
+                        <Box
+                          key={index}
+                          as={Link}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
+                          w="70px"
+                          h="70px"
+                          borderRadius="full"
+                          bg="gray.100"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                          cursor="pointer"
+                          _hover={{ bg: "#93b7f1" }}
+                          // transition="all 0.3s ease"
+                        >
+                          <Lottie
+                            animationData={social.animation}
+                            // loop={false}
+                            autoplay={true}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </Box>
+                      ))}
                     </HStack>
                   </Box>
                 </VStack>
