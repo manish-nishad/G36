@@ -154,8 +154,8 @@ export default function Home() {
             <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} pt={10}>
               {stats.map((s, i) => (
                 <Box key={i}>
-                  <Heading color="#0951d8">{s.value}</Heading>
-                  <Text color="blue.200">{s.label}</Text>
+                  <Heading color="white">{s.value}</Heading>
+                  <Text color="white">{s.label}</Text>
                 </Box>
               ))}
             </SimpleGrid>

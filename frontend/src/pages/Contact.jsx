@@ -12,17 +12,6 @@ import {
   Icon,
   Link,
 } from "@chakra-ui/react";
-import {
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaClock,
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaYoutube,
-  FaLinkedinIn,
-} from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 import Seo from "../seo/Seo";
@@ -315,7 +304,7 @@ const Contact = () => {
                   {/* Phone */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
-                    <img
+                      <img
                         src="public/phone-contact.gif"
                         alt="phone"
                         width={50}
@@ -341,7 +330,7 @@ const Contact = () => {
                   {/* Email */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
-                    <img
+                      <img
                         src="public/email.gif"
                         alt="Email"
                         width={50}
@@ -377,7 +366,7 @@ const Contact = () => {
                   {/* Business Hours */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
-                    <img
+                      <img
                         src="public/clock.gif"
                         alt="clock"
                         width={50}
