@@ -37,6 +37,7 @@ import Lottie from "lottie-react";
 import WebsiteDesign from "../assets/lottie/Website Design Lottie Animation.json";
 import Laptop from "../assets/lottie/Laptop.json";
 import Award from "../assets/lottie/Award.json";
+import GradientDots from "../assets/lottie/Gradient Dots Background.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
