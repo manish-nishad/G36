@@ -369,7 +369,7 @@ export default function About() {
                       w={{ base: 16, md: 20 }}
                       h={{ base: 16, md: 20 }}
                       bgGradient="linear(to-br, blue.500, blue.700)"
-                      borderRadius="xl"
+                      borderRadius="lg"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
@@ -383,10 +383,10 @@ export default function About() {
                         objectFit="contain"
                       />
                     </Box>
-                    <Heading size="lg" color="gray.900" fontSize={{ base: "md", md: "lg" }}>
+                    <Heading size="md" color="gray.900" fontSize={{ base: "sm", md: "md" }}>
                       Our Mission
                     </Heading>
-                    <Text fontSize={{ base: "sm", md: "md" }} color="gray.800" lineHeight="1.8">
+                    <Text fontSize={{ base: "xs", md: "sm" }} color="gray.800" lineHeight="1.7">
                       To empower businesses and institutions across India with
                       cutting-edge IT solutions that drive growth, enhance
                       efficiency, and enable digital transformation. We are
@@ -410,7 +410,7 @@ export default function About() {
                       w={{ base: 16, md: 20 }}
                       h={{ base: 16, md: 20 }}
                       bgGradient="linear(to-br, blue.500, blue.700)"
-                      borderRadius="xl"
+                      borderRadius="lg"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
@@ -424,10 +424,10 @@ export default function About() {
                         objectFit="contain"
                       />
                     </Box>
-                    <Heading size="lg" color="gray.900" fontSize={{ base: "md", md: "lg" }}>
+                    <Heading size="md" color="gray.900" fontSize={{ base: "sm", md: "md" }}>
                       Our Vision
                     </Heading>
-                    <Text fontSize={{ base: "sm", md: "md" }} color="gray.800" lineHeight="1.8">
+                    <Text fontSize={{ base: "xs", md: "sm" }} color="gray.800" lineHeight="1.7">
                       To become India's most trusted and innovative IT solutions
                       provider, recognized for our technical excellence,
                       customer-centric approach, and transformative impact on
@@ -460,11 +460,11 @@ export default function About() {
                 <Card.Root
                   key={i}
                   className="value-item animated-card"
-                  bg="gray.50"
+                  bg="white"
                   p={6}
                   borderRadius="xl"
                   h="full"
-                  boxShadow="sm"
+                  boxShadow="md"
                 >
                   <Card.Body>
                     <VStack spacing={4} align="start">

@@ -290,10 +290,10 @@ const Career = () => {
               {jobOpenings.map((job) => (
                 <Card.Root
                   key={job.id}
-                  bg="gray.50"
+                  bg="white"
                   p={{ base: 6, md: 8 }}
                   borderRadius="xl"
-                  boxShadow="sm"
+                  boxShadow="md"
                   h="full"
                 >
                   <Card.Body>
@@ -440,7 +440,7 @@ const Career = () => {
                     bg="white"
                     p={6}
                     borderRadius="xl"
-                    boxShadow="sm"
+                    boxShadow="md"
                     h="full"
                   >
                     <Card.Body>
