@@ -71,7 +71,8 @@ const useDebounce = (value, delay) => {
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  // Loading state to avoid initial "no posts" flash
+  const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [newsletterLoading, setNewsletterLoading] = useState(false);
   const [displayCount, setDisplayCount] = useState(6);
@@ -174,17 +175,27 @@ const Blogs = () => {
     setDisplayCount((prev) => prev + 6);
   }, []);
 
-  // if (loading) {
-  //   return (
-  //     <Box bg="white" minH="100vh" py={12} display="flex" alignItems="center" justifyContent="center">
-  //       <Container maxW="7xl">
-  //         <Text textAlign="center" color="gray.500" fontSize="lg">
-  //           Loading blogs...
-  //         </Text>
-  //       </Container>
-  //     </Box>
-  //   );
-  // }
+  // Show loading state before blogs are fetched so we don't
+  // briefly show "No blog posts available yet" on first render.
+  if (loading) {
+    return (
+      <Box
+        bg="white"
+        minH="100vh"
+        pt={{ base: "90px", md: "100px" }}
+        pb={{ base: 6, md: 8 }}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Container maxW="7xl">
+          <Text textAlign="center" color="gray.500" fontSize="lg">
+            Loading blogs...
+          </Text>
+        </Container>
+      </Box>
+    );
+  }
 
   return (
     <>

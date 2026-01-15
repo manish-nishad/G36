@@ -6,6 +6,7 @@ import Projects from "../pages/Projects";
 import Contact from "../pages/Contact";
 import Admin from "../pages/Admin";
 import Blogs from "../pages/Blogs";
+import BlogSingle from "../pages/BlogSingle";
 import Career from "../pages/Career";
 import Training from "../pages/Training";   
 
@@ -15,6 +16,7 @@ export default function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/services" element={<Services />} />
       <Route path="/blogs" element={<Blogs />} />
+      <Route path="/blogs/:id" element={<BlogSingle />} />
       <Route path="/career" element={<Career />} />
       <Route path="/about" element={<About />} />
       <Route path="/projects" element={<Projects />} />
