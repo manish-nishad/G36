@@ -20,6 +20,12 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import Lottie from "lottie-react";
+import Facebook from "../../assets/lottie/Facebook.json";
+import Instagram from "../../assets/lottie/Instagram.json";
+import Youtube from "../../assets/lottie/Youtube.json";
+import LinkedIn from "../../assets/lottie/Linkdin.json";
+import Whatsapp from "../../assets/lottie/Whatsapp.json";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -51,23 +57,66 @@ export default function Footer() {
             </Text>
 
             {/* SOCIAL ICONS */}
-            <HStack spacing={4} justify={{ base: "center", md: "flex-start" }}>
-              {[FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter].map(
-                (Icon, index) => (
-                  <Box
-                    key={index}
-                    p={2}
-                    borderRadius="50%"
-                    bg="gray.700"
-                    cursor="pointer"
-                    _hover={{ bg: "#04327b" }}
-                    transition="all 0.3s ease"
-                  >
-                    <Icon size={14} color="white" />
-                  </Box>
-                )
-              )}
-            </HStack>
+            <HStack>
+                      {[
+                        {
+                          animation: Facebook,
+                          href: "https://www.facebook.com/profile.php?id=61582465814810",
+                          label: "Facebook",
+                        },
+                        {
+                          animation: Instagram,
+                          href: "https://www.instagram.com/genius36.in/",
+                          label: "Instagram",
+                        },
+                        {
+                          animation: Youtube,
+                          href: "https://www.youtube.com/@Geniusindia36",
+                          label: "Youtube",
+                        },
+                        {
+                          animation: LinkedIn,
+                          href: "linkedin.com/company/genius36",
+                          label: "LinkedIn",
+                        },
+                        // {
+                        //   animation: Twitter,
+                        //   href: "https://Twitter.com",
+                        //   label: "Twitter",
+                        // },
+                        {
+                          animation: Whatsapp,
+                          href: "https://Whatsapp.com",
+                          label: "Whatsapp",
+                        },
+                      ].map((social, index) => (
+                        <Box
+                          key={index}
+                          as={Link}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
+                          w="50px"
+                          h="50px"
+                          borderRadius="full"
+                          bg="#9e9fa3"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                          cursor="pointer"
+                          _hover={{ bg: "#93b7f1" }}
+                          // transition="all 0.3s ease"
+                        >
+                          <Lottie
+                            animationData={social.animation}
+                            // loop={false}
+                            autoplay={true}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </Box>
+                      ))}
+                    </HStack>
           </VStack>
         </GridItem>
 
