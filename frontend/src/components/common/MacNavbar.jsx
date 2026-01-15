@@ -8,7 +8,7 @@ import {
   Button,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   FaHome,
   FaCogs,
@@ -23,7 +23,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import logo from "../../assets/images/logo.png"; // ✅ Vite safe import
+import logo from "../../assets/images/logo.png";
 
 const MotionBox = motion(Box);
 
@@ -62,13 +62,13 @@ export default function MacNavbar() {
           top="0"
           left="0"
           right="0"
-          bg="rgba(255,255,255,0.85)"
+          bg="rgba(255,255,255,0.9)"
           backdropFilter="blur(14px)"
           px={4}
           py={2}
           align="center"
           justify="space-between"
-          boxShadow="0 6px 20px rgba(0,0,0,0.12)"
+          boxShadow="md"
           zIndex={1000}
         >
           <Image
@@ -83,7 +83,6 @@ export default function MacNavbar() {
             bg="#04327b"
             color="white"
             leftIcon={<FaPhoneAlt />}
-            _hover={{ bg: "#03245a" }}
             onClick={() => (window.location.href = "tel:08200593901")}
           >
             Call
@@ -96,7 +95,7 @@ export default function MacNavbar() {
           bottom="0"
           left="0"
           right="0"
-          bg="rgba(255,255,255,0.9)"
+          bg="rgba(255,255,255,0.95)"
           backdropFilter="blur(16px)"
           justify="space-around"
           py={3}
@@ -112,7 +111,7 @@ export default function MacNavbar() {
                 key={index}
                 onClick={() => navigate(item.path)}
                 animate={{ scale: isActive ? 1.15 : 1 }}
-                transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                transition={{ type: "spring", stiffness: 220 }}
               >
                 <VStack spacing={1}>
                   <Box
@@ -142,10 +141,10 @@ export default function MacNavbar() {
       height="72px"
       align="center"
       justify="center"
-      bg="WHITE"
+      bg="white"
       backdropFilter="blur(18px)"
-      borderBottom="1px solid rgba(255,255,255,0.4)"
-      boxShadow="0 10px 30px rgba(0,0,0,0.12)"
+      borderBottom="1px solid rgba(0,0,0,0.05)"
+      boxShadow="lg"
       zIndex={1000}
     >
       {/* LEFT LOGO */}
@@ -158,11 +157,12 @@ export default function MacNavbar() {
         />
       </Box>
 
-      {/* CENTER ICON BAR */}
+      {/* CENTER ICON + TEXT */}
       <HStack spacing={breakpoint === "tablet" ? 4 : 6}>
         {navItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
+          const isHovered = hovered === index;
 
           return (
             <MotionBox
@@ -170,30 +170,26 @@ export default function MacNavbar() {
               onMouseEnter={() => setHovered(index)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => navigate(item.path)}
-              style={{ perspective: 800 }}
+              cursor="pointer"
               animate={{
-                scale: hovered === index ? 1.15 : 1,
-                rotateX: hovered === index ? -8 : 0,
-                rotateY: hovered === index ? 8 : 0,
-                y: hovered === index ? -4 : 0,
+                scale: isHovered ? 1.12 : 1,
+                y: isHovered ? -4 : 0,
               }}
               transition={{
                 type: "spring",
                 stiffness: 220,
-                damping: 20,
-                mass: 0.6,
+                damping: 18,
               }}
             >
               <VStack spacing={1}>
+                {/* ICON */}
                 <Box
                   p={2}
                   borderRadius="16px"
                   bg={isActive ? "#04327b" : "#93b7f1"}
                   boxShadow={
-                    isActive
-                      ? "0 0 14px rgba(4,50,123,0.9)"
-                      : hovered === index
-                      ? "0 0 10px rgba(4,50,123,0.6)"
+                    isActive || isHovered
+                      ? "0 0 12px rgba(4,50,123,0.7)"
                       : "none"
                   }
                   transition="all 0.3s ease"
@@ -204,20 +200,16 @@ export default function MacNavbar() {
                   />
                 </Box>
 
-                <AnimatePresence>
-                  {hovered === index && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Text fontSize="12px" color="#04327b" fontWeight="600">
-                        {item.label}
-                      </Text>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* TEXT — ALWAYS VISIBLE */}
+                <Text
+                  fontSize="12px"
+                  fontWeight="600"
+                  color={isActive || isHovered ? "#04327b" : "gray.600"}
+                  opacity={isActive || isHovered ? 1 : 0.85}
+                  transition="all 0.25s ease"
+                >
+                  {item.label}
+                </Text>
               </VStack>
             </MotionBox>
           );

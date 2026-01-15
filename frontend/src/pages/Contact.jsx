@@ -408,71 +408,33 @@ const Contact = () => {
                     </HStack>
                   </Box>
 
-                  {/* Social Media */}
-                  {/* <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
-                    <Text fontWeight="600" color="gray.800" mb={4}>
-                      Connect With Us
-                    </Text>
-                    <HStack spacing={4}>
-                      {[
-                        { icon: FaFacebookF, href: "#", label: "Facebook" },
-                        { icon: FaTwitter, href: "#", label: "X" },
-                        { icon: FaInstagram, href: "#", label: "Instagram" },
-                        { icon: FaYoutube, href: "#", label: "Youtube" },
-                        { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
-                      ].map((social, index) => {
-                        const IconComponent = social.icon;
-                        return (
-                          <Box
-                            key={index}
-                            as={Link}
-                            href={social.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={social.label}
-                            p={2}
-                            borderRadius="50%"
-                            bg="gray.100"
-                            cursor="pointer"
-                            _hover={{ bg: "brand.500" }}
-                            transition="all 0.3s ease"
-                            display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                          >
-                            <IconComponent size={14} style={{ color: "#374151" }} />
-                          </Box>
-                        );
-                      })}
-                    </HStack>
-                  </Box> */}
 
                   {/* Social Media */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
-                    <Text fontWeight="600" color="gray.800" mb={4}>
+                    <Text fontWeight="600" color="gray.800">
                       Connect With Us
                     </Text>
 
-                    <HStack spacing={4}>
+                    <HStack spacing={2}>
                       {[
                         {
                           animation: Facebook,
-                          href: "https://facebook.com",
+                          href: "https://www.facebook.com/profile.php?id=61582465814810",
                           label: "Facebook",
                         },
                         {
                           animation: Instagram,
-                          href: "https://instagram.com",
+                          href: "https://www.instagram.com/genius36.in/",
                           label: "Instagram",
                         },
                         {
                           animation: Youtube,
-                          href: "https://Youtube.com",
+                          href: "https://www.youtube.com/@Geniusindia36",
                           label: "Youtube",
                         },
                         {
                           animation: LinkedIn,
-                          href: "https://LinkedIn.com",
+                          href: "linkedin.com/company/genius36",
                           label: "LinkedIn",
                         },
                         // {
@@ -493,8 +455,8 @@ const Contact = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={social.label}
-                          w="70px"
-                          h="70px"
+                          w="50px"
+                          h="50px"
                           borderRadius="full"
                           bg="gray.100"
                           display="flex"
