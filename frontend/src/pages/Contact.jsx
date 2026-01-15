@@ -99,19 +99,32 @@ const Contact = () => {
         title="Contact Us | Genius36 Technologies"
         description="Get in touch with Genius36 Technologies for IT solutions, training programs, and consultation services."
       />
-      <Box py={20} bg="gray.50" minH="100vh">
-        <Container maxW="7xl">
-          <VStack spacing={12} align="stretch">
-            {/* Heading */}
-            <Box textAlign="center">
-              <Heading size="2xl" mb={4} color="gray.800">
+
+      <Box bg="gray.900" color="white" padding="100px">
+        <Container maxW="7xl" py={{ base: 14, md: 20 }}>
+          <VStack textAlign="center">
+
+            {/* CONTENT BELOW */}
+            <VStack>
+              <Heading
+                fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+              padding="">
                 Get In Touch
               </Heading>
+
               <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
                 Have questions or ready to transform your technology
                 infrastructure? Contact us today.
               </Text>
-            </Box>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
+      <Box py={20} bg="gray.50" minH="100vh">
+        <Container maxW="7xl">
+          <VStack spacing={12} align="stretch">
+            {/* Heading */}
+            
 
             {/* Alert Messages */}
             {alert.show && (

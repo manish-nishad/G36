@@ -116,15 +116,30 @@ export default function Home() {
           bgPosition="center"
           willChange="transform"
         >
-          <Box
-            position="absolute"
-            inset="0"
-            bgGradient="linear(to-br, blue.900, blue.800, gray.900)"
-            opacity={0.95}
-          />
+           <Box
+      position="absolute"
+      inset="0"
+      bg="#1d3ca8"
+      opacity={0.80}   // 👈 adjust transparency here
+      zIndex={0}
+    />
         </Box>
 
-        <Container maxW="7xl" position="relative" zIndex={1} py={24}>
+        <Container maxW="7xl" position="relative" zIndex={1} py={24} textAlign="center">
+          <Box
+            display="inline-block"
+            px={6}
+            py={2}
+            mb={6}
+            bg="whiteAlpha.200"
+            borderRadius="full"
+            border="1px solid"
+            borderColor="whiteAlpha.300"
+          >
+            <Text color="blue.300" fontWeight="medium" fontSize="sm">
+              Pan-India IT Solutions Partner
+            </Text>
+          </Box>
           <VStack spacing={6} textAlign="center" padding={20}>
             <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }}>
               Transform Your Business
@@ -259,7 +274,7 @@ export default function Home() {
 
                     <Card.Footer>
                       <Button variant="solid" width="100%" pointerEvents="none">
-                        Get Details
+                        Learn More
                       </Button>
                     </Card.Footer>
                   </Card.Root>
