@@ -232,7 +232,146 @@ export const blogPosts = [
     category: "Cybersecurity",
     readTime: "8 min read",
     image: servicesImages.networking,
-    content: "Full article content goes here..."
+    content: `In today's digital landscape, cybersecurity threats are evolving at an unprecedented pace. As businesses increasingly rely on digital infrastructure, understanding and mitigating these threats has become crucial for survival. This comprehensive guide explores the top 10 cybersecurity threats facing businesses in 2025 and provides actionable strategies to protect your organization.
+
+## Understanding the Current Threat Landscape
+
+The cybersecurity landscape in 2025 is more complex than ever before. Cybercriminals are leveraging advanced technologies like artificial intelligence and machine learning to launch sophisticated attacks. Small businesses are no longer safe targets—they're often preferred because they typically have weaker security measures in place.
+
+The cost of cyber attacks continues to rise, with the average data breach costing organizations millions of dollars. Beyond financial losses, businesses face reputational damage, legal consequences, and operational disruptions that can be devastating.
+
+## Top 10 Cybersecurity Threats in 2025
+
+### 1. Ransomware Attacks
+
+Ransomware remains one of the most significant threats to businesses worldwide. These attacks encrypt your data and demand payment for decryption keys. Modern ransomware attacks are more sophisticated, often targeting backups and using double extortion tactics.
+
+**Protection Strategies:**
+- Implement regular automated backups stored offline
+- Use endpoint detection and response (EDR) solutions
+- Train employees to recognize phishing attempts
+- Keep all software and systems updated
+- Develop and test an incident response plan
+
+### 2. Phishing and Social Engineering
+
+Phishing attacks have become increasingly sophisticated, using AI-generated content that's nearly indistinguishable from legitimate communications. Attackers target employees through email, SMS, and social media platforms.
+
+**Protection Strategies:**
+- Deploy email security gateways with advanced filtering
+- Conduct regular security awareness training
+- Implement multi-factor authentication (MFA)
+- Use email authentication protocols (SPF, DKIM, DMARC)
+- Encourage employees to verify suspicious requests through alternative channels
+
+### 3. Supply Chain Attacks
+
+Attackers are targeting software vendors and service providers to gain access to multiple organizations through a single breach. These attacks can affect hundreds or thousands of businesses simultaneously.
+
+**Protection Strategies:**
+- Vet third-party vendors thoroughly before integration
+- Implement least-privilege access principles
+- Monitor third-party access continuously
+- Require vendors to meet security standards
+- Maintain an inventory of all third-party integrations
+
+### 4. Cloud Security Vulnerabilities
+
+As more businesses migrate to the cloud, misconfigurations and inadequate access controls create significant security gaps. Shared responsibility models can lead to confusion about who's responsible for what.
+
+**Protection Strategies:**
+- Regularly audit cloud configurations
+- Implement cloud security posture management (CSPM) tools
+- Use encryption for data at rest and in transit
+- Enable comprehensive logging and monitoring
+- Follow cloud security best practices and frameworks
+
+### 5. AI-Powered Attacks
+
+Cybercriminals are using AI to create more convincing phishing emails, generate malware, and automate attacks at scale. AI can also be used to bypass traditional security measures.
+
+**Protection Strategies:**
+- Invest in AI-powered security solutions
+- Stay informed about emerging AI threats
+- Implement behavioral analytics
+- Use machine learning for threat detection
+- Train security teams on AI attack vectors
+
+### 6. Insider Threats
+
+Whether malicious or accidental, insider threats pose significant risks. Disgruntled employees, compromised accounts, or simple human error can lead to data breaches.
+
+**Protection Strategies:**
+- Implement user behavior analytics (UBA)
+- Conduct regular access reviews
+- Enforce the principle of least privilege
+- Monitor and log user activities
+- Provide ongoing security training
+
+### 7. IoT Device Vulnerabilities
+
+The proliferation of Internet of Things (IoT) devices creates new attack surfaces. Many IoT devices lack proper security controls and are often overlooked in security strategies.
+
+**Protection Strategies:**
+- Maintain an inventory of all IoT devices
+- Change default passwords immediately
+- Segment IoT devices on separate networks
+- Keep firmware updated
+- Disable unnecessary features and services
+
+### 8. Zero-Day Exploits
+
+Zero-day vulnerabilities are unknown to vendors and have no patches available. Attackers exploit these vulnerabilities before security patches are developed and deployed.
+
+**Protection Strategies:**
+- Implement defense-in-depth strategies
+- Use application allowlisting
+- Deploy intrusion detection systems
+- Monitor threat intelligence feeds
+- Have a rapid patching process ready
+
+### 9. Business Email Compromise (BEC)
+
+BEC attacks target employees with access to financial systems, tricking them into transferring funds or revealing sensitive information. These attacks often involve careful research and social engineering.
+
+**Protection Strategies:**
+- Implement email authentication protocols
+- Require multi-person approval for financial transactions
+- Verify payment requests through multiple channels
+- Train employees on BEC red flags
+- Use email security solutions with BEC detection
+
+### 10. Mobile Device Threats
+
+As mobile devices become primary work tools, they're increasingly targeted by attackers. Mobile malware, unsecured Wi-Fi networks, and device loss create significant risks.
+
+**Protection Strategies:**
+- Implement mobile device management (MDM) solutions
+- Require device encryption and passcodes
+- Use mobile threat defense solutions
+- Educate employees on mobile security best practices
+- Implement remote wipe capabilities
+
+## Building a Comprehensive Security Strategy
+
+Protecting your business requires a multi-layered approach that combines technology, processes, and people. No single solution can provide complete protection, but a well-designed security strategy can significantly reduce your risk.
+
+### Key Components of a Strong Security Posture
+
+1. **Risk Assessment**: Regularly assess your security posture and identify vulnerabilities
+2. **Security Policies**: Develop and enforce comprehensive security policies
+3. **Employee Training**: Invest in ongoing security awareness training
+4. **Technology Solutions**: Deploy appropriate security tools and technologies
+5. **Incident Response**: Prepare for security incidents with tested response plans
+6. **Continuous Monitoring**: Implement 24/7 security monitoring and threat detection
+
+## Conclusion
+
+The cybersecurity threat landscape in 2025 demands proactive and comprehensive security measures. By understanding these top threats and implementing the recommended protection strategies, businesses can significantly reduce their risk of falling victim to cyber attacks.
+
+Remember, cybersecurity is not a one-time investment but an ongoing process. Regular assessments, updates, and training are essential to maintain strong security posture. Partnering with experienced cybersecurity professionals can help ensure your business stays protected against evolving threats.
+
+Stay vigilant, stay informed, and prioritize cybersecurity as a fundamental aspect of your business operations.`
   },
   {
     id: 2,
@@ -335,3 +474,96 @@ export const companyInfo = {
   serviceArea: "Bhilai, Chhattisgarh & Pan-India",
   mapUrl: "https://maps.google.com/?q=Maroda+Tank+Utai+Rd+near+Police+Station+Ajad+Nagar+Newai+Bhilai+Chhattisgarh+490006"
 };
+
+export const jobOpenings = [
+  {
+    id: 1,
+    title: "Full Stack Web Developer",
+    department: "Development",
+    location: "Bhilai, Chhattisgarh",
+    type: "Full-time",
+    experience: "2-4 years",
+    description: "We are looking for an experienced Full Stack Developer to join our development team. You will be responsible for developing and maintaining web applications using modern technologies.",
+    requirements: [
+      "Proficiency in React.js, Node.js, and MongoDB",
+      "Experience with RESTful APIs and Git",
+      "Strong problem-solving skills",
+      "Good communication skills"
+    ]
+  },
+  {
+    id: 2,
+    title: "UI/UX Designer",
+    department: "Design",
+    location: "Bhilai, Chhattisgarh",
+    type: "Full-time",
+    experience: "1-3 years",
+    description: "Join our creative team as a UI/UX Designer. You'll design intuitive and engaging user interfaces for web and mobile applications.",
+    requirements: [
+      "Proficiency in Figma, Adobe XD, or Sketch",
+      "Strong portfolio showcasing design skills",
+      "Understanding of user-centered design principles",
+      "Knowledge of HTML/CSS is a plus"
+    ]
+  },
+  {
+    id: 3,
+    title: "Network Engineer",
+    department: "Infrastructure",
+    location: "Bhilai, Chhattisgarh",
+    type: "Full-time",
+    experience: "3-5 years",
+    description: "We need an experienced Network Engineer to design, implement, and maintain our network infrastructure and client networks.",
+    requirements: [
+      "CCNA/CCNP certification preferred",
+      "Experience with LAN/WAN setup and troubleshooting",
+      "Knowledge of firewall and security protocols",
+      "Strong troubleshooting skills"
+    ]
+  },
+  {
+    id: 4,
+    title: "IT Trainer",
+    department: "Training",
+    location: "Bhilai, Chhattisgarh",
+    type: "Full-time",
+    experience: "2-4 years",
+    description: "Looking for an enthusiastic IT Trainer to deliver programming and technology courses to students and professionals.",
+    requirements: [
+      "Strong knowledge of programming languages (Python, JavaScript, etc.)",
+      "Excellent teaching and communication skills",
+      "Experience in conducting training sessions",
+      "Patience and passion for teaching"
+    ]
+  },
+  {
+    id: 5,
+    title: "Sales Executive",
+    department: "Sales",
+    location: "Bhilai, Chhattisgarh",
+    type: "Full-time",
+    experience: "1-3 years",
+    description: "Join our sales team to promote IT services and solutions to businesses. Build relationships and drive business growth.",
+    requirements: [
+      "Excellent communication and negotiation skills",
+      "Basic understanding of IT services",
+      "Proven track record in sales",
+      "Self-motivated and target-oriented"
+    ]
+  },
+  {
+    id: 6,
+    title: "DevOps Engineer",
+    department: "Development",
+    location: "Bhilai, Chhattisgarh",
+    type: "Full-time",
+    experience: "2-4 years",
+    description: "We're seeking a DevOps Engineer to manage our cloud infrastructure, CI/CD pipelines, and deployment processes.",
+    requirements: [
+      "Experience with AWS, Docker, and Kubernetes",
+      "Knowledge of CI/CD tools (Jenkins, GitLab CI)",
+      "Scripting skills (Bash, Python)",
+      "Understanding of infrastructure as code"
+    ]
+  }
+];
