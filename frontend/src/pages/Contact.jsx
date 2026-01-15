@@ -159,7 +159,7 @@ const Contact = () => {
                       placeholder="Full Name"
                       value={formData.fullName}
                       onChange={handleChange}
-                      size="md"
+                      size="sm"
                       required
                       bg="white"
                       borderColor="gray.300"
@@ -176,7 +176,7 @@ const Contact = () => {
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={handleChange}
-                      size="md"
+                      size="sm"
                       required
                       bg="white"
                       borderColor="gray.300"
@@ -193,7 +193,7 @@ const Contact = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
-                      size="md"
+                      size="sm"
                       required
                       bg="white"
                       borderColor="gray.300"
@@ -211,13 +211,13 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       w="full"
-                      h="48px"
+                      h="35px"
                       px={4}
                       bg="white"
                       borderWidth="1px"
                       borderColor="gray.300"
-                      borderRadius="md"
-                      fontSize="md"
+                      borderRadius="sm"
+                      fontSize="sm"
                       _hover={{ borderColor: "gray.400" }}
                       _focus={{
                         borderColor: "brand.500",
@@ -240,7 +240,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       size="xs"
-                      rows={6}
+                      rows={5}
                       required
                       bg="white"
                       borderColor="gray.300"
