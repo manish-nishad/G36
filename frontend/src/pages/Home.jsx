@@ -208,7 +208,7 @@ export default function Home() {
         </Text>
 
         <Container maxW="7xl">
-          <SimpleGrid columns={[2, null, 4]} gap="40px">
+          <SimpleGrid columns={[2, null, 4]} gap="20px">
             {services.map((s) => {
               const IconComp = LucideIcons[s.icon];
               return (
