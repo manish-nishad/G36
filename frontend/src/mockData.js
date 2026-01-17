@@ -34,6 +34,7 @@ export const services = [
   {
     id: 1,
     title: "Custom Website Design & Development",
+    lottieKey: "WebDevelopment",
     description: "Create stunning, responsive websites tailored to your business needs with modern technologies and best practices.",
     icon: "Globe",
     features: ["Responsive Design", "SEO Optimized", "Fast Loading", "Custom CMS"]
@@ -41,6 +42,7 @@ export const services = [
   {
     id: 2,
     title: "Software Development",
+    lottieKey: "SoftwareDevelopment",
     description: "Enterprise-grade software solutions for web and mobile platforms with scalable architecture.",
     icon: "Code",
     features: ["Custom Solutions", "Scalable Architecture", "API Integration", "Cloud-Ready"]
@@ -48,6 +50,7 @@ export const services = [
   {
     id: 3,
     title: "IT Consulting & Digital Transformation",
+    lottieKey: "ItConsultation",
     description: "Strategic IT consulting to modernize your business operations and drive digital innovation.",
     icon: "Lightbulb",
     features: ["Strategy Planning", "Process Optimization", "Technology Audit", "Digital Roadmap"]
@@ -55,6 +58,7 @@ export const services = [
   {
     id: 4,
     title: "CCTV Camera Installation & Security",
+    lottieKey: "Cctv",
     description: "Professional security camera installation with 24/7 monitoring and advanced surveillance systems.",
     icon: "Video",
     features: ["HD Cameras", "Remote Monitoring", "Night Vision", "Cloud Storage"]
@@ -62,6 +66,7 @@ export const services = [
   {
     id: 5,
     title: "Computer Hardware Sales & Repair",
+    lottieKey: "ComputerHardware",
     description: "Quality computer hardware, peripherals, and expert repair services with AMC support.",
     icon: "HardDrive",
     features: ["Genuine Products", "Expert Repair", "AMC Support", "Quick Service"]
@@ -69,6 +74,7 @@ export const services = [
   {
     id: 6,
     title: "Networking & IT Infrastructure",
+    lottieKey: "Networking",
     description: "Complete networking solutions including LAN/WAN setup, server configuration, and infrastructure management.",
     icon: "Network",
     features: ["LAN/WAN Setup", "Server Configuration", "Network Security", "24/7 Support"]
@@ -76,6 +82,7 @@ export const services = [
   {
     id: 7,
     title: "Cloud Solutions & Server Setup",
+    lottieKey: "Cloud",
     description: "Scalable cloud infrastructure and server management for modern businesses.",
     icon: "Cloud",
     features: ["Cloud Migration", "Server Management", "Backup Solutions", "High Availability"]
@@ -83,6 +90,7 @@ export const services = [
   {
     id: 8,
     title: "IT Training & Programming Courses",
+    lottieKey: "ItTraining",
     description: "Industry-aligned IT training programs with hands-on learning and career development.",
     icon: "GraduationCap",
     features: ["Expert Trainers", "Hands-on Learning", "Certification", "Placement Support"]
@@ -90,6 +98,7 @@ export const services = [
   {
     id: 9,
     title: "Data Recovery Services",
+    lottieKey: "DataRecovery",
     description: "Professional data recovery solutions for hard drives, SSDs, RAID systems, and all storage devices.",
     icon: "HardDriveDownload",
     features: ["99% Success Rate", "Secure Process", "All Storage Types", "Free Diagnostics"]
