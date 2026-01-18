@@ -7,16 +7,13 @@ import {
   VStack,
   HStack,
   Container,
-  Icon,
   Stack,
-  Image,
   Card,
-  CardBody,
   Avatar,
-  Strong,
   Blockquote,
   Float,
   Span,
+  Icon,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import {
@@ -38,6 +35,16 @@ import WebsiteDesign from "../assets/lottie/Website Design Lottie Animation.json
 import Laptop from "../assets/lottie/Laptop.json";
 import Award from "../assets/lottie/Award.json";
 import GradientDots from "../assets/lottie/Gradient Dots Background.json";
+import Cctv from "../assets/lottie/CCTV SETUP & SECURITY.json";
+import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
+import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
+import DataRecovery from "../assets/lottie/DATA RECOVERY 2.json";
+import ItConsultation from "../assets/lottie/IT CONSULTATION & DIGITAL TRANSFORMATION.json";
+import ItTraining from "../assets/lottie/IT TRAINING.json";
+import Networking from "../assets/lottie/NETWOKING AND INFRASTRUCTURE.json";
+import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
+import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
+import iconsBg from "../assets/lottie/icons-bg.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,6 +104,18 @@ export default function Home() {
     });
   }, []);
 
+  const serviceLotties = {
+    WebDevelopment: WebDevelopment,
+    SoftwareDevelopment: SoftwareDevelopment,
+    ItConsultation: ItConsultation,
+    ItTraining: ItTraining,
+    Networking: Networking,
+    Cloud: Cloud,
+    Cctv: Cctv,
+    DataRecovery: DataRecovery,
+    ComputerHardware: ComputerHardware,
+  };
+
   return (
     <>
       <Seo
@@ -119,12 +138,33 @@ export default function Home() {
           <Box
             position="absolute"
             inset="0"
-            bgGradient="linear(to-br, blue.900, blue.800, gray.900)"
-            opacity={0.95}
+            bg="#1d3ca8"
+            opacity={0.8} // 👈 adjust transparency here
+            zIndex={0}
           />
         </Box>
 
-        <Container maxW="7xl" position="relative" zIndex={1} py={24}>
+        <Container
+          maxW="7xl"
+          position="relative"
+          zIndex={1}
+          py={24}
+          textAlign="center"
+        >
+          <Box
+            display="inline-block"
+            px={6}
+            py={2}
+            mb={6}
+            bg="whiteAlpha.200"
+            borderRadius="full"
+            border="1px solid"
+            borderColor="whiteAlpha.300"
+          >
+            <Text color="blue.300" fontWeight="medium" fontSize="sm">
+              Pan-India IT Solutions Partner
+            </Text>
+          </Box>
           <VStack spacing={6} textAlign="center" padding={20}>
             <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }}>
               Transform Your Business
@@ -193,46 +233,34 @@ export default function Home() {
         </Text>
 
         <Container maxW="7xl">
-          <SimpleGrid columns={[2, null, 4]} gap="40px">
+          <Box
+            position="absolute"
+            inset={0}
+            zIndex={0}
+            // opacity={0.15}
+            pointerEvents="none"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Lottie
+              animationData={iconsBg}
+              loop
+              style={{ width: "100%", height: "100%" }}
+            />
+          </Box>
+          <SimpleGrid
+            columns={{ base: 1, sm: 2, md: 2, lg: 4 }}
+            spacing={{ base: 6, md: 8 }}
+            gap="20px"
+          >
             {services.map((s) => {
-              const IconComp = LucideIcons[s.icon];
               return (
-                // <Box
-                //   key={s.id}
-                //   className="service-card"
-                //   bg="white"
-                //   p={6}
-                //   borderRadius="xl"
-                //   boxShadow="md"
-                // >
-                //   <Box
-                //     w="56px"
-                //     h="56px"
-                //     bgGradient="linear(to-br, blue.500, blue.700)"
-                //     borderRadius="xl"
-                //     display="flex"
-                //     alignItems="center"
-                //     justifyContent="center"
-                //     mb={4}
-                //   >
-                //     <Icon as={IconComp} color="white" />
-                //   </Box>
-
-                //   <Heading size="md">{s.title}</Heading>
-                //   <Text fontSize="sm" color="gray.600" mb={3}>
-                //     {s.description}
-                //   </Text>
-
-                //   <VStack align="start">
-                //     {s.features.slice(0, 3).map((f, i) => (
-                //       <HStack key={i}>
-                //         <Icon as={CheckCircle} color="blue.500" />
-                //         <Text fontSize="sm">{f}</Text>
-                //       </HStack>
-                //     ))}
-                //   </VStack>
-                // </Box>
-                <Link to="/services" style={{ textDecoration: "none" }}>
+                <Link
+                  key={s.id}
+                  to="/services"
+                  style={{ textDecoration: "none" }}
+                >
                   <Card.Root
                     maxW="sm"
                     overflow="hidden"
@@ -247,19 +275,47 @@ export default function Home() {
                     }}
                   >
                     {/* LOTTIE */}
-                    <Lottie animationData={Laptop} />
+                    <Box
+                      h="180px"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Lottie
+                        animationData={serviceLotties[s.lottieKey]}
+                        loop
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      />
+                    </Box>
 
                     <Card.Body gap="2">
-                      <Card.Title>Lab Setup</Card.Title>
-                      <Card.Description>
-                        Professional computer lab setup, networking, and
-                        maintenance services for schools and institutions.
+                      <Card.Title>{s.title}</Card.Title>
+                      <Card.Description textAlign="justify">
+                        {s.description}
                       </Card.Description>
+                      <VStack spacing={2} mt={3} align="start">
+                        {s.features.slice(0, 3).map((feature, idx) => (
+                          <HStack key={idx} spacing={2}>
+                            <Icon
+                              as={CheckCircle}
+                              boxSize={4}
+                              color="blue.500"
+                              flexShrink={0}
+                            />
+                            <Text fontSize="sm" color="gray.600">
+                              {feature}
+                            </Text>
+                          </HStack>
+                        ))}
+                      </VStack>
                     </Card.Body>
 
                     <Card.Footer>
                       <Button variant="solid" width="100%" pointerEvents="none">
-                        Get Details
+                        Learn More
                       </Button>
                     </Card.Footer>
                   </Card.Root>
