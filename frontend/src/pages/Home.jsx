@@ -191,6 +191,7 @@ export default function Home() {
             <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={4}>
               Next-Generation IT Solution
             </Heading>
+
             <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={2}>
               for Your Business
             </Heading>
@@ -264,7 +265,7 @@ export default function Home() {
           </Box>
 
           <SimpleGrid
-            columns={{ base: 1, sm: 2, md: 2, lg: 4 }}
+            columns={{ base: 1, sm: 2, md: 2, lg: 3 }}
             spacing={8}
             alignItems="stretch"
             position="relative"
