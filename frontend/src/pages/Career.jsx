@@ -23,6 +23,7 @@ import emailIcon from "../assets/flaticons/email.gif";
 import clockIcon from "../assets/flaticons/clock.gif";
 import Lottie from "lottie-react";
 import Welcome from "../assets/lottie/Welcome.json";
+import CareerImg from "../assets/lottie/Colleagues Working Together.json";
 
 const Career = () => {
   // Why Work With Us - matching About page structure
@@ -108,7 +109,7 @@ const Career = () => {
           <VStack spacing={8} textAlign="center">
             {/* LOTTIE TOP */}
             <Box maxW="420px" mx="auto">
-              <Lottie animationData={Welcome} loop autoplay />
+              <Lottie animationData={CareerImg} loop autoplay />
             </Box>
 
             {/* CONTENT BELOW */}
