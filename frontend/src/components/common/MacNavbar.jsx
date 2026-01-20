@@ -150,7 +150,7 @@ export default function MacNavbar() {
       zIndex={1000}
     >
       {/* LEFT LOGO */}
-      <Box position="absolute" left="24px">
+      <Box position="absolute" left="250px">
         <Image
           src={logo}
           height={breakpoint === "tablet" ? "52px" : "58px"}
@@ -220,7 +220,7 @@ export default function MacNavbar() {
       </HStack>
 
       {/* RIGHT CALL BUTTON */}
-      <Box position="absolute" right="24px">
+      <Box position="absolute" right="250px">
         <Button
           size={breakpoint === "tablet" ? "sm" : "md"}
           leftIcon={<FaPhoneAlt />}

@@ -40,6 +40,7 @@ const Projects = () => {
             <VStack spacing={4}>
               <Heading
                 fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+                as="h1"
               >
                 Our{" "}
                 <Box as="span" color="#0951d8">

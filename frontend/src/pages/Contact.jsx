@@ -118,6 +118,7 @@ const Contact = () => {
               <Heading
                 fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
                 padding=""
+                as="h1"
               >
                 Get In Touch
               </Heading>

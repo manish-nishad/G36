@@ -1,3 +1,4 @@
+import useEmblaCarousel from "embla-carousel-react";
 import {
   Box,
   Heading,
@@ -23,18 +24,13 @@ import {
   Globe,
   Headphones,
 } from "lucide-react";
-import * as LucideIcons from "lucide-react";
 import { heroImages, services, stats, testimonials } from "../mockData";
 import Seo from "../seo/Seo";
-
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lottie from "lottie-react";
-import WebsiteDesign from "../assets/lottie/Website Design Lottie Animation.json";
-import Laptop from "../assets/lottie/Laptop.json";
 import Award from "../assets/lottie/Award.json";
-import GradientDots from "../assets/lottie/Gradient Dots Background.json";
 import Cctv from "../assets/lottie/CCTV SETUP & SECURITY.json";
 import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
 import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
@@ -44,7 +40,6 @@ import ItTraining from "../assets/lottie/IT TRAINING.json";
 import Networking from "../assets/lottie/NETWOKING AND INFRASTRUCTURE.json";
 import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
 import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
-import iconsBg from "../assets/lottie/icons-bg.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,11 +65,63 @@ const handleMouseLeave = (e) => {
     "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
 };
 
+const useEmblaAutoplay = (emblaApi, delay = 3000) => {
+  const timerRef = useRef(null);
+  const isPaused = useRef(false);
+
+  const stop = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  };
+
+  const play = () => {
+    if (!emblaApi || isPaused.current) return;
+
+    stop();
+    timerRef.current = setTimeout(() => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+    }, delay);
+  };
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.on("select", play);
+    play();
+
+    return () => stop();
+  }, [emblaApi]);
+
+  return {
+    onMouseEnter: () => {
+      isPaused.current = true;
+      stop();
+    },
+    onMouseLeave: () => {
+      isPaused.current = false;
+      play();
+    },
+  };
+};
+
+
 export default function Home() {
   const heroBgRef = useRef(null);
   const servicesRef = useRef(null);
   const whyRef = useRef(null);
   const testimonialRef = useRef(null);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: true,
+    dragFree: false,
+  slidesToScroll: 3,
+  });
+
+  const autoplayHandlers = useEmblaAutoplay(emblaApi, 3500);
 
   useEffect(() => {
     // HERO PARALLAX (BACKGROUND ONLY)
@@ -100,18 +147,6 @@ export default function Home() {
       stagger: 0.2,
       duration: 0.6,
     });
-
-    // WHY CHOOSE US
-    // gsap.from(".why-item", {
-    //   scrollTrigger: {
-    //     trigger: whyRef.current,
-    //     start: "top 80%",
-    //   },
-    //   scale: 0.85,
-    //   opacity: 0,
-    //   stagger: 0.15,
-    //   duration: 0.5,
-    // });
 
     // TESTIMONIALS
     gsap.from(".testimonial-card", {
@@ -188,7 +223,7 @@ export default function Home() {
             </Text>
           </Box>
           <VStack spacing={8} textAlign="center" padding={20}>
-            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={4}>
+            <Heading as="h1" color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={4}>
               Next-Generation IT Solution
             </Heading>
 
@@ -254,100 +289,85 @@ export default function Home() {
           scalable, and cost-effective technology solutions across India.
         </Text>
 
-        <Container maxW="7xl" position="relative" py={10}>
-          {/* Lottie Background */}
-          <Box position="absolute" inset={0} zIndex={0} pointerEvents="none">
-            <Lottie
-              animationData={iconsBg}
-              loop
-              style={{ width: "100%", height: "100%" }}
-            />
-          </Box>
-
-          <SimpleGrid
-            columns={{ base: 1, sm: 2, md: 2, lg: 3 }}
-            spacing={8}
-            alignItems="stretch"
-            position="relative"
-            zIndex={1}
-            gap="20px"
-          >
+        <Container maxW="7xl">
+        {/* Embla Viewport */}
+        <Box  ref={emblaRef}
+              overflow="hidden"
+              {...autoplayHandlers}>
+          {/* Embla Track */}
+          <HStack spacing={6} align="stretch">
             {services.map((s) => (
-              <Link
+              <Box
                 key={s.id}
-                to="/services"
-                style={{ textDecoration: "none" }}
+                flex="0 0 100%"
+                maxW={{
+                  base: "100%",
+                  md: "50%",
+                  lg: "33.333%",
+                }}
               >
-                <Card.Root
-                  h="100%"
-                  display="flex"
-                  flexDirection="column"
-                  backdropFilter="blur(14px)"
-                  bg="rgba(255,255,255,0.15)"
-                  border="1px solid rgba(255,255,255,0.3)"
-                  borderRadius="xl"
-                  boxShadow="0 20px 40px rgba(0,0,0,0.1)"
-                  transition="transform 0.15s ease, box-shadow 0.3s ease"
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  _hover={{
-                    boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
-                  }}
-                >
-                  {/* Lottie */}
-                  <Box
-                    h="180px"
+                <Link to="/services" style={{ textDecoration: "none" }}>
+                  <Card.Root
+                    h="100%"
                     display="flex"
-                    alignItems="center"
-                    justifyContent="center"
+                    flexDirection="column"
+                    bg="white"
+                    borderRadius="xl"
+                    boxShadow="lg"
+                    transition="all 0.3s ease"
+                    _hover={{
+                      transform: "translateY(-6px)",
+                      boxShadow: "2xl",
+                    }}
                   >
-                    <Lottie
-                      animationData={serviceLotties[s.lottieKey]}
-                      loop
-                      style={{ width: "100%", height: "100%" }}
-                    />
-                  </Box>
+                    {/* LOTTIE */}
+                    <Box h="180px" display="flex" alignItems="center">
+                      <Lottie
+                        animationData={serviceLotties[s.lottieKey]}
+                        loop
+                        autoplay
+                        rendererSettings={{
+                          preserveAspectRatio: "xMidYMid meet",
+                        }}
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    </Box>
 
-                  <Card.Body flex="1" gap="2">
-                    <Card.Title>{s.title}</Card.Title>
+                    <Card.Body flex="1">
+                      <Card.Title mb={2}>{s.title}</Card.Title>
 
-                    <Card.Description textAlign="justify" noOfLines={3}>
-                      {s.description}
-                    </Card.Description>
+                      <Card.Description noOfLines={3}>
+                        {s.description}
+                      </Card.Description>
 
-                    <VStack spacing={2} mt={3} align="start">
-                      {s.features.slice(0, 3).map((feature, idx) => (
-                        <HStack key={idx} spacing={2}>
-                          <Icon
-                            as={CheckCircle}
-                            boxSize={4}
-                            color="blue.500"
-                            flexShrink={0}
-                          />
-                          <Text fontSize="sm" color="gray.600">
-                            {feature}
-                          </Text>
-                        </HStack>
-                      ))}
-                    </VStack>
-                  </Card.Body>
+                      <VStack align="start" spacing={2} mt={4}>
+                        {s.features.slice(0, 3).map((f, i) => (
+                          <HStack key={i} spacing={2}>
+                            <Icon as={CheckCircle} boxSize={4} color="blue.500" />
+                            <Text fontSize="sm">{f}</Text>
+                          </HStack>
+                        ))}
+                      </VStack>
+                    </Card.Body>
 
-                  <Card.Footer mt="auto">
-                    <Button
-                      width="100%"
-                      bg="blue.600"
-                      color="white"
-                      _hover={{ bg: "blue.700" }}
-                      pointerEvents="none"
-                    >
-                      Learn More
-                    </Button>
-                  </Card.Footer>
-                </Card.Root>
-              </Link>
+                    <Card.Footer mt="auto">
+                      <Button
+                        w="100%"
+                        bg="blue.600"
+                        color="white"
+                        _hover={{ bg: "blue.700" }}
+                        pointerEvents="none"
+                      >
+                        Learn More
+                      </Button>
+                    </Card.Footer>
+                  </Card.Root>
+                </Link>
+              </Box>
             ))}
-          </SimpleGrid>
-        </Container>
+          </HStack>
+        </Box>
+      </Container>
       </Box>
 
       {/* WHY CHOOSE US */}
