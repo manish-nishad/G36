@@ -24,6 +24,8 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../assets/images/logo.png";
+import Lottie from "lottie-react";
+// import CompanyLogo from "../../assets/lottie/company logo.json";
 
 const MotionBox = motion(Box);
 
@@ -32,11 +34,11 @@ const navItems = [
   { label: "Services", icon: FaCogs, path: "/services" },
   { label: "Projects", icon: FaProjectDiagram, path: "/projects" },
   { label: "Blogs", icon: FaBlog, path: "/blogs" },
-  { label: "Training", icon: FaChalkboardTeacher, path: "/training" },
+  // { label: "Training", icon: FaChalkboardTeacher, path: "/training" },
   { label: "Career", icon: FaUserTie, path: "/career" },
   { label: "About", icon: FaInfoCircle, path: "/about" },
   { label: "Contact", icon: FaEnvelope, path: "/contact" },
-  { label: "Admin", icon: FaUserShield, path: "/admin" },
+  // { label: "Admin", icon: FaUserShield, path: "/admin" },
 ];
 
 export default function MacNavbar() {
@@ -151,10 +153,11 @@ export default function MacNavbar() {
       <Box position="absolute" left="24px">
         <Image
           src={logo}
-          height={breakpoint === "tablet" ? "36px" : "42px"}
+          height={breakpoint === "tablet" ? "52px" : "58px"}
           cursor="pointer"
           onClick={() => navigate("/")}
         />
+
       </Box>
 
       {/* CENTER ICON + TEXT */}

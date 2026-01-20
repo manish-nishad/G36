@@ -22,6 +22,10 @@ import Youtube from "../assets/lottie/Youtube.json";
 import LinkedIn from "../assets/lottie/Linkdin.json";
 import Whatsapp from "../assets/lottie/Whatsapp.json";
 import ContactUs from "../assets/lottie/Contact Us.json";
+import locationIcon from "../assets/flaticons/location.gif";
+import phoneIcon from "../assets/flaticons/phone-contact.gif";
+import emailIcon from "../assets/flaticons/email.gif";
+import clockIcon from "../assets/flaticons/clock.gif";
 // import Twitter from "../assets/lottie/Twitter.json";
 
 const Contact = () => {
@@ -104,22 +108,23 @@ const Contact = () => {
       <Box bg="gray.900" color="white">
         <Container maxW="7xl" py={{ base: 14, md: 20 }}>
           <VStack textAlign="center">
-
             {/* LOTTIE TOP */}
-                        <Box maxW="420px" mx="auto">
-                          <Lottie animationData={ContactUs} loop autoplay />
-                        </Box>
+            <Box maxW="420px" mx="auto">
+              <Lottie animationData={ContactUs} loop autoplay />
+            </Box>
 
             {/* CONTENT BELOW */}
             <VStack>
               <Heading
                 fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
-              padding="">
+                padding=""
+              >
                 Get In Touch
               </Heading>
 
               <Text fontSize="lg" color="white" maxW="2xl" mx="auto">
-                Get in touch with our team to discuss innovative, reliable, and scalable IT solutions tailored to your business goals.
+                Get in touch with our team to discuss innovative, reliable, and
+                scalable IT solutions tailored to your business goals.
               </Text>
             </VStack>
           </VStack>
@@ -129,7 +134,6 @@ const Contact = () => {
         <Container maxW="7xl">
           <VStack spacing={12} align="stretch">
             {/* Heading */}
-            
 
             {/* Alert Messages */}
             {alert.show && (
@@ -319,7 +323,7 @@ const Contact = () => {
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
                       <img
-                        src="public/location.gif"
+                        src={locationIcon}
                         alt="location"
                         width={50}
                         height={50}
@@ -345,7 +349,7 @@ const Contact = () => {
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
                       <img
-                        src="public/phone-contact.gif"
+                        src={phoneIcon}
                         alt="phone"
                         width={50}
                         height={50}
@@ -371,7 +375,7 @@ const Contact = () => {
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
                       <img
-                        src="public/email.gif"
+                        src={emailIcon}
                         alt="Email"
                         width={50}
                         height={50}
@@ -407,7 +411,7 @@ const Contact = () => {
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">
                     <HStack align="start" spacing={4}>
                       <img
-                        src="public/clock.gif"
+                        src={clockIcon}
                         alt="clock"
                         width={50}
                         height={50}
@@ -425,7 +429,6 @@ const Contact = () => {
                       </VStack>
                     </HStack>
                   </Box>
-
 
                   {/* Social Media */}
                   <Box bg="white" p={6} borderRadius="xl" boxShadow="md">

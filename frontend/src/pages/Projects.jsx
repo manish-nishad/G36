@@ -53,8 +53,8 @@ const Projects = () => {
                 color="whiteAlpha.900"
               >
                 Explore our portfolio of successful projects. We've delivered
-                innovative solutions across various industries, helping businesses
-                achieve their technology goals.
+                innovative solutions across various industries, helping
+                businesses achieve their technology goals.
               </Text>
 
               <Text
@@ -73,6 +73,7 @@ const Projects = () => {
               spacing={4}
               w="100%"
               maxW="420px"
+              justifyContent="center"
             >
               <Link to="/contact">
                 <Button
@@ -122,8 +123,8 @@ const Projects = () => {
                 maxW="3xl"
                 mx="auto"
               >
-                Discover our successful implementations across various industries
-                and technology domains
+                Discover our successful implementations across various
+                industries and technology domains
               </Text>
             </Box>
 
@@ -177,11 +178,7 @@ const Projects = () => {
                           {project.category}
                         </Badge>
                         {project.year && (
-                          <Text
-                            fontSize="xs"
-                            color="gray.500"
-                            fontWeight="500"
-                          >
+                          <Text fontSize="xs" color="gray.500" fontWeight="500">
                             {project.year}
                           </Text>
                         )}
@@ -219,28 +216,31 @@ const Projects = () => {
                       )}
 
                       {/* Technologies */}
-                      {project.technologies && project.technologies.length > 0 && (
-                        <HStack spacing={2} flexWrap="wrap" pt={2}>
-                          {project.technologies.slice(0, 3).map((tech, idx) => (
-                            <Badge
-                              key={idx}
-                              variant="outline"
-                              colorScheme="gray"
-                              px={2}
-                              py={0.5}
-                              borderRadius="sm"
-                              fontSize="xs"
-                            >
-                              {tech}
-                            </Badge>
-                          ))}
-                          {project.technologies.length > 3 && (
-                            <Text fontSize="xs" color="gray.500">
-                              +{project.technologies.length - 3} more
-                            </Text>
-                          )}
-                        </HStack>
-                      )}
+                      {project.technologies &&
+                        project.technologies.length > 0 && (
+                          <HStack spacing={2} flexWrap="wrap" pt={2}>
+                            {project.technologies
+                              .slice(0, 3)
+                              .map((tech, idx) => (
+                                <Badge
+                                  key={idx}
+                                  variant="outline"
+                                  colorScheme="gray"
+                                  px={2}
+                                  py={0.5}
+                                  borderRadius="sm"
+                                  fontSize="xs"
+                                >
+                                  {tech}
+                                </Badge>
+                              ))}
+                            {project.technologies.length > 3 && (
+                              <Text fontSize="xs" color="gray.500">
+                                +{project.technologies.length - 3} more
+                              </Text>
+                            )}
+                          </HStack>
+                        )}
                     </VStack>
                   </Card.Body>
                 </Card.Root>
@@ -257,16 +257,28 @@ const Projects = () => {
       >
         <Container maxW="7xl">
           <VStack spacing={8} textAlign="center">
-            <Heading color="black" size="2xl" fontSize={{ base: "xl", md: "2xl" }}>
+            <Heading
+              color="black"
+              size="2xl"
+              fontSize={{ base: "xl", md: "2xl" }}
+            >
               Ready to Start Your Project?
             </Heading>
-            <Text color="gray.900" fontSize={{ base: "md", md: "lg" }} maxW="2xl">
+            <Text
+              color="gray.900"
+              fontSize={{ base: "md", md: "lg" }}
+              maxW="2xl"
+            >
               Let's discuss how we can bring your vision to life. Get in touch
               with us today for a free consultation and project estimate.
             </Text>
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
               <Link to="/contact">
-                <Button bg="#0951d8" color="white" size={{ base: "md", md: "lg" }}>
+                <Button
+                  bg="#0951d8"
+                  color="white"
+                  size={{ base: "md", md: "lg" }}
+                >
                   Contact Us <ArrowRight size={18} />
                 </Button>
               </Link>

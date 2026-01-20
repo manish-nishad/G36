@@ -149,6 +149,7 @@ const Career = () => {
               spacing={4}
               w="100%"
               maxW="420px"
+              justifyContent="center"
             >
               <Link to="/contact">
                 <Button
@@ -562,17 +563,29 @@ const Career = () => {
       >
         <Container maxW="7xl">
           <VStack spacing={8} textAlign="center">
-            <Heading color="black" size="2xl" fontSize={{ base: "xl", md: "2xl" }}>
+            <Heading
+              color="black"
+              size="2xl"
+              fontSize={{ base: "xl", md: "2xl" }}
+            >
               Ready to Start Your Career Journey?
             </Heading>
-            <Text color="gray.900" fontSize={{ base: "md", md: "lg" }} maxW="2xl">
+            <Text
+              color="gray.900"
+              fontSize={{ base: "md", md: "lg" }}
+              maxW="2xl"
+            >
               Join Genius36 Technologies and be part of a team that's shaping
-              the future of technology. Explore our open positions or reach out to
-              learn more about career opportunities.
+              the future of technology. Explore our open positions or reach out
+              to learn more about career opportunities.
             </Text>
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
               <Link to="/contact">
-                <Button bg="#0951d8" color="white" size={{ base: "md", md: "lg" }}>
+                <Button
+                  bg="#0951d8"
+                  color="white"
+                  size={{ base: "md", md: "lg" }}
+                >
                   Apply Now <ArrowRight size={18} />
                 </Button>
               </Link>
