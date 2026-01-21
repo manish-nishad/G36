@@ -21,7 +21,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Lottie imports
-import Cctv from "../../assets/lottie/CCTV SETUP & SECURITY.json";
+import Cctv from "../../assets/lottie/CCTV New.json";
 import Cloud from "../../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
 import ComputerHardware from "../../assets/lottie/COMPUTER HARDWARE.json";
 import DataRecovery from "../../assets/lottie/DATA RECOVERY 2.json";

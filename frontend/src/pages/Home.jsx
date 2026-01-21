@@ -31,7 +31,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lottie from "lottie-react";
 import Award from "../assets/lottie/Award.json";
-import Cctv from "../assets/lottie/CCTV SETUP & SECURITY.json";
+import Cctv from "../assets/lottie/CCTV New.json";
 import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
 import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
 import DataRecovery from "../assets/lottie/DATA RECOVERY 2.json";
@@ -40,6 +40,7 @@ import ItTraining from "../assets/lottie/IT TRAINING.json";
 import Networking from "../assets/lottie/NETWOKING AND INFRASTRUCTURE.json";
 import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
 import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
+import ServicesCarousel from "../components/ui/servicesCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,7 +119,7 @@ export default function Home() {
     align: "start",
     loop: true,
     dragFree: false,
-  slidesToScroll: 3,
+  slidesToScroll: 1,
   });
 
   const autoplayHandlers = useEmblaAutoplay(emblaApi, 3500);
@@ -269,106 +270,7 @@ export default function Home() {
       </Box>
 
       {/* Service Section Started Here */}
-
-      <Box py={10} bg="gray.50" ref={servicesRef}>
-        <Heading textAlign="center" fontSize={{ base: "xl", md: "3xl" }} py={5}>
-          Services
-        </Heading>
-
-        <Text
-          color="blue.600"
-          maxW="4xl"
-          px={4}
-          pb={10}
-          mx="auto"
-          textAlign="center"
-        >
-          Genius36 Technologies offers comprehensive IT services including
-          custom software development, web solutions, digital marketing, SEO,
-          computer services, and professional training. We deliver innovative,
-          scalable, and cost-effective technology solutions across India.
-        </Text>
-
-        <Container maxW="7xl">
-        {/* Embla Viewport */}
-        <Box  ref={emblaRef}
-              overflow="hidden"
-              {...autoplayHandlers}>
-          {/* Embla Track */}
-          <HStack spacing={6} align="stretch">
-            {services.map((s) => (
-              <Box
-                key={s.id}
-                flex="0 0 100%"
-                maxW={{
-                  base: "100%",
-                  md: "50%",
-                  lg: "33.333%",
-                }}
-              >
-                <Link to="/services" style={{ textDecoration: "none" }}>
-                  <Card.Root
-                    h="100%"
-                    display="flex"
-                    flexDirection="column"
-                    bg="white"
-                    borderRadius="xl"
-                    boxShadow="lg"
-                    transition="all 0.3s ease"
-                    _hover={{
-                      transform: "translateY(-6px)",
-                      boxShadow: "2xl",
-                    }}
-                  >
-                    {/* LOTTIE */}
-                    <Box h="180px" display="flex" alignItems="center">
-                      <Lottie
-                        animationData={serviceLotties[s.lottieKey]}
-                        loop
-                        autoplay
-                        rendererSettings={{
-                          preserveAspectRatio: "xMidYMid meet",
-                        }}
-                        style={{ width: "100%", height: "100%" }}
-                      />
-                    </Box>
-
-                    <Card.Body flex="1">
-                      <Card.Title mb={2}>{s.title}</Card.Title>
-
-                      <Card.Description noOfLines={3}>
-                        {s.description}
-                      </Card.Description>
-
-                      <VStack align="start" spacing={2} mt={4}>
-                        {s.features.slice(0, 3).map((f, i) => (
-                          <HStack key={i} spacing={2}>
-                            <Icon as={CheckCircle} boxSize={4} color="blue.500" />
-                            <Text fontSize="sm">{f}</Text>
-                          </HStack>
-                        ))}
-                      </VStack>
-                    </Card.Body>
-
-                    <Card.Footer mt="auto">
-                      <Button
-                        w="100%"
-                        bg="blue.600"
-                        color="white"
-                        _hover={{ bg: "blue.700" }}
-                        pointerEvents="none"
-                      >
-                        Learn More
-                      </Button>
-                    </Card.Footer>
-                  </Card.Root>
-                </Link>
-              </Box>
-            ))}
-          </HStack>
-        </Box>
-      </Container>
-      </Box>
+      <ServicesCarousel />
 
       {/* WHY CHOOSE US */}
       <Box py={20} ref={whyRef}>
