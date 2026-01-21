@@ -52,7 +52,7 @@ export default function ServicesCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: true,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
   });
 
   const autoplayHandlers = useEmblaAutoplay(emblaApi);

@@ -1,4 +1,3 @@
-import useEmblaCarousel from "embla-carousel-react";
 import {
   Box,
   Heading,
@@ -24,23 +23,16 @@ import {
   Globe,
   Headphones,
 } from "lucide-react";
-import { heroImages, services, stats, testimonials } from "../mockData";
+import { heroImages, services, stats, testimonials, brands } from "../mockData";
 import Seo from "../seo/Seo";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lottie from "lottie-react";
 import Award from "../assets/lottie/Award.json";
-import Cctv from "../assets/lottie/CCTV New.json";
-import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
-import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
-import DataRecovery from "../assets/lottie/DATA RECOVERY 2.json";
-import ItConsultation from "../assets/lottie/IT CONSULTATION & DIGITAL TRANSFORMATION.json";
-import ItTraining from "../assets/lottie/IT TRAINING.json";
-import Networking from "../assets/lottie/NETWOKING AND INFRASTRUCTURE.json";
-import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
-import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
 import ServicesCarousel from "../components/ui/servicesCarousel";
+import TestimonialsSection from "../components/ui/TestimonialsSection";
+import TrustedByBrands from "../components/ui/TrustedByBrands";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,63 +58,12 @@ const handleMouseLeave = (e) => {
     "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
 };
 
-const useEmblaAutoplay = (emblaApi, delay = 3000) => {
-  const timerRef = useRef(null);
-  const isPaused = useRef(false);
-
-  const stop = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-  };
-
-  const play = () => {
-    if (!emblaApi || isPaused.current) return;
-
-    stop();
-    timerRef.current = setTimeout(() => {
-      if (emblaApi.canScrollNext()) {
-        emblaApi.scrollNext();
-      } else {
-        emblaApi.scrollTo(0);
-      }
-    }, delay);
-  };
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    emblaApi.on("select", play);
-    play();
-
-    return () => stop();
-  }, [emblaApi]);
-
-  return {
-    onMouseEnter: () => {
-      isPaused.current = true;
-      stop();
-    },
-    onMouseLeave: () => {
-      isPaused.current = false;
-      play();
-    },
-  };
-};
-
 
 export default function Home() {
   const heroBgRef = useRef(null);
   const servicesRef = useRef(null);
   const whyRef = useRef(null);
   const testimonialRef = useRef(null);
-
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    loop: true,
-    dragFree: false,
-  slidesToScroll: 1,
-  });
-
-  const autoplayHandlers = useEmblaAutoplay(emblaApi, 3500);
 
   useEffect(() => {
     // HERO PARALLAX (BACKGROUND ONLY)
@@ -137,17 +78,6 @@ export default function Home() {
       },
     });
 
-    // SERVICES
-    gsap.from(".service-card", {
-      scrollTrigger: {
-        trigger: servicesRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 40,
-      stagger: 0.2,
-      duration: 0.6,
-    });
 
     // TESTIMONIALS
     gsap.from(".testimonial-card", {
@@ -161,18 +91,6 @@ export default function Home() {
       duration: 0.5,
     });
   }, []);
-
-  const serviceLotties = {
-    WebDevelopment: WebDevelopment,
-    SoftwareDevelopment: SoftwareDevelopment,
-    ItConsultation: ItConsultation,
-    ItTraining: ItTraining,
-    Networking: Networking,
-    Cloud: Cloud,
-    Cctv: Cctv,
-    DataRecovery: DataRecovery,
-    ComputerHardware: ComputerHardware,
-  };
 
   return (
     <>
@@ -277,8 +195,8 @@ export default function Home() {
         <Container maxW="7xl">
           <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
             {[
-              { icon: Award, title: "10+ Years" },
-              { icon: Users, title: "300+ Clients" },
+              { icon: Award, title: "5+ Years" },
+              { icon: Users, title: "150+ Clients" },
               { icon: Globe, title: "Pan-India" },
               { icon: Headphones, title: "24/7 Support" },
             ].map((item, i) => (
@@ -301,83 +219,15 @@ export default function Home() {
           </SimpleGrid>
         </Container>
       </Box>
+      {/* TRUSTED BY BRANDS section started here */}
+      <TrustedByBrands brands={brands} />
 
       {/* TESTIMONIALS section started here */}
-      <Box py={{ base: 14, md: 20 }} bg="gray.50" ref={testimonialRef}>
-        <Container maxW="7xl">
-          <Heading
-            textAlign="center"
-            mb={{ base: 8, md: 12 }}
-            fontSize={{ base: "2xl", md: "3xl" }}
-          >
-            What Our Clients Say
-          </Heading>
-
-          <SimpleGrid
-            columns={{ base: 1, sm: 2, md: 3 }}
-            spacing={{ base: 6, md: 10 }}
-            alignItems="stretch"
-            gap="20px"
-          >
-            {testimonials.map((t) => (
-              <Blockquote.Root
-                key={t.id}
-                h="100%"
-                display="flex"
-                flexDirection="column"
-                backdropFilter="blur(14px)"
-                bg="rgba(255,255,255,0.25)"
-                border="1px solid rgba(255,255,255,0.35)"
-                borderRadius="xl"
-                p={{ base: 6, md: 8 }}
-                boxShadow="0 20px 40px rgba(0,0,0,0.1)"
-                transition="transform 0.15s ease, box-shadow 0.3s ease"
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                _hover={{
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
-                }}
-              >
-                {/* Quote Icon */}
-                <Float placement="bottom-end" offset="10">
-                  <Blockquote.Icon
-                    opacity="0.35"
-                    boxSize="10"
-                    rotate="180deg"
-                  />
-                </Float>
-
-                {/* Text */}
-                <Blockquote.Content
-                  flex="1"
-                  fontSize={{ base: "sm", md: "md" }}
-                >
-                  {t.text}
-                </Blockquote.Content>
-
-                {/* Author */}
-                <Blockquote.Caption mt={6}>
-                  <cite>
-                    <HStack spacing={4}>
-                      <Avatar.Root size={{ base: "md", md: "lg" }}>
-                        <Avatar.Fallback name={t.name} />
-                        <Avatar.Image src={t.avatar} />
-                      </Avatar.Root>
-
-                      <VStack align="start" spacing={0}>
-                        <Span fontWeight="semibold">{t.name}</Span>
-                        <Span fontSize="sm" color="gray.600">
-                          {t.company}
-                        </Span>
-                      </VStack>
-                    </HStack>
-                  </cite>
-                </Blockquote.Caption>
-              </Blockquote.Root>
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
+      <TestimonialsSection
+        testimonials={testimonials}
+        handleMouseMove={handleMouseMove}
+        handleMouseLeave={handleMouseLeave}
+      />
     </>
   );
 }
