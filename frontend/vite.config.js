@@ -7,6 +7,9 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      workbox: {
+        maximumFileSizeToCacheInBytes: 8 * 1024 * 1024, // 8 MB
+      },
       manifest: {
         name: "Genius36 Technologies",
         short_name: "Genius36",

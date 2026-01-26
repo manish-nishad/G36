@@ -79,6 +79,7 @@ const Services = () => {
             <VStack spacing={4}>
               <Heading
                 fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+                as="h1"
               >
                 Our{" "}
                 <Box as="span" color="#0951d8">
@@ -112,6 +113,7 @@ const Services = () => {
               spacing={4}
               w="100%"
               maxW="420px"
+              justifyContent="center"
             >
               <Link to="/contact">
                 <Button
@@ -141,6 +143,7 @@ const Services = () => {
           </VStack>
         </Container>
       </Box>
+
 
       {/* SERVICES OVERVIEW GRID - Matching existing card patterns */}
       <Box py={{ base: 12, md: 20 }} bg="white">
@@ -272,9 +275,9 @@ const Services = () => {
                 lineHeight="1.8"
                 textAlign="left"
               >
-                We create stunning, responsive websites tailored to your business
-                needs using modern technologies and best practices. Our web
-                development services ensure your online presence is both
+                We create stunning, responsive websites tailored to your
+                business needs using modern technologies and best practices. Our
+                web development services ensure your online presence is both
                 visually appealing and functionally robust.
               </Text>
               <VStack align="start" spacing={3} w="100%">
@@ -345,7 +348,12 @@ const Services = () => {
                 />
               </Box>
             </Box>
-            <VStack spacing={6} align="start" w="100%" order={{ base: 1, lg: 2 }}>
+            <VStack
+              spacing={6}
+              align="start"
+              w="100%"
+              order={{ base: 1, lg: 2 }}
+            >
               <Heading
                 size="2xl"
                 color="gray.900"
@@ -567,17 +575,29 @@ const Services = () => {
       >
         <Container maxW="7xl">
           <VStack spacing={8} textAlign="center">
-            <Heading color="black" size="2xl" fontSize={{ base: "xl", md: "2xl" }}>
+            <Heading
+              color="black"
+              size="2xl"
+              fontSize={{ base: "xl", md: "2xl" }}
+            >
               Ready to Transform Your Business?
             </Heading>
-            <Text color="gray.900" fontSize={{ base: "md", md: "lg" }} maxW="2xl">
+            <Text
+              color="gray.900"
+              fontSize={{ base: "md", md: "lg" }}
+              maxW="2xl"
+            >
               Let's discuss how Genius36 Technologies can help you achieve your
               technology goals. Get in touch with us today for a free
               consultation.
             </Text>
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
               <Link to="/contact">
-                <Button bg="#0951d8" color="white" size={{ base: "md", md: "lg" }}>
+                <Button
+                  bg="#0951d8"
+                  color="white"
+                  size={{ base: "md", md: "lg" }}
+                >
                   Contact Us <ArrowRight size={18} />
                 </Button>
               </Link>

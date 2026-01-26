@@ -467,10 +467,10 @@ export const testimonials = [
 ];
 
 export const stats = [
-  { label: "Projects Completed", value: "500+" },
-  { label: "Happy Clients", value: "300+" },
-  { label: "Years of Experience", value: "10+" },
-  { label: "Students Trained", value: "2000+" }
+  { label: "Projects Completed", value: "30+" },
+  { label: "Happy Clients", value: "150+" },
+  { label: "Years of Experience", value: "5+" },
+  { label: "Students Trained", value: "150+" }
 ];
 
 export const companyInfo = {
@@ -575,4 +575,38 @@ export const jobOpenings = [
       "Understanding of infrastructure as code"
     ]
   }
+];
+
+
+export const brands = [
+  {
+    id: 1,
+    name: "Google",
+    logo: "/brands/google.png",
+  },
+  {
+    id: 2,
+    name: "Microsoft",
+    logo: "/brands/microsoft.png",
+  },
+  {
+    id: 3,
+    name: "Amazon",
+    logo: "/brands/amazon.png",
+  },
+  {
+    id: 4,
+    name: "IBM",
+    logo: "/brands/ibm.png",
+  },
+  {
+    id: 5,
+    name: "Infosys",
+    logo: "/brands/infosys.png",
+  },
+  {
+    id: 6,
+    name: "TCS",
+    logo: "/brands/tcs.png",
+  },
 ];

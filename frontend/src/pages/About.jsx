@@ -26,7 +26,7 @@ import phoneIcon from "../assets/flaticons/phone-contact.gif";
 import emailIcon from "../assets/flaticons/email.gif";
 import clockIcon from "../assets/flaticons/clock.gif";
 import Lottie from "lottie-react";
-import Welcome from "../assets/lottie/Welcome.json"
+import Welcome from "../assets/lottie/Welcome.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -224,6 +224,7 @@ export default function About() {
             <VStack spacing={4}>
               <Heading
                 fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+                as="h1"
               >
                 About{" "}
                 <Box as="span" color="#0951d8">
@@ -236,8 +237,8 @@ export default function About() {
                 maxW="3xl"
                 color="whiteAlpha.900"
               >
-                Your trusted Pan-India IT solutions partner delivering excellence
-                in software development, IT infrastructure, digital
+                Your trusted Pan-India IT solutions partner delivering
+                excellence in software development, IT infrastructure, digital
                 transformation, and professional training.
               </Text>
 
@@ -257,6 +258,7 @@ export default function About() {
               spacing={4}
               w="100%"
               maxW="420px"
+              justifyContent="center"
             >
               <Link to="/services">
                 <Button
@@ -290,7 +292,11 @@ export default function About() {
       {/* COMPANY OVERVIEW */}
       <Box py={{ base: 12, md: 20 }} bg="white" ref={overviewRef}>
         <Container maxW="7xl">
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 8, lg: 12 }} alignItems="center">
+          <SimpleGrid
+            columns={{ base: 1, lg: 2 }}
+            spacing={{ base: 8, lg: 12 }}
+            alignItems="center"
+          >
             <VStack spacing={6} align="start" className="overview-content">
               <Heading
                 size="2xl"
@@ -299,22 +305,37 @@ export default function About() {
               >
                 Who We Are
               </Heading>
-              <Text fontSize={{ base: "sm", md: "md" }} color="gray.900" lineHeight="1.5" textAlign="justify">
+              <Text
+                fontSize={{ base: "sm", md: "md" }}
+                color="gray.900"
+                lineHeight="1.5"
+                textAlign="justify"
+              >
                 Genius36 Technologies India LLP is a leading IT solutions
                 provider with over 10 years of experience in delivering
                 comprehensive technology services across India. Based in Bhilai,
-                Chhattisgarh, we have established ourselves as a trusted
-                partner for businesses, educational institutions, and
-                organizations seeking innovative IT solutions.
+                Chhattisgarh, we have established ourselves as a trusted partner
+                for businesses, educational institutions, and organizations
+                seeking innovative IT solutions.
               </Text>
-              <Text fontSize={{ base: "sm", md: "md" }} color="gray.900" lineHeight="1.5" textAlign="justify">
+              <Text
+                fontSize={{ base: "sm", md: "md" }}
+                color="gray.900"
+                lineHeight="1.5"
+                textAlign="justify"
+              >
                 Our team of skilled professionals combines technical expertise
                 with business acumen to deliver solutions that drive growth,
                 improve efficiency, and transform digital landscapes. From
-                custom software development to IT infrastructure management,
-                we provide end-to-end services tailored to your unique needs.
+                custom software development to IT infrastructure management, we
+                provide end-to-end services tailored to your unique needs.
               </Text>
-              <Text fontSize={{ base: "sm", md: "md" }} color="gray.900" lineHeight="1.5" textAlign="justify">
+              <Text
+                fontSize={{ base: "sm", md: "md" }}
+                color="gray.900"
+                lineHeight="1.5"
+                textAlign="justify"
+              >
                 We pride ourselves on our commitment to quality, customer
                 satisfaction, and continuous innovation. Our pan-India presence
                 ensures that we can serve clients across the country with the
@@ -347,15 +368,30 @@ export default function About() {
         <Container maxW="7xl">
           <VStack spacing={12}>
             <Box textAlign="center">
-              <Heading size="2xl" mb={4} color="gray.900" fontSize={{ base: "xl", md: "2xl" }}>
+              <Heading
+                size="2xl"
+                mb={4}
+                color="gray.900"
+                fontSize={{ base: "xl", md: "2xl" }}
+              >
                 Our Mission & Vision
               </Heading>
-              <Text fontSize={{ base: "md", md: "lg" }} color="gray.800" maxW="3xl" mx="auto">
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.800"
+                maxW="3xl"
+                mx="auto"
+              >
                 Driving digital transformation through innovation and excellence
               </Text>
             </Box>
 
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} w="full" gap={10}>
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              spacing={8}
+              w="full"
+              gap={10}
+            >
               <Card.Root
                 className="mission-card animated-card"
                 bg="white"
@@ -383,10 +419,18 @@ export default function About() {
                         objectFit="contain"
                       />
                     </Box>
-                    <Heading size="lg" color="gray.900" fontSize={{ base: "md", md: "lg" }}>
+                    <Heading
+                      size="lg"
+                      color="gray.900"
+                      fontSize={{ base: "md", md: "lg" }}
+                    >
                       Our Mission
                     </Heading>
-                    <Text fontSize={{ base: "sm", md: "md" }} color="gray.800" lineHeight="1.8">
+                    <Text
+                      fontSize={{ base: "sm", md: "md" }}
+                      color="gray.800"
+                      lineHeight="1.8"
+                    >
                       To empower businesses and institutions across India with
                       cutting-edge IT solutions that drive growth, enhance
                       efficiency, and enable digital transformation. We are
@@ -424,10 +468,18 @@ export default function About() {
                         objectFit="contain"
                       />
                     </Box>
-                    <Heading size="lg" color="gray.900" fontSize={{ base: "md", md: "lg" }}>
+                    <Heading
+                      size="lg"
+                      color="gray.900"
+                      fontSize={{ base: "md", md: "lg" }}
+                    >
                       Our Vision
                     </Heading>
-                    <Text fontSize={{ base: "sm", md: "md" }} color="gray.800" lineHeight="1.8">
+                    <Text
+                      fontSize={{ base: "sm", md: "md" }}
+                      color="gray.800"
+                      lineHeight="1.8"
+                    >
                       To become India's most trusted and innovative IT solutions
                       provider, recognized for our technical excellence,
                       customer-centric approach, and transformative impact on
@@ -447,15 +499,29 @@ export default function About() {
         <Container maxW="7xl">
           <VStack spacing={12}>
             <Box textAlign="center">
-              <Heading size="2xl" mb={4} color="gray.900" fontSize={{ base: "xl", md: "2xl" }}>
+              <Heading
+                size="2xl"
+                mb={4}
+                color="gray.900"
+                fontSize={{ base: "xl", md: "2xl" }}
+              >
                 Our Core Values
               </Heading>
-              <Text fontSize={{ base: "md", md: "lg" }} color="gray.800" maxW="3xl" mx="auto">
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.800"
+                maxW="3xl"
+                mx="auto"
+              >
                 The principles that guide everything we do
               </Text>
             </Box>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={{ base: 6, md: 8 }} gap={10}>
+            <SimpleGrid
+              columns={{ base: 1, md: 2, lg: 4 }}
+              spacing={{ base: 6, md: 8 }}
+              gap={10}
+            >
               {values.map((value, i) => (
                 <Card.Root
                   key={i}
@@ -486,10 +552,18 @@ export default function About() {
                           objectFit="contain"
                         />
                       </Box>
-                      <Heading size="md" color="gray.900" fontSize={{ base: "sm", md: "md" }}>
+                      <Heading
+                        size="md"
+                        color="gray.900"
+                        fontSize={{ base: "sm", md: "md" }}
+                      >
                         {value.title}
                       </Heading>
-                      <Text fontSize={{ base: "xs", md: "sm" }} color="gray.800" lineHeight="1.7">
+                      <Text
+                        fontSize={{ base: "xs", md: "sm" }}
+                        color="gray.800"
+                        lineHeight="1.7"
+                      >
                         {value.description}
                       </Text>
                     </VStack>
@@ -506,15 +580,29 @@ export default function About() {
         <Container maxW="7xl">
           <VStack spacing={12}>
             <Box textAlign="center">
-              <Heading size="2xl" mb={4} color="gray.900" fontSize={{ base: "xl", md: "2xl" }}>
+              <Heading
+                size="2xl"
+                mb={4}
+                color="gray.900"
+                fontSize={{ base: "xl", md: "2xl" }}
+              >
                 Why Choose Genius36 Technologies?
               </Heading>
-              <Text fontSize={{ base: "md", md: "lg" }} color="gray.800" maxW="3xl" mx="auto">
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.800"
+                maxW="3xl"
+                mx="auto"
+              >
                 What sets us apart in the IT industry
               </Text>
             </Box>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={{ base: 6, md: 8 }} gap={10}>
+            <SimpleGrid
+              columns={{ base: 1, md: 2, lg: 3 }}
+              spacing={{ base: 6, md: 8 }}
+              gap={10}
+            >
               {whyChooseUs.map((item, i) => (
                 <Card.Root
                   key={i}
@@ -545,10 +633,18 @@ export default function About() {
                           objectFit="contain"
                         />
                       </Box>
-                      <Heading size="md" color="gray.900" fontSize={{ base: "sm", md: "md" }}>
+                      <Heading
+                        size="md"
+                        color="gray.900"
+                        fontSize={{ base: "sm", md: "md" }}
+                      >
                         {item.title}
                       </Heading>
-                      <Text fontSize={{ base: "xs", md: "sm" }} color="gray.800" lineHeight="1.7">
+                      <Text
+                        fontSize={{ base: "xs", md: "sm" }}
+                        color="gray.800"
+                        lineHeight="1.7"
+                      >
                         {item.description}
                       </Text>
                     </VStack>
@@ -565,15 +661,30 @@ export default function About() {
         <Container maxW="7xl">
           <VStack spacing={12}>
             <Box textAlign="center">
-              <Heading size="2xl" mb={4} color="gray.900" fontSize={{ base: "xl", md: "2xl" }}>
+              <Heading
+                size="2xl"
+                mb={4}
+                color="gray.900"
+                fontSize={{ base: "xl", md: "2xl" }}
+              >
                 Our Achievements
               </Heading>
-              <Text fontSize={{ base: "md", md: "lg" }} color="gray.800" maxW="3xl" mx="auto">
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.800"
+                maxW="3xl"
+                mx="auto"
+              >
                 Numbers that speak for our commitment and excellence
               </Text>
             </Box>
 
-            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 4, md: 8 }} w="full" gap={5}>
+            <SimpleGrid
+              columns={{ base: 2, md: 4 }}
+              spacing={{ base: 4, md: 8 }}
+              w="full"
+              gap={5}
+            >
               {stats.map((stat, i) => (
                 <VStack
                   key={i}
@@ -602,7 +713,12 @@ export default function About() {
                       objectFit="contain"
                     />
                   </Box>
-                  <Heading size="lg" color="gray.900" textAlign="center" fontSize={{ base: "md", md: "lg" }}>
+                  <Heading
+                    size="lg"
+                    color="gray.900"
+                    textAlign="center"
+                    fontSize={{ base: "md", md: "lg" }}
+                  >
                     {stat.value}
                   </Heading>
                   <Text
@@ -621,20 +737,35 @@ export default function About() {
       </Box>
 
       {/* CTA SECTION */}
-      <Box py={{ base: 12, md: 20 }} bgGradient="linear(to-br, blue.900, blue.800, gray.900)">
+      <Box
+        py={{ base: 12, md: 20 }}
+        bgGradient="linear(to-br, blue.900, blue.800, gray.900)"
+      >
         <Container maxW="7xl">
           <VStack spacing={8} textAlign="center">
-            <Heading color="black" size="2xl" fontSize={{ base: "xl", md: "2xl" }}>
+            <Heading
+              color="black"
+              size="2xl"
+              fontSize={{ base: "xl", md: "2xl" }}
+            >
               Ready to Transform Your Business?
             </Heading>
-            <Text color="gray.900" fontSize={{ base: "md", md: "lg" }} maxW="2xl">
+            <Text
+              color="gray.900"
+              fontSize={{ base: "md", md: "lg" }}
+              maxW="2xl"
+            >
               Let's discuss how Genius36 Technologies can help you achieve your
               technology goals. Get in touch with us today for a free
               consultation.
             </Text>
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
               <Link to="/contact">
-                <Button bg="#0951d8" color="white" size={{ base: "md", md: "lg" }}>
+                <Button
+                  bg="#0951d8"
+                  color="white"
+                  size={{ base: "md", md: "lg" }}
+                >
                   Contact Us <ArrowRight size={18} />
                 </Button>
               </Link>

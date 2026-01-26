@@ -23,28 +23,17 @@ import {
   Globe,
   Headphones,
 } from "lucide-react";
-import * as LucideIcons from "lucide-react";
-import { heroImages, services, stats, testimonials } from "../mockData";
+import { heroImages, services, stats, testimonials, brands } from "../mockData";
 import Seo from "../seo/Seo";
-
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lottie from "lottie-react";
-import WebsiteDesign from "../assets/lottie/Website Design Lottie Animation.json";
-import Laptop from "../assets/lottie/Laptop.json";
 import Award from "../assets/lottie/Award.json";
-import GradientDots from "../assets/lottie/Gradient Dots Background.json";
-import Cctv from "../assets/lottie/CCTV SETUP & SECURITY.json";
-import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
-import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
-import DataRecovery from "../assets/lottie/DATA RECOVERY 2.json";
-import ItConsultation from "../assets/lottie/IT CONSULTATION & DIGITAL TRANSFORMATION.json";
-import ItTraining from "../assets/lottie/IT TRAINING.json";
-import Networking from "../assets/lottie/NETWOKING AND INFRASTRUCTURE.json";
-import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
-import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
-import iconsBg from "../assets/lottie/icons-bg.json";
+import ServicesCarousel from "../components/ui/servicesCarousel";
+import TestimonialsSection from "../components/ui/TestimonialsSection";
+import TrustedByBrands from "../components/ui/TrustedByBrands";
+import MarqueOne from "../components/sections/marqueOne";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,6 +59,7 @@ const handleMouseLeave = (e) => {
     "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
 };
 
+
 export default function Home() {
   const heroBgRef = useRef(null);
   const servicesRef = useRef(null);
@@ -89,29 +79,6 @@ export default function Home() {
       },
     });
 
-    // SERVICES
-    gsap.from(".service-card", {
-      scrollTrigger: {
-        trigger: servicesRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 40,
-      stagger: 0.2,
-      duration: 0.6,
-    });
-
-    // WHY CHOOSE US
-    // gsap.from(".why-item", {
-    //   scrollTrigger: {
-    //     trigger: whyRef.current,
-    //     start: "top 80%",
-    //   },
-    //   scale: 0.85,
-    //   opacity: 0,
-    //   stagger: 0.15,
-    //   duration: 0.5,
-    // });
 
     // TESTIMONIALS
     gsap.from(".testimonial-card", {
@@ -125,18 +92,6 @@ export default function Home() {
       duration: 0.5,
     });
   }, []);
-
-  const serviceLotties = {
-    WebDevelopment: WebDevelopment,
-    SoftwareDevelopment: SoftwareDevelopment,
-    ItConsultation: ItConsultation,
-    ItTraining: ItTraining,
-    Networking: Networking,
-    Cloud: Cloud,
-    Cctv: Cctv,
-    DataRecovery: DataRecovery,
-    ComputerHardware: ComputerHardware,
-  };
 
   return (
     <>
@@ -188,7 +143,7 @@ export default function Home() {
             </Text>
           </Box>
           <VStack spacing={8} textAlign="center" padding={20}>
-            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={4}>
+            <Heading as="h1" color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={4}>
               Next-Generation IT Solution
             </Heading>
 
@@ -231,132 +186,20 @@ export default function Home() {
             </SimpleGrid>
           </VStack>
         </Container>
+        <MarqueOne />
       </Box>
+      
 
       {/* Service Section Started Here */}
-
-      <Box py={10} bg="gray.50" ref={servicesRef}>
-        <Heading textAlign="center" fontSize={{ base: "xl", md: "3xl" }} py={5}>
-          Services
-        </Heading>
-
-        <Text
-          color="blue.600"
-          maxW="4xl"
-          px={4}
-          pb={10}
-          mx="auto"
-          textAlign="center"
-        >
-          Genius36 Technologies offers comprehensive IT services including
-          custom software development, web solutions, digital marketing, SEO,
-          computer services, and professional training. We deliver innovative,
-          scalable, and cost-effective technology solutions across India.
-        </Text>
-
-        <Container maxW="7xl" position="relative" py={10}>
-          {/* Lottie Background */}
-          <Box position="absolute" inset={0} zIndex={0} pointerEvents="none">
-            <Lottie
-              animationData={iconsBg}
-              loop
-              style={{ width: "100%", height: "100%" }}
-            />
-          </Box>
-
-          <SimpleGrid
-            columns={{ base: 1, sm: 2, md: 2, lg: 3 }}
-            spacing={8}
-            alignItems="stretch"
-            position="relative"
-            zIndex={1}
-            gap="20px"
-          >
-            {services.map((s) => (
-              <Link
-                key={s.id}
-                to="/services"
-                style={{ textDecoration: "none" }}
-              >
-                <Card.Root
-                  h="100%"
-                  display="flex"
-                  flexDirection="column"
-                  backdropFilter="blur(14px)"
-                  bg="rgba(255,255,255,0.15)"
-                  border="1px solid rgba(255,255,255,0.3)"
-                  borderRadius="xl"
-                  boxShadow="0 20px 40px rgba(0,0,0,0.1)"
-                  transition="transform 0.15s ease, box-shadow 0.3s ease"
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  _hover={{
-                    boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
-                  }}
-                >
-                  {/* Lottie */}
-                  <Box
-                    h="180px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <Lottie
-                      animationData={serviceLotties[s.lottieKey]}
-                      loop
-                      style={{ width: "100%", height: "100%" }}
-                    />
-                  </Box>
-
-                  <Card.Body flex="1" gap="2">
-                    <Card.Title>{s.title}</Card.Title>
-
-                    <Card.Description textAlign="justify" noOfLines={3}>
-                      {s.description}
-                    </Card.Description>
-
-                    <VStack spacing={2} mt={3} align="start">
-                      {s.features.slice(0, 3).map((feature, idx) => (
-                        <HStack key={idx} spacing={2}>
-                          <Icon
-                            as={CheckCircle}
-                            boxSize={4}
-                            color="blue.500"
-                            flexShrink={0}
-                          />
-                          <Text fontSize="sm" color="gray.600">
-                            {feature}
-                          </Text>
-                        </HStack>
-                      ))}
-                    </VStack>
-                  </Card.Body>
-
-                  <Card.Footer mt="auto">
-                    <Button
-                      width="100%"
-                      bg="blue.600"
-                      color="white"
-                      _hover={{ bg: "blue.700" }}
-                      pointerEvents="none"
-                    >
-                      Learn More
-                    </Button>
-                  </Card.Footer>
-                </Card.Root>
-              </Link>
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
+      <ServicesCarousel />
 
       {/* WHY CHOOSE US */}
       <Box py={20} ref={whyRef}>
         <Container maxW="7xl">
           <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
             {[
-              { icon: Award, title: "10+ Years" },
-              { icon: Users, title: "300+ Clients" },
+              { icon: Award, title: "5+ Years" },
+              { icon: Users, title: "150+ Clients" },
               { icon: Globe, title: "Pan-India" },
               { icon: Headphones, title: "24/7 Support" },
             ].map((item, i) => (
@@ -379,83 +222,15 @@ export default function Home() {
           </SimpleGrid>
         </Container>
       </Box>
+      {/* TRUSTED BY BRANDS section started here */}
+      <TrustedByBrands brands={brands} />
 
       {/* TESTIMONIALS section started here */}
-      <Box py={{ base: 14, md: 20 }} bg="gray.50" ref={testimonialRef}>
-        <Container maxW="7xl">
-          <Heading
-            textAlign="center"
-            mb={{ base: 8, md: 12 }}
-            fontSize={{ base: "2xl", md: "3xl" }}
-          >
-            What Our Clients Say
-          </Heading>
-
-          <SimpleGrid
-            columns={{ base: 1, sm: 2, md: 3 }}
-            spacing={{ base: 6, md: 10 }}
-            alignItems="stretch"
-            gap="20px"
-          >
-            {testimonials.map((t) => (
-              <Blockquote.Root
-                key={t.id}
-                h="100%"
-                display="flex"
-                flexDirection="column"
-                backdropFilter="blur(14px)"
-                bg="rgba(255,255,255,0.25)"
-                border="1px solid rgba(255,255,255,0.35)"
-                borderRadius="xl"
-                p={{ base: 6, md: 8 }}
-                boxShadow="0 20px 40px rgba(0,0,0,0.1)"
-                transition="transform 0.15s ease, box-shadow 0.3s ease"
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                _hover={{
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
-                }}
-              >
-                {/* Quote Icon */}
-                <Float placement="bottom-end" offset="10">
-                  <Blockquote.Icon
-                    opacity="0.35"
-                    boxSize="10"
-                    rotate="180deg"
-                  />
-                </Float>
-
-                {/* Text */}
-                <Blockquote.Content
-                  flex="1"
-                  fontSize={{ base: "sm", md: "md" }}
-                >
-                  {t.text}
-                </Blockquote.Content>
-
-                {/* Author */}
-                <Blockquote.Caption mt={6}>
-                  <cite>
-                    <HStack spacing={4}>
-                      <Avatar.Root size={{ base: "md", md: "lg" }}>
-                        <Avatar.Fallback name={t.name} />
-                        <Avatar.Image src={t.avatar} />
-                      </Avatar.Root>
-
-                      <VStack align="start" spacing={0}>
-                        <Span fontWeight="semibold">{t.name}</Span>
-                        <Span fontSize="sm" color="gray.600">
-                          {t.company}
-                        </Span>
-                      </VStack>
-                    </HStack>
-                  </cite>
-                </Blockquote.Caption>
-              </Blockquote.Root>
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
+      <TestimonialsSection
+        testimonials={testimonials}
+        handleMouseMove={handleMouseMove}
+        handleMouseLeave={handleMouseLeave}
+      />
     </>
   );
 }

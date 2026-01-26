@@ -4,6 +4,7 @@ import MacNavbar from "./components/common/MacNavbar";
 import Footer from "./components/common/Footer";
 import AnimatedRoutes from "./routes/AnimatedRoutes";
 import PageLoader from "./components/common/PageLoader";
+import ScrollToTop from "./components/ui/scrollToTop";
 
 function AppWrapper() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function AppWrapper() {
   return (
     <>
       {loading && <PageLoader />}
+      <ScrollToTop />
       <MacNavbar />
       <AnimatedRoutes />
       <Footer />

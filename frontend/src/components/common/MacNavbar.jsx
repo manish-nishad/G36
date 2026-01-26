@@ -16,14 +16,13 @@ import {
   FaUserTie,
   FaInfoCircle,
   FaProjectDiagram,
-  FaChalkboardTeacher,
   FaEnvelope,
-  FaUserShield,
   FaPhoneAlt,
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../assets/images/logo.png";
+import { Link as RouterLink } from "react-router-dom";
 
 const MotionBox = motion(Box);
 
@@ -32,11 +31,9 @@ const navItems = [
   { label: "Services", icon: FaCogs, path: "/services" },
   { label: "Projects", icon: FaProjectDiagram, path: "/projects" },
   { label: "Blogs", icon: FaBlog, path: "/blogs" },
-  { label: "Training", icon: FaChalkboardTeacher, path: "/training" },
-  { label: "Career", icon: FaUserTie, path: "/career" },
-  { label: "About", icon: FaInfoCircle, path: "/about" },
   { label: "Contact", icon: FaEnvelope, path: "/contact" },
-  { label: "Admin", icon: FaUserShield, path: "/admin" },
+  { label: "About", icon: FaInfoCircle, path: "/about" },
+  { label: "Career", icon: FaUserTie, path: "/career" },
 ];
 
 export default function MacNavbar() {
@@ -62,7 +59,7 @@ export default function MacNavbar() {
           top="0"
           left="0"
           right="0"
-          bg="rgba(255,255,255,0.9)"
+          bg="rgba(255,255,255,0.95)"
           backdropFilter="blur(14px)"
           px={4}
           py={2}
@@ -71,12 +68,13 @@ export default function MacNavbar() {
           boxShadow="md"
           zIndex={1000}
         >
-          <Image
-            src={logo}
-            height="36px"
-            cursor="pointer"
-            onClick={() => navigate("/")}
-          />
+          <RouterLink to="/" prefetch="intent">
+            <Image
+              src={logo}
+              h="36px"
+              cursor="pointer"
+            />
+          </RouterLink>
 
           <Button
             size="sm"
@@ -111,7 +109,6 @@ export default function MacNavbar() {
                 key={index}
                 onClick={() => navigate(item.path)}
                 animate={{ scale: isActive ? 1.15 : 1 }}
-                transition={{ type: "spring", stiffness: 220 }}
               >
                 <VStack spacing={1}>
                   <Box
@@ -131,38 +128,93 @@ export default function MacNavbar() {
     );
   }
 
-  /* ================= TABLET + DESKTOP ================= */
+  /* ================= TABLET ================= */
+  if (breakpoint === "tablet") {
+    return (
+      <Flex
+        position="fixed"
+        top="0"
+        left="0"
+        right="0"
+        h="70px"
+        bg="white"
+        align="center"
+        justify="space-between"
+        px={6}
+        boxShadow="md"
+        zIndex={1000}
+      >
+        <RouterLink to="/" prefetch="intent">
+          <Image src={logo} h="44px" cursor="pointer" />
+        </RouterLink>
+
+        <HStack spacing={4}>
+          {navItems.map((item, index) => {
+            const Icon = item.icon;
+            const isActive = location.pathname === item.path;
+
+            return (
+              <MotionBox
+                key={index}
+                onClick={() => navigate(item.path)}
+                whileHover={{ y: -4, scale: 1.05 }}
+              >
+                <VStack spacing={1}>
+                  <Box
+                    p={2}
+                    borderRadius="14px"
+                    bg={isActive ? "#04327b" : "#93b7f1"}
+                  >
+                    <Icon size={18} color={isActive ? "white" : "#04327b"} />
+                  </Box>
+                  <Text fontSize="11px" fontWeight="600">
+                    {item.label}
+                  </Text>
+                </VStack>
+              </MotionBox>
+            );
+          })}
+        </HStack>
+
+        <Button
+          size="sm"
+          bg="#04327b"
+          color="white"
+          leftIcon={<FaPhoneAlt />}
+          onClick={() => (window.location.href = "tel:08200593901")}
+        >
+          Call
+        </Button>
+      </Flex>
+    );
+  }
+
+  /* ================= DESKTOP ================= */
   return (
     <Flex
       position="fixed"
       top="0"
       left="0"
       right="0"
-      height="72px"
+      h="76px"
+      bg="white"
       align="center"
       justify="center"
-      bg="white"
-      backdropFilter="blur(18px)"
-      borderBottom="1px solid rgba(0,0,0,0.05)"
       boxShadow="lg"
       zIndex={1000}
     >
-      {/* LEFT LOGO */}
-      <Box position="absolute" left="24px">
-        <Image
-          src={logo}
-          height={breakpoint === "tablet" ? "36px" : "42px"}
-          cursor="pointer"
-          onClick={() => navigate("/")}
-        />
+      {/* LOGO */}
+      <Box position="absolute" left="220px">
+        <RouterLink to="/" prefetch="intent">
+          <Image src={logo} h="58px" cursor="pointer" />
+        </RouterLink>
       </Box>
 
-      {/* CENTER ICON + TEXT */}
-      <HStack spacing={breakpoint === "tablet" ? 4 : 6}>
+      {/* NAV */}
+      <HStack spacing={7}>
         {navItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
-          const isHovered = hovered === index;
 
           return (
             <MotionBox
@@ -170,43 +222,28 @@ export default function MacNavbar() {
               onMouseEnter={() => setHovered(index)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => navigate(item.path)}
-              cursor="pointer"
               animate={{
-                scale: isHovered ? 1.12 : 1,
-                y: isHovered ? -4 : 0,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 220,
-                damping: 18,
+                y: hovered === index ? -4 : 0,
+                scale: hovered === index ? 1.12 : 1,
               }}
             >
               <VStack spacing={1}>
-                {/* ICON */}
                 <Box
                   p={2}
                   borderRadius="16px"
                   bg={isActive ? "#04327b" : "#93b7f1"}
                   boxShadow={
-                    isActive || isHovered
-                      ? "0 0 12px rgba(4,50,123,0.7)"
+                    isActive || hovered === index
+                      ? "0 0 12px rgba(4,50,123,0.6)"
                       : "none"
                   }
-                  transition="all 0.3s ease"
                 >
-                  <Icon
-                    size={breakpoint === "tablet" ? 20 : 22}
-                    color={isActive ? "white" : "#04327b"}
-                  />
+                  <Icon size={22} color={isActive ? "white" : "#04327b"} />
                 </Box>
-
-                {/* TEXT — ALWAYS VISIBLE */}
                 <Text
                   fontSize="12px"
                   fontWeight="600"
-                  color={isActive || isHovered ? "#04327b" : "gray.600"}
-                  opacity={isActive || isHovered ? 1 : 0.85}
-                  transition="all 0.25s ease"
+                  color={isActive ? "#04327b" : "gray.600"}
                 >
                   {item.label}
                 </Text>
@@ -216,17 +253,13 @@ export default function MacNavbar() {
         })}
       </HStack>
 
-      {/* RIGHT CALL BUTTON */}
-      <Box position="absolute" right="24px">
+      {/* CALL */}
+      <Box position="absolute" right="220px">
         <Button
-          size={breakpoint === "tablet" ? "sm" : "md"}
-          leftIcon={<FaPhoneAlt />}
           bg="#04327b"
           color="white"
-          _hover={{
-            bg: "#03245a",
-            boxShadow: "0 0 14px rgba(4,50,123,0.8)",
-          }}
+          leftIcon={<FaPhoneAlt />}
+          _hover={{ bg: "#03245a" }}
           onClick={() => (window.location.href = "tel:08200593901")}
         >
           Call Now
