@@ -7,16 +7,13 @@ import {
   VStack,
   HStack,
   Container,
-  Icon,
   Stack,
-  Image,
   Card,
-  CardBody,
   Avatar,
-  Strong,
   Blockquote,
   Float,
   Span,
+  Icon,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import {
@@ -38,8 +35,40 @@ import WebsiteDesign from "../assets/lottie/Website Design Lottie Animation.json
 import Laptop from "../assets/lottie/Laptop.json";
 import Award from "../assets/lottie/Award.json";
 import GradientDots from "../assets/lottie/Gradient Dots Background.json";
+import Cctv from "../assets/lottie/CCTV SETUP & SECURITY.json";
+import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
+import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
+import DataRecovery from "../assets/lottie/DATA RECOVERY 2.json";
+import ItConsultation from "../assets/lottie/IT CONSULTATION & DIGITAL TRANSFORMATION.json";
+import ItTraining from "../assets/lottie/IT TRAINING.json";
+import Networking from "../assets/lottie/NETWOKING AND INFRASTRUCTURE.json";
+import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
+import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
+import iconsBg from "../assets/lottie/icons-bg.json";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const handleMouseMove = (e) => {
+  const card = e.currentTarget;
+  const rect = card.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  const rotateX = ((y - centerY) / centerY) * 8;
+  const rotateY = ((x - centerX) / centerX) * -8;
+
+  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+};
+
+const handleMouseLeave = (e) => {
+  const card = e.currentTarget;
+  card.style.transform =
+    "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+};
 
 export default function Home() {
   const heroBgRef = useRef(null);
@@ -97,6 +126,18 @@ export default function Home() {
     });
   }, []);
 
+  const serviceLotties = {
+    WebDevelopment: WebDevelopment,
+    SoftwareDevelopment: SoftwareDevelopment,
+    ItConsultation: ItConsultation,
+    ItTraining: ItTraining,
+    Networking: Networking,
+    Cloud: Cloud,
+    Cctv: Cctv,
+    DataRecovery: DataRecovery,
+    ComputerHardware: ComputerHardware,
+  };
+
   return (
     <>
       <Seo
@@ -119,15 +160,43 @@ export default function Home() {
           <Box
             position="absolute"
             inset="0"
-            bgGradient="linear(to-br, blue.900, blue.800, gray.900)"
-            opacity={0.95}
+            bg="#1d3ca8"
+            opacity={0.8} // 👈 adjust transparency here
+            zIndex={0}
           />
         </Box>
 
-        <Container maxW="7xl" position="relative" zIndex={1} py={24}>
-          <VStack spacing={6} textAlign="center" padding={20}>
-            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }}>
-              Transform Your Business
+        <Container
+          maxW="7xl"
+          position="relative"
+          zIndex={1}
+          py={24}
+          textAlign="center"
+        >
+          <Box
+            display="inline-block"
+            px={6}
+            py={2}
+            mb={6}
+            bg="whiteAlpha.200"
+            borderRadius="full"
+            border="1px solid"
+            borderColor="whiteAlpha.300"
+          >
+            <Text color="blue.300" fontWeight="medium" fontSize="sm">
+              Pan-India IT Solutions Partner
+            </Text>
+          </Box>
+          <VStack spacing={8} textAlign="center" padding={20}>
+            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={4}>
+              Next-Generation IT Solution
+            </Heading>
+
+            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={2}>
+              for Your Business
+            </Heading>
+            <Heading color="white" fontSize={{ base: "2xl", md: "4xl" }}>
+              Designed to accelerate growth and efficiency.
             </Heading>
             <Text color="white" maxW="4xl" padding={4} textStyle="xl">
               Delivering cutting-edge IT solutions, software development, and
@@ -164,128 +233,119 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* SERVICES */}
+      {/* Service Section Started Here */}
 
       <Box py={10} bg="gray.50" ref={servicesRef}>
-        <Heading
-          color="black"
-          textAlign="center"
-          fontSize={{ base: "1xl", md: "3x2" }}
-          padding={5}
-        >
+        <Heading textAlign="center" fontSize={{ base: "xl", md: "3xl" }} py={5}>
           Services
         </Heading>
+
         <Text
-          color="#0951d8"
+          color="blue.600"
           maxW="4xl"
-          padding={4}
-          textStyle="md"
-          textAlign="center"
-          margin="0 auto"
+          px={4}
           pb={10}
+          mx="auto"
+          textAlign="center"
         >
-          Explore our comprehensive range of IT services designed to meet
-          your business needs. From web development to IT infrastructure, we
-          deliver innovative, scalable, and cost-effective technology solutions
-          across India, helping businesses and institutions improve efficiency,
-          growth, and digital transformation through reliable IT expertise.
+          Genius36 Technologies offers comprehensive IT services including
+          custom software development, web solutions, digital marketing, SEO,
+          computer services, and professional training. We deliver innovative,
+          scalable, and cost-effective technology solutions across India.
         </Text>
 
-        <Container maxW="7xl">
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="40px" alignItems="stretch">
-            {services.map((s) => {
-              const IconComp = LucideIcons[s.icon];
-              // Truncate description to show "Read More" if needed
-              const maxLength = 80;
-              const isLongDescription = s.description.length > maxLength;
-              const truncatedDescription = isLongDescription 
-                ? s.description.substring(0, maxLength) + "..."
-                : s.description;
-              
-              // Map each service to appropriate image
-              const getServiceImage = (serviceId) => {
-                const imageMap = {
-                  1: servicesImages.development, // Web Development
-                  2: servicesImages.workspace, // Software Development
-                  3: servicesImages.team, // IT Consulting
-                  4: servicesImages.general, // CCTV & Security
-                  5: servicesImages.general, // Hardware Sales & Repair
-                  6: servicesImages.networking, // Networking & IT Infrastructure
-                  7: servicesImages.workspace, // Cloud Solutions
-                  8: trainingImages.classroom, // IT Training
-                  9: servicesImages.general, // Data Recovery
-                };
-                return imageMap[serviceId] || servicesImages.general;
-              };
-              
-              return (
-                <Link to="/services" key={s.id} style={{ textDecoration: "none", height: "100%" }}>
-                  <Card.Root
-                    maxW="sm"
-                    overflow="hidden"
-                    cursor="pointer"
-                    transition="all 0.3s ease"
-                    h="100%"
+        <Container maxW="7xl" position="relative" py={10}>
+          {/* Lottie Background */}
+          <Box position="absolute" inset={0} zIndex={0} pointerEvents="none">
+            <Lottie
+              animationData={iconsBg}
+              loop
+              style={{ width: "100%", height: "100%" }}
+            />
+          </Box>
+
+          <SimpleGrid
+            columns={{ base: 1, sm: 2, md: 2, lg: 3 }}
+            spacing={8}
+            alignItems="stretch"
+            position="relative"
+            zIndex={1}
+            gap="20px"
+          >
+            {services.map((s) => (
+              <Link
+                key={s.id}
+                to="/services"
+                style={{ textDecoration: "none" }}
+              >
+                <Card.Root
+                  h="100%"
+                  display="flex"
+                  flexDirection="column"
+                  backdropFilter="blur(14px)"
+                  bg="rgba(255,255,255,0.15)"
+                  border="1px solid rgba(255,255,255,0.3)"
+                  borderRadius="xl"
+                  boxShadow="0 20px 40px rgba(0,0,0,0.1)"
+                  transition="transform 0.15s ease, box-shadow 0.3s ease"
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  _hover={{
+                    boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
+                  }}
+                >
+                  {/* Lottie */}
+                  <Box
+                    h="180px"
                     display="flex"
-                    flexDirection="column"
-                    _hover={{
-                      transform: "translateY(-6px)",
-                      boxShadow: "xl",
-                    }}
-                    _active={{
-                      transform: "scale(0.98)",
-                    }}
+                    alignItems="center"
+                    justifyContent="center"
                   >
-                    {/* Service Image */}
-                    <Box 
-                      flexShrink={0}
-                      w="100%"
-                      h={{ base: "200px", md: "240px" }}
-                      overflow="hidden"
-                      bg="gray.200"
-                    >
-                      <Image
-                        src={getServiceImage(s.id)}
-                        alt={s.title}
-                        w="100%"
-                        h="100%"
-                        objectFit="cover"
-                        transition="transform 0.3s ease"
-                        _hover={{
-                          transform: "scale(1.05)",
-                        }}
-                      />
-                    </Box>
+                    <Lottie
+                      animationData={serviceLotties[s.lottieKey]}
+                      loop
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </Box>
 
-                    <Card.Body gap="2" flex="1" display="flex" flexDirection="column">
-                      <Card.Title>{s.title}</Card.Title>
-                      <Box flex="1">
-                        <Card.Description noOfLines={3}>
-                          {truncatedDescription}
-                        </Card.Description>
-                        {isLongDescription && (
-                          <Text
-                            fontSize="xs"
-                            color="#0951d8"
-                            fontWeight="500"
-                            mt={2}
-                            _hover={{ textDecoration: "underline" }}
-                          >
-                            Read More
+                  <Card.Body flex="1" gap="2">
+                    <Card.Title>{s.title}</Card.Title>
+
+                    <Card.Description textAlign="justify" noOfLines={3}>
+                      {s.description}
+                    </Card.Description>
+
+                    <VStack spacing={2} mt={3} align="start">
+                      {s.features.slice(0, 3).map((feature, idx) => (
+                        <HStack key={idx} spacing={2}>
+                          <Icon
+                            as={CheckCircle}
+                            boxSize={4}
+                            color="blue.500"
+                            flexShrink={0}
+                          />
+                          <Text fontSize="sm" color="gray.600">
+                            {feature}
                           </Text>
-                        )}
-                      </Box>
-                    </Card.Body>
+                        </HStack>
+                      ))}
+                    </VStack>
+                  </Card.Body>
 
-                    <Card.Footer flexShrink={0}>
-                      <Button variant="solid" width="100%" pointerEvents="none">
-                        Get Details
-                      </Button>
-                    </Card.Footer>
-                  </Card.Root>
-                </Link>
-              );
-            })}
+                  <Card.Footer mt="auto">
+                    <Button
+                      width="100%"
+                      bg="blue.600"
+                      color="white"
+                      _hover={{ bg: "blue.700" }}
+                      pointerEvents="none"
+                    >
+                      Learn More
+                    </Button>
+                  </Card.Footer>
+                </Card.Root>
+              </Link>
+            ))}
           </SimpleGrid>
         </Container>
       </Box>
@@ -320,44 +380,73 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* TESTIMONIALS */}
-      <Box py={20} bg="gray.50" ref={testimonialRef}>
+      {/* TESTIMONIALS section started here */}
+      <Box py={{ base: 14, md: 20 }} bg="gray.50" ref={testimonialRef}>
         <Container maxW="7xl">
-          <SimpleGrid columns={[2, null, 3]} gap="40px">
+          <Heading
+            textAlign="center"
+            mb={{ base: 8, md: 12 }}
+            fontSize={{ base: "2xl", md: "3xl" }}
+          >
+            What Our Clients Say
+          </Heading>
+
+          <SimpleGrid
+            columns={{ base: 1, sm: 2, md: 3 }}
+            spacing={{ base: 6, md: 10 }}
+            alignItems="stretch"
+            gap="20px"
+          >
             {testimonials.map((t) => (
-              // <Box
-              //   key={t.id}
-              //   className="testimonial-card"
-              //   bg="white"
-              //   p={8}
-              //   borderRadius="xl"
-              //   boxShadow="lg"
-              // >
-              //   <Text mb={4} fontStyle="italic">
-              //     "{t.text}"
-              //   </Text>
-              //   <Heading size="sm">{t.name}</Heading>
-              //   <Text fontSize="sm" color="gray.500">
-              //     {t.company}
-              //   </Text>
-              // </Box>
-              <Blockquote.Root key={t.id} bg="bg.subtle" padding="8">
+              <Blockquote.Root
+                key={t.id}
+                h="100%"
+                display="flex"
+                flexDirection="column"
+                backdropFilter="blur(14px)"
+                bg="rgba(255,255,255,0.25)"
+                border="1px solid rgba(255,255,255,0.35)"
+                borderRadius="xl"
+                p={{ base: 6, md: 8 }}
+                boxShadow="0 20px 40px rgba(0,0,0,0.1)"
+                transition="transform 0.15s ease, box-shadow 0.3s ease"
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                _hover={{
+                  boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
+                }}
+              >
+                {/* Quote Icon */}
                 <Float placement="bottom-end" offset="10">
-                  <Blockquote.Icon opacity="0.4" boxSize="10" rotate="180deg" />
+                  <Blockquote.Icon
+                    opacity="0.35"
+                    boxSize="10"
+                    rotate="180deg"
+                  />
                 </Float>
-                <Blockquote.Content cite="Uzumaki Naruto">
+
+                {/* Text */}
+                <Blockquote.Content
+                  flex="1"
+                  fontSize={{ base: "sm", md: "md" }}
+                >
                   {t.text}
                 </Blockquote.Content>
-                <Blockquote.Caption>
+
+                {/* Author */}
+                <Blockquote.Caption mt={6}>
                   <cite>
-                    <HStack mt="2" gap="13px">
-                      <Avatar.Root size="lg">
-                        <Avatar.Fallback name="Emily Jones" />
-                        <Avatar.Image src="https://i.pravatar.cc/150?u=re" />
+                    <HStack spacing={4}>
+                      <Avatar.Root size={{ base: "md", md: "lg" }}>
+                        <Avatar.Fallback name={t.name} />
+                        <Avatar.Image src={t.avatar} />
                       </Avatar.Root>
-                      <VStack>
-                        <Span fontWeight="medium">{t.name}</Span>
-                        <Span fontWeight="medium">{t.company}</Span>
+
+                      <VStack align="start" spacing={0}>
+                        <Span fontWeight="semibold">{t.name}</Span>
+                        <Span fontSize="sm" color="gray.600">
+                          {t.company}
+                        </Span>
                       </VStack>
                     </HStack>
                   </cite>

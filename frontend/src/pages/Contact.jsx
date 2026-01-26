@@ -21,6 +21,7 @@ import Instagram from "../assets/lottie/Instagram.json";
 import Youtube from "../assets/lottie/Youtube.json";
 import LinkedIn from "../assets/lottie/Linkdin.json";
 import Whatsapp from "../assets/lottie/Whatsapp.json";
+import ContactUs from "../assets/lottie/Contact Us.json";
 // import Twitter from "../assets/lottie/Twitter.json";
 
 const Contact = () => {
@@ -99,19 +100,36 @@ const Contact = () => {
         title="Contact Us | Genius36 Technologies"
         description="Get in touch with Genius36 Technologies for IT solutions, training programs, and consultation services."
       />
+
+      <Box bg="gray.900" color="white">
+        <Container maxW="7xl" py={{ base: 14, md: 20 }}>
+          <VStack textAlign="center">
+
+            {/* LOTTIE TOP */}
+                        <Box maxW="420px" mx="auto">
+                          <Lottie animationData={ContactUs} loop autoplay />
+                        </Box>
+
+            {/* CONTENT BELOW */}
+            <VStack>
+              <Heading
+                fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+              padding="">
+                Get In Touch
+              </Heading>
+
+              <Text fontSize="lg" color="white" maxW="2xl" mx="auto">
+                Get in touch with our team to discuss innovative, reliable, and scalable IT solutions tailored to your business goals.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
       <Box py={20} bg="gray.50" minH="100vh">
         <Container maxW="7xl">
           <VStack spacing={12} align="stretch">
             {/* Heading */}
-            <Box textAlign="center">
-              <Heading size="2xl" mb={4} color="gray.800">
-                Get In Touch
-              </Heading>
-              <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
-                Have questions or ready to transform your technology
-                infrastructure? Contact us today.
-              </Text>
-            </Box>
+            
 
             {/* Alert Messages */}
             {alert.show && (

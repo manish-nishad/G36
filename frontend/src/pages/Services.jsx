@@ -143,7 +143,11 @@ const Services = () => {
         </Container>
       </Box>
 
+<<<<<<< HEAD
       {/* OUR SERVICES — each card links to its individual service page */}
+=======
+      {/* SERVICES OVERVIEW GRID - Matching existing card patterns */}
+>>>>>>> ae0ec6229790a00928332dc80c60d25c2980faa0
       <Box py={{ base: 12, md: 20 }} bg="white">
         <Container maxW="7xl">
           <VStack spacing={12}>
@@ -368,7 +372,6 @@ const Services = () => {
                 color="gray.900"
                 lineHeight="1.8"
                 textAlign="left"
-                
               >
                 Enterprise-grade software solutions for web and mobile platforms
                 with scalable architecture. We build custom applications that
