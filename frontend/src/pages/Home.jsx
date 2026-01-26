@@ -33,6 +33,7 @@ import Award from "../assets/lottie/Award.json";
 import ServicesCarousel from "../components/ui/servicesCarousel";
 import TestimonialsSection from "../components/ui/TestimonialsSection";
 import TrustedByBrands from "../components/ui/TrustedByBrands";
+import MarqueOne from "../components/sections/marqueOne";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -185,7 +186,9 @@ export default function Home() {
             </SimpleGrid>
           </VStack>
         </Container>
+        <MarqueOne />
       </Box>
+      
 
       {/* Service Section Started Here */}
       <ServicesCarousel />
