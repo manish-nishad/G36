@@ -12,7 +12,8 @@ export default function AnimatedRoutes() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        style={{ minHeight: '100vh' }} // Ensure content takes space
       >
         <AppRoutes />
       </motion.div>

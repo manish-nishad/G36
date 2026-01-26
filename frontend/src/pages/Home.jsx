@@ -78,52 +78,60 @@ export default function Home() {
 
   useEffect(() => {
     // HERO PARALLAX (BACKGROUND ONLY)
-    gsap.to(heroBgRef.current, {
-      yPercent: 15,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroBgRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    if (heroBgRef.current) {
+      gsap.to(heroBgRef.current, {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroBgRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }
 
     // SERVICES
-    gsap.from(".service-card", {
-      scrollTrigger: {
-        trigger: servicesRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 40,
-      stagger: 0.2,
-      duration: 0.6,
-    });
+    if (servicesRef.current) {
+      gsap.from(".service-card", {
+        scrollTrigger: {
+          trigger: servicesRef.current,
+          start: "top 80%",
+        },
+        opacity: 0,
+        y: 40,
+        stagger: 0.2,
+        duration: 0.6,
+      });
+    }
 
     // WHY CHOOSE US
-    // gsap.from(".why-item", {
-    //   scrollTrigger: {
-    //     trigger: whyRef.current,
-    //     start: "top 80%",
-    //   },
-    //   scale: 0.85,
-    //   opacity: 0,
-    //   stagger: 0.15,
-    //   duration: 0.5,
-    // });
+    // if (whyRef.current) {
+    //   gsap.from(".why-item", {
+    //     scrollTrigger: {
+    //       trigger: whyRef.current,
+    //       start: "top 80%",
+    //     },
+    //     scale: 0.85,
+    //     opacity: 0,
+    //     stagger: 0.15,
+    //     duration: 0.5,
+    //   });
+    // }
 
     // TESTIMONIALS
-    gsap.from(".testimonial-card", {
-      scrollTrigger: {
-        trigger: testimonialRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 30,
-      stagger: 0.2,
-      duration: 0.5,
-    });
+    if (testimonialRef.current) {
+      gsap.from(".testimonial-card", {
+        scrollTrigger: {
+          trigger: testimonialRef.current,
+          start: "top 80%",
+        },
+        opacity: 0,
+        y: 30,
+        stagger: 0.2,
+        duration: 0.5,
+      });
+    }
   }, []);
 
   const serviceLotties = {
@@ -137,6 +145,19 @@ export default function Home() {
     DataRecovery: DataRecovery,
     ComputerHardware: ComputerHardware,
   };
+
+  // Ensure services array exists
+  const servicesList = services || [];
+
+  // Early return if critical data is missing
+  if (!heroImages || !servicesList.length) {
+    console.error("Home: Missing critical data", { heroImages, servicesList });
+    return (
+      <Box p={8} textAlign="center">
+        <Text>Loading...</Text>
+      </Box>
+    );
+  }
 
   return (
     <>
@@ -222,12 +243,12 @@ export default function Home() {
             </Stack>
 
             <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} pt={10}>
-              {stats.map((s, i) => (
+              {stats && stats.length > 0 ? stats.map((s, i) => (
                 <Box key={i}>
                   <Heading color="white">{s.value}</Heading>
                   <Text color="white">{s.label}</Text>
                 </Box>
-              ))}
+              )) : null}
             </SimpleGrid>
           </VStack>
         </Container>
@@ -272,13 +293,14 @@ export default function Home() {
             zIndex={1}
             gap="20px"
           >
-            {services.map((s) => (
+            {servicesList && servicesList.length > 0 ? servicesList.map((s) => (
               <Link
                 key={s.id}
                 to="/services"
                 style={{ textDecoration: "none" }}
               >
                 <Card.Root
+                  className="service-card"
                   h="100%"
                   display="flex"
                   flexDirection="column"
@@ -301,11 +323,26 @@ export default function Home() {
                     alignItems="center"
                     justifyContent="center"
                   >
-                    <Lottie
-                      animationData={serviceLotties[s.lottieKey]}
-                      loop
-                      style={{ width: "100%", height: "100%" }}
-                    />
+                    {serviceLotties[s.lottieKey] ? (
+                      <Lottie
+                        animationData={serviceLotties[s.lottieKey]}
+                        loop
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    ) : (
+                      <Box
+                        w="100%"
+                        h="100%"
+                        bg="blue.100"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Text color="blue.600" fontSize="sm">
+                          {s.title}
+                        </Text>
+                      </Box>
+                    )}
                   </Box>
 
                   <Card.Body flex="1" gap="2">
@@ -345,7 +382,11 @@ export default function Home() {
                   </Card.Footer>
                 </Card.Root>
               </Link>
-            ))}
+            )) : (
+              <Box p={8} textAlign="center">
+                <Text color="gray.500">No services available</Text>
+              </Box>
+            )}
           </SimpleGrid>
         </Container>
       </Box>
@@ -397,9 +438,10 @@ export default function Home() {
             alignItems="stretch"
             gap="20px"
           >
-            {testimonials.map((t) => (
+            {testimonials && testimonials.length > 0 && testimonials.map((t) => (
               <Blockquote.Root
                 key={t.id}
+                className="testimonial-card"
                 h="100%"
                 display="flex"
                 flexDirection="column"

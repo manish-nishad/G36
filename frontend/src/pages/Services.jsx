@@ -14,12 +14,18 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import * as LucideIcons from "lucide-react";
 import { services, servicesImages, aboutImages } from "../mockData";
 import { servicePages } from "../data/servicePagesContent";
 import Seo from "../seo/Seo";
 import Lottie from "lottie-react";
 import Welcome from "../assets/lottie/Welcome.json";
+// Import Lottie animations matching Index page
+import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
+import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
+import ItConsultation from "../assets/lottie/IT CONSULTATION & DIGITAL TRANSFORMATION.json";
+import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
+import ItTraining from "../assets/lottie/IT TRAINING.json";
+import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
 
 // Import Flaticons
 import locationIcon from "../assets/flaticons/location.gif";
@@ -28,6 +34,16 @@ import emailIcon from "../assets/flaticons/email.gif";
 import clockIcon from "../assets/flaticons/clock.gif";
 
 const Services = () => {
+  // Lottie animations mapping - matching Index page
+  const serviceLotties = {
+    WebDevelopment: WebDevelopment,
+    SoftwareDevelopment: SoftwareDevelopment,
+    ItConsultation: ItConsultation,
+    ItTraining: ItTraining,
+    Cloud: Cloud,
+    ComputerHardware: ComputerHardware,
+  };
+
   // Process steps for "How We Work" section
   const processSteps = [
     {
@@ -143,11 +159,7 @@ const Services = () => {
         </Container>
       </Box>
 
-<<<<<<< HEAD
       {/* OUR SERVICES — each card links to its individual service page */}
-=======
-      {/* SERVICES OVERVIEW GRID - Matching existing card patterns */}
->>>>>>> ae0ec6229790a00928332dc80c60d25c2980faa0
       <Box py={{ base: 12, md: 20 }} bg="white">
         <Container maxW="7xl">
           <VStack spacing={12}>
@@ -178,20 +190,20 @@ const Services = () => {
               w="100%"
             >
               {servicePages.map((sp) => {
-                const IconComp = LucideIcons[sp.visualBlocks?.[0]?.icon] || LucideIcons.Box;
                 const desc = sp.description.overview;
                 const shortDesc = desc.length > 140 ? desc.slice(0, 137) + "..." : desc;
+                const lottieAnimation = serviceLotties[sp.lottieKey] || WebDevelopment;
                 return (
                   <Link
                     key={sp.slug}
                     to={`/services/${sp.slug}`}
                     _hover={{ textDecoration: "none" }}
-                    style={{ height: "100%" }}
+                    style={{ height: "100%", textDecoration: "none" }}
                   >
                     <Card.Root
                       bg="gray.50"
-                      p={6}
                       borderRadius="xl"
+                      overflow="hidden"
                       h="full"
                       boxShadow="md"
                       transition="all 0.3s ease"
@@ -203,26 +215,23 @@ const Services = () => {
                         borderWidth: "1px",
                       }}
                     >
-                      <Card.Body>
+                      {/* Lottie Animation - Matching Index page */}
+                      <Box
+                        h="180px"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        bg="white"
+                      >
+                        <Lottie
+                          animationData={lottieAnimation}
+                          loop
+                          style={{ width: "100%", height: "100%" }}
+                        />
+                      </Box>
+
+                      <Card.Body p={6}>
                         <VStack spacing={4} align="start">
-                          <Box
-                            w={{ base: 16, md: 20 }}
-                            h={{ base: 16, md: 20 }}
-                            bg="gray.100"
-                            borderRadius="xl"
-                            display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            p={2}
-                          >
-                            {IconComp && (
-                              <IconComp
-                                size={24}
-                                color="#1a202c"
-                                strokeWidth={2.5}
-                              />
-                            )}
-                          </Box>
                           <Heading
                             size="md"
                             color="gray.900"

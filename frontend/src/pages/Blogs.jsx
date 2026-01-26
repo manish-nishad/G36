@@ -20,6 +20,7 @@ import { Link as RouterLink } from "react-router-dom";
 import axios from "axios";
 import Seo from "../seo/Seo";
 import { blogPosts } from "../mockData";
+import { getAllBlogs } from "../data/allBlogsContent";
 import {
   FaTwitter,
   FaInstagram,
@@ -83,9 +84,9 @@ export default function Blogs() {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(`${API_URL}/api/blogs`, { timeout: 8000 });
-        setBlogs(res.data?.data || blogPosts);
+        setBlogs(res.data?.data || getAllBlogs());
       } catch {
-        setBlogs(blogPosts);
+        setBlogs(getAllBlogs());
       } finally {
         setLoading(false);
       }
@@ -209,7 +210,7 @@ export default function Blogs() {
                 <Box
                   key={blog._id || blog.id}
                   as={RouterLink}
-                  to={`/blogs/${blog._id || blog.id}`}
+                  to={`/blogs/${blog.slug || blog._id || blog.id}`}
                 >
                   <Box borderRadius="md" overflow="hidden" bg="gray.100">
                     <Image
@@ -231,7 +232,7 @@ export default function Blogs() {
                       {blog.excerpt}
                     </Text>
                     <Text fontSize="xs" color="gray.500">
-                      {formatDate(blog.createdAt)}
+                      {formatDate(blog.createdAt || blog.date)}
                     </Text>
                   </VStack>
                 </Box>

@@ -60,11 +60,59 @@ export default function ServiceSingle() {
     setHeroImgError(false);
   }, [slug]);
 
+  // Generate Service Schema Markup
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": service.name,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Genius36 Technologies India LLP",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Maroda Tank, Utai Rd, near Police Station, Ajad Nagar, Newai",
+        "addressLocality": "Bhilai",
+        "addressRegion": "Chhattisgarh",
+        "postalCode": "490006",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-82005-93901",
+      "email": "info@genius36tech.com",
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "India"
+    },
+    "description": service.description.overview,
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": service.name,
+      "itemListElement": service.keyFeatures.map((feature, index) => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": feature
+        },
+        "position": index + 1
+      }))
+    }
+  };
+
   return (
     <>
       <Seo
         title={service.seo.metaTitle}
         description={service.seo.metaDescription}
+      />
+      
+      {/* Service Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       <Box bg="white" minH="100vh" pt={{ base: "90px", md: "100px" }} pb={{ base: 8, md: 12 }}>
