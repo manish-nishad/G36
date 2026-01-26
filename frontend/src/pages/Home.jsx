@@ -27,7 +27,7 @@ import {
   Headphones,
 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
-import { heroImages, services, stats, testimonials } from "../mockData";
+import { heroImages, services, stats, testimonials, servicesImages, trainingImages } from "../mockData";
 import Seo from "../seo/Seo";
 
 import { useEffect, useRef } from "react";
@@ -170,7 +170,7 @@ export default function Home() {
         <Heading
           color="black"
           textAlign="center"
-          fontSize={{ base: "1xl", md: "3xl" }}
+          fontSize={{ base: "1xl", md: "3x2" }}
           padding={5}
         >
           Services
@@ -184,60 +184,50 @@ export default function Home() {
           margin="0 auto"
           pb={10}
         >
-          Genius36 Technologies offers comprehensive IT services including
-          custom software development, web solutions, digital marketing, SEO,
-          computer services, and professional training. We deliver innovative,
-          scalable, and cost-effective technology solutions across India,
-          helping businesses and institutions improve efficiency, growth, and
-          digital transformation through reliable IT expertise.
+          Explore our comprehensive range of IT services designed to meet
+          your business needs. From web development to IT infrastructure, we
+          deliver innovative, scalable, and cost-effective technology solutions
+          across India, helping businesses and institutions improve efficiency,
+          growth, and digital transformation through reliable IT expertise.
         </Text>
 
         <Container maxW="7xl">
-          <SimpleGrid columns={[2, null, 4]} gap="40px">
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="40px" alignItems="stretch">
             {services.map((s) => {
               const IconComp = LucideIcons[s.icon];
+              // Truncate description to show "Read More" if needed
+              const maxLength = 80;
+              const isLongDescription = s.description.length > maxLength;
+              const truncatedDescription = isLongDescription 
+                ? s.description.substring(0, maxLength) + "..."
+                : s.description;
+              
+              // Map each service to appropriate image
+              const getServiceImage = (serviceId) => {
+                const imageMap = {
+                  1: servicesImages.development, // Web Development
+                  2: servicesImages.workspace, // Software Development
+                  3: servicesImages.team, // IT Consulting
+                  4: servicesImages.general, // CCTV & Security
+                  5: servicesImages.general, // Hardware Sales & Repair
+                  6: servicesImages.networking, // Networking & IT Infrastructure
+                  7: servicesImages.workspace, // Cloud Solutions
+                  8: trainingImages.classroom, // IT Training
+                  9: servicesImages.general, // Data Recovery
+                };
+                return imageMap[serviceId] || servicesImages.general;
+              };
+              
               return (
-                // <Box
-                //   key={s.id}
-                //   className="service-card"
-                //   bg="white"
-                //   p={6}
-                //   borderRadius="xl"
-                //   boxShadow="md"
-                // >
-                //   <Box
-                //     w="56px"
-                //     h="56px"
-                //     bgGradient="linear(to-br, blue.500, blue.700)"
-                //     borderRadius="xl"
-                //     display="flex"
-                //     alignItems="center"
-                //     justifyContent="center"
-                //     mb={4}
-                //   >
-                //     <Icon as={IconComp} color="white" />
-                //   </Box>
-
-                //   <Heading size="md">{s.title}</Heading>
-                //   <Text fontSize="sm" color="gray.600" mb={3}>
-                //     {s.description}
-                //   </Text>
-
-                //   <VStack align="start">
-                //     {s.features.slice(0, 3).map((f, i) => (
-                //       <HStack key={i}>
-                //         <Icon as={CheckCircle} color="blue.500" />
-                //         <Text fontSize="sm">{f}</Text>
-                //       </HStack>
-                //     ))}
-                //   </VStack>
-                // </Box>
-                <Link to="/services" style={{ textDecoration: "none" }}>
+                <Link to="/services" key={s.id} style={{ textDecoration: "none", height: "100%" }}>
                   <Card.Root
                     maxW="sm"
                     overflow="hidden"
                     cursor="pointer"
                     transition="all 0.3s ease"
+                    h="100%"
+                    display="flex"
+                    flexDirection="column"
                     _hover={{
                       transform: "translateY(-6px)",
                       boxShadow: "xl",
@@ -246,18 +236,48 @@ export default function Home() {
                       transform: "scale(0.98)",
                     }}
                   >
-                    {/* LOTTIE */}
-                    <Lottie animationData={Laptop} />
+                    {/* Service Image */}
+                    <Box 
+                      flexShrink={0}
+                      w="100%"
+                      h={{ base: "200px", md: "240px" }}
+                      overflow="hidden"
+                      bg="gray.200"
+                    >
+                      <Image
+                        src={getServiceImage(s.id)}
+                        alt={s.title}
+                        w="100%"
+                        h="100%"
+                        objectFit="cover"
+                        transition="transform 0.3s ease"
+                        _hover={{
+                          transform: "scale(1.05)",
+                        }}
+                      />
+                    </Box>
 
-                    <Card.Body gap="2">
-                      <Card.Title>Lab Setup</Card.Title>
-                      <Card.Description>
-                        Professional computer lab setup, networking, and
-                        maintenance services for schools and institutions.
-                      </Card.Description>
+                    <Card.Body gap="2" flex="1" display="flex" flexDirection="column">
+                      <Card.Title>{s.title}</Card.Title>
+                      <Box flex="1">
+                        <Card.Description noOfLines={3}>
+                          {truncatedDescription}
+                        </Card.Description>
+                        {isLongDescription && (
+                          <Text
+                            fontSize="xs"
+                            color="#0951d8"
+                            fontWeight="500"
+                            mt={2}
+                            _hover={{ textDecoration: "underline" }}
+                          >
+                            Read More
+                          </Text>
+                        )}
+                      </Box>
                     </Card.Body>
 
-                    <Card.Footer>
+                    <Card.Footer flexShrink={0}>
                       <Button variant="solid" width="100%" pointerEvents="none">
                         Get Details
                       </Button>
