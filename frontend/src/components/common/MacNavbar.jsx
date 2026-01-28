@@ -18,6 +18,7 @@ import {
   FaProjectDiagram,
   FaEnvelope,
   FaPhoneAlt,
+  FaBookReader,
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -31,6 +32,7 @@ const navItems = [
   { label: "Services", icon: FaCogs, path: "/services" },
   { label: "Projects", icon: FaProjectDiagram, path: "/projects" },
   { label: "Blogs", icon: FaBlog, path: "/blogs" },
+  { label: "Training", icon: FaBookReader, path: "/training" },
   { label: "Contact", icon: FaEnvelope, path: "/contact" },
   { label: "About", icon: FaInfoCircle, path: "/about" },
   { label: "Career", icon: FaUserTie, path: "/career" },
