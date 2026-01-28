@@ -14,11 +14,18 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import * as LucideIcons from "lucide-react";
 import { services, servicesImages, aboutImages } from "../mockData";
+import { servicePages } from "../data/servicePagesContent";
 import Seo from "../seo/Seo";
 import Lottie from "lottie-react";
 import Welcome from "../assets/lottie/Welcome.json";
+// Import Lottie animations matching Index page
+import WebDevelopment from "../assets/lottie/WEBSITE DEVELOPMENT.json";
+import SoftwareDevelopment from "../assets/lottie/SOFTWARE DEVELOPMENT.json";
+import ItConsultation from "../assets/lottie/IT CONSULTATION & DIGITAL TRANSFORMATION.json";
+import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
+import ItTraining from "../assets/lottie/IT TRAINING.json";
+import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
 
 // Import Flaticons
 import locationIcon from "../assets/flaticons/location.gif";
@@ -27,6 +34,16 @@ import emailIcon from "../assets/flaticons/email.gif";
 import clockIcon from "../assets/flaticons/clock.gif";
 
 const Services = () => {
+  // Lottie animations mapping - matching Index page
+  const serviceLotties = {
+    WebDevelopment: WebDevelopment,
+    SoftwareDevelopment: SoftwareDevelopment,
+    ItConsultation: ItConsultation,
+    ItTraining: ItTraining,
+    Cloud: Cloud,
+    ComputerHardware: ComputerHardware,
+  };
+
   // Process steps for "How We Work" section
   const processSteps = [
     {
@@ -79,7 +96,6 @@ const Services = () => {
             <VStack spacing={4}>
               <Heading
                 fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
-                as="h1"
               >
                 Our{" "}
                 <Box as="span" color="#0951d8">
@@ -113,7 +129,6 @@ const Services = () => {
               spacing={4}
               w="100%"
               maxW="420px"
-              justifyContent="center"
             >
               <Link to="/contact">
                 <Button
@@ -144,8 +159,7 @@ const Services = () => {
         </Container>
       </Box>
 
-
-      {/* SERVICES OVERVIEW GRID - Matching existing card patterns */}
+      {/* OUR SERVICES — each card links to its individual service page */}
       <Box py={{ base: 12, md: 20 }} bg="white">
         <Container maxW="7xl">
           <VStack spacing={12}>
@@ -164,8 +178,8 @@ const Services = () => {
                 maxW="3xl"
                 mx="auto"
               >
-                Explore our comprehensive range of IT services designed to meet
-                your business needs
+                Explore our comprehensive range of IT services. Click any card to
+                view details and get started.
               </Text>
             </Box>
 
@@ -175,76 +189,80 @@ const Services = () => {
               gap={10}
               w="100%"
             >
-              {services.map((service) => {
-                const IconComp = LucideIcons[service.icon];
+              {servicePages.map((sp) => {
+                const desc = sp.description.overview;
+                const shortDesc = desc.length > 140 ? desc.slice(0, 137) + "..." : desc;
+                const lottieAnimation = serviceLotties[sp.lottieKey] || WebDevelopment;
                 return (
-                  <Card.Root
-                    key={service.id}
-                    bg="gray.50"
-                    p={6}
-                    borderRadius="xl"
-                    h="full"
-                    boxShadow="md"
-                    transition="all 0.3s ease"
-                    _hover={{
-                      transform: "translateY(-4px)",
-                      boxShadow: "xl",
-                    }}
+                  <Link
+                    key={sp.slug}
+                    to={`/services/${sp.slug}`}
+                    _hover={{ textDecoration: "none" }}
+                    style={{ height: "100%", textDecoration: "none" }}
                   >
-                    <Card.Body>
-                      <VStack spacing={4} align="start">
-                        <Box
-                          w={{ base: 16, md: 20 }}
-                          h={{ base: 16, md: 20 }}
-                          bg="gray.100"
-                          borderRadius="xl"
-                          display="flex"
-                          alignItems="center"
-                          justifyContent="center"
-                          p={2}
-                        >
-                          {IconComp && (
-                            <IconComp
-                              size={24}
-                              color="#1a202c"
-                              strokeWidth={2.5}
-                            />
-                          )}
-                        </Box>
-                        <Heading
-                          size="md"
-                          color="gray.900"
-                          fontSize={{ base: "sm", md: "md" }}
-                        >
-                          {service.title}
-                        </Heading>
-                        <Text
-                          fontSize={{ base: "xs", md: "sm" }}
-                          color="gray.800"
-                          lineHeight="1.7"
-                        >
-                          {service.description}
-                        </Text>
-                        <VStack align="start" spacing={2} w="100%" pt={2}>
-                          {service.features.slice(0, 3).map((feature, idx) => (
-                            <HStack key={idx} spacing={2}>
-                              <Icon
-                                as={CheckCircle}
-                                color="blue.500"
-                                boxSize={4}
-                              />
-                              <Text
-                                fontSize={{ base: "xs", md: "sm" }}
-                                color="gray.700"
-                              >
-                                {feature}
-                              </Text>
-                            </HStack>
-                          ))}
+                    <Card.Root
+                      bg="gray.50"
+                      borderRadius="xl"
+                      overflow="hidden"
+                      h="full"
+                      boxShadow="md"
+                      transition="all 0.3s ease"
+                      cursor="pointer"
+                      _hover={{
+                        transform: "translateY(-4px)",
+                        boxShadow: "xl",
+                        borderColor: "blue.200",
+                        borderWidth: "1px",
+                      }}
+                    >
+                      {/* Lottie Animation - Matching Index page */}
+                      <Box
+                        h="180px"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        bg="white"
+                      >
+                        <Lottie
+                          animationData={lottieAnimation}
+                          loop
+                          style={{ width: "100%", height: "100%" }}
+                        />
+                      </Box>
+
+                      <Card.Body p={6}>
+                        <VStack spacing={4} align="start">
+                          <Heading
+                            size="md"
+                            color="gray.900"
+                            fontSize={{ base: "sm", md: "md" }}
+                          >
+                            {sp.name}
+                          </Heading>
+                          <Text
+                            fontSize={{ base: "xs", md: "sm" }}
+                            color="gray.800"
+                            lineHeight="1.7"
+                          >
+                            {shortDesc}
+                          </Text>
+                          <VStack align="start" spacing={2} w="100%" pt={2}>
+                            {(sp.keyFeatures || []).slice(0, 3).map((feature, idx) => (
+                              <HStack key={idx} spacing={2}>
+                                <Icon as={CheckCircle} color="blue.500" boxSize={4} />
+                                <Text fontSize={{ base: "xs", md: "sm" }} color="gray.700">
+                                  {feature}
+                                </Text>
+                              </HStack>
+                            ))}
+                          </VStack>
+                          <Text fontSize="sm" color="#0951d8" fontWeight="500" pt={2}>
+                            View details →
+                          </Text>
                         </VStack>
-                      </VStack>
-                    </Card.Body>
-                  </Card.Root>
+                      </Card.Body>
+                    </Card.Root>
+                  </Link>
                 );
               })}
             </SimpleGrid>
@@ -259,7 +277,7 @@ const Services = () => {
           <SimpleGrid
             columns={{ base: 1, lg: 2 }}
             spacing={{ base: 8, lg: 12 }}
-            alignItems="start"
+            alignItems="center"
           >
             <VStack spacing={6} align="start" w="100%">
               <Heading
@@ -275,9 +293,9 @@ const Services = () => {
                 lineHeight="1.8"
                 textAlign="left"
               >
-                We create stunning, responsive websites tailored to your
-                business needs using modern technologies and best practices. Our
-                web development services ensure your online presence is both
+                We create stunning, responsive websites tailored to your business
+                needs using modern technologies and best practices. Our web
+                development services ensure your online presence is both
                 visually appealing and functionally robust.
               </Text>
               <VStack align="start" spacing={3} w="100%">
@@ -302,19 +320,20 @@ const Services = () => {
                 ))}
               </VStack>
             </VStack>
-            <Box w="100%">
+            <Box w="100%" display="flex" alignItems="center">
               <Box
                 borderRadius="2xl"
                 overflow="hidden"
                 boxShadow="2xl"
                 position="relative"
-                paddingLeft={5}
+                w="100%"
+                h={{ base: "300px", md: "400px" }}
               >
                 <Image
                   src={servicesImages.development}
                   alt="Web Development"
                   w="100%"
-                  h="auto"
+                  h="100%"
                   objectFit="cover"
                 />
               </Box>
@@ -329,31 +348,27 @@ const Services = () => {
           <SimpleGrid
             columns={{ base: 1, lg: 2 }}
             spacing={{ base: 8, lg: 12 }}
-            alignItems="start"
+            alignItems="center"
           >
-            <Box w="100%" order={{ base: 2, lg: 1 }}>
+            <Box w="100%" order={{ base: 2, lg: 1 }} display="flex" alignItems="center">
               <Box
                 borderRadius="2xl"
                 overflow="hidden"
                 boxShadow="2xl"
                 position="relative"
-                paddingRight={5}
+                w="100%"
+                h={{ base: "300px", md: "400px" }}
               >
                 <Image
                   src={servicesImages.workspace}
                   alt="Software Development"
                   w="100%"
-                  h="auto"
+                  h="100%"
                   objectFit="cover"
                 />
               </Box>
             </Box>
-            <VStack
-              spacing={6}
-              align="start"
-              w="100%"
-              order={{ base: 1, lg: 2 }}
-            >
+            <VStack spacing={6} align="start" w="100%" order={{ base: 1, lg: 2 }} p={5}>
               <Heading
                 size="2xl"
                 color="gray.900"
@@ -403,7 +418,7 @@ const Services = () => {
           <SimpleGrid
             columns={{ base: 1, lg: 2 }}
             spacing={{ base: 8, lg: 12 }}
-            alignItems="start"
+            alignItems="center"
           >
             <VStack spacing={6} align="start" w="100%">
               <Heading
@@ -446,19 +461,20 @@ const Services = () => {
                 ))}
               </VStack>
             </VStack>
-            <Box w="100%">
+            <Box w="100%" display="flex" alignItems="center">
               <Box
                 borderRadius="2xl"
                 overflow="hidden"
                 boxShadow="2xl"
                 position="relative"
-                paddingLeft={5}
+                w="100%"
+                h={{ base: "300px", md: "400px" }}
               >
                 <Image
                   src={servicesImages.networking}
                   alt="IT Infrastructure"
                   w="100%"
-                  h="auto"
+                  h="100%"
                   objectFit="cover"
                 />
               </Box>
@@ -575,29 +591,17 @@ const Services = () => {
       >
         <Container maxW="7xl">
           <VStack spacing={8} textAlign="center">
-            <Heading
-              color="black"
-              size="2xl"
-              fontSize={{ base: "xl", md: "2xl" }}
-            >
+            <Heading color="black" size="2xl" fontSize={{ base: "xl", md: "2xl" }}>
               Ready to Transform Your Business?
             </Heading>
-            <Text
-              color="gray.900"
-              fontSize={{ base: "md", md: "lg" }}
-              maxW="2xl"
-            >
+            <Text color="gray.900" fontSize={{ base: "md", md: "lg" }} maxW="2xl">
               Let's discuss how Genius36 Technologies can help you achieve your
               technology goals. Get in touch with us today for a free
               consultation.
             </Text>
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
               <Link to="/contact">
-                <Button
-                  bg="#0951d8"
-                  color="white"
-                  size={{ base: "md", md: "lg" }}
-                >
+                <Button bg="#0951d8" color="white" size={{ base: "md", md: "lg" }}>
                   Contact Us <ArrowRight size={18} />
                 </Button>
               </Link>

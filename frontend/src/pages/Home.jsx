@@ -223,7 +223,7 @@ export default function Home() {
         </Container>
       </Box>
       {/* TRUSTED BY BRANDS section started here */}
-      <TrustedByBrands brands={brands} />
+      {/* <TrustedByBrands brands={brands} /> */}
 
       {/* TESTIMONIALS section started here */}
       <TestimonialsSection
