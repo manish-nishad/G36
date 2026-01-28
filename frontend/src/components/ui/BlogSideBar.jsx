@@ -23,17 +23,17 @@ const categories = [
 
 const recentPosts = [
   {
-    imgSrc: "/img/news/pp3.jpg",
+    // imgSrc: "/img/news/pp3.jpg",
     date: "18 Dec, 2025",
     title: "Colgate-Palmolive Renews with Morz in Malaysia Soon",
   },
   {
-    imgSrc: "/img/news/pp4.jpg",
+    // imgSrc: "/img/news/pp4.jpg",
     date: "18 Dec, 2025",
     title: "Bill Gates Launches Clean Energy Investment Fund",
   },
   {
-    imgSrc: "/img/news/pp5.jpg",
+    // imgSrc: "/img/news/pp5.jpg",
     date: "18 Dec, 2025",
     title: "Metal Roofing: The Best for Solar Panels",
   },
@@ -104,13 +104,13 @@ export default function BlogSideBar() {
         <VStack spacing={4} align="stretch">
           {recentPosts.map((post, i) => (
             <Flex key={i} gap={3}>
-              <Image
+              {/* <Image
                 src={post.imgSrc}
                 alt={post.title}
                 boxSize="60px"
                 objectFit="cover"
                 borderRadius="md"
-              />
+              /> */}
 
               <Box>
                 <Text fontSize="xs" color="gray.500">

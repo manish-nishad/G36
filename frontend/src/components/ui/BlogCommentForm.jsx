@@ -26,7 +26,7 @@ export default function BlogCommentForm() {
       <Box as="form">
         <VStack spacing={5}>
           {/* Name + Email */}
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} w="100%">
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} w="100%" gap={4}>
             <Input
               placeholder="Your Name"
               name="name"

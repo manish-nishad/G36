@@ -74,7 +74,7 @@ export default function ServicesCarousel() {
           trigger: servicesRef.current,
           start: "top 80%",
         },
-      }
+      },
     );
   }, []);
 
@@ -92,22 +92,23 @@ export default function ServicesCarousel() {
         mx="auto"
         textAlign="center"
       >
-        Genius36 Technologies offers comprehensive IT services including
-          custom software development, web solutions, digital marketing, SEO,
-          computer services, and professional training. We deliver innovative,
-          scalable, and cost-effective technology solutions across India.
+        Genius36 Technologies offers comprehensive IT services including custom
+        software development, web solutions, digital marketing, SEO, computer
+        services, and professional training. We deliver innovative, scalable,
+        and cost-effective technology solutions across India.
       </Text>
 
       <Container maxW="7xl">
         {/* Embla viewport */}
         <Box ref={emblaRef} overflow="hidden" {...autoplayHandlers}>
           {/* Embla track */}
-          <HStack spacing={6} align="stretch">
+          <Box display="flex">
             {services.map((s) => (
               <Box
                 key={s.id}
                 className="service-card"
                 flex="0 0 100%"
+                pr={6} // ✅ GAP HERE (IMPORTANT)
                 maxW={{
                   base: "100%",
                   md: "50%",
@@ -164,7 +165,7 @@ export default function ServicesCarousel() {
                 </Link>
               </Box>
             ))}
-          </HStack>
+          </Box>
         </Box>
       </Container>
     </Box>

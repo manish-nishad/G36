@@ -17,14 +17,14 @@ const commentsData = [
     id: 1,
     author: "Albert Flores",
     date: "March 20, 2025 at 2:37 pm",
-    image: "/img/news/comment.png",
+    // image: "/img/news/comment.png",
     text: "Neque porro est qui dolorem ipsum quia quaed inventor veritatis et quasi architecto var sed efficitur turpis gilla sed sit amet finibus eros. Lorem Ipsum is simply dummy",
   },
   {
     id: 2,
     author: "Alex Flores",
     date: "March 20, 2025 at 2:37 pm",
-    image: "/img/news/comment-2.png",
+    // image: "/img/news/comment-2.png",
     text: "Neque porro est qui dolorem ipsum quia quaed inventor veritatis et quasi architecto var sed efficitur turpis gilla sed sit amet finibus eros. Lorem Ipsum is simply dummy",
   },
 ];
@@ -49,13 +49,13 @@ export default function BlogComments() {
             borderColor="gray.200"
           >
             {/* AVATAR */}
-            <Image
+            {/* <Image
               src={comment.image}
               alt={comment.author}
               boxSize="60px"
               borderRadius="full"
               objectFit="cover"
-            />
+            /> */}
 
             {/* CONTENT */}
             <Box flex="1">
