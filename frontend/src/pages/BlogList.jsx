@@ -52,6 +52,8 @@ const BlogList = () => {
             <Table.ColumnHeader>ID</Table.ColumnHeader>
             <Table.ColumnHeader>Title</Table.ColumnHeader>
             <Table.ColumnHeader>Category</Table.ColumnHeader>
+            <Table.ColumnHeader>Author</Table.ColumnHeader>
+            <Table.ColumnHeader>Date</Table.ColumnHeader>
             <Table.ColumnHeader textAlign="end">
               Actions
             </Table.ColumnHeader>
@@ -64,6 +66,8 @@ const BlogList = () => {
               <Table.Cell>{blog.id}</Table.Cell>
               <Table.Cell>{blog.title}</Table.Cell>
               <Table.Cell>{blog.category}</Table.Cell>
+              <Table.Cell>{blog.author}</Table.Cell>
+              <Table.Cell>{blog.date}</Table.Cell>
               <Table.Cell textAlign="end">
                 <Button
                   size="sm"
