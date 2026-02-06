@@ -9,10 +9,6 @@ import {
   Link,
 } from "@chakra-ui/react";
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
@@ -20,6 +16,12 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import Lottie from "lottie-react";
+import Facebook from "../../assets/lottie/Facebook.json";
+import Instagram from "../../assets/lottie/Instagram.json";
+import Youtube from "../../assets/lottie/Youtube.json";
+import LinkedIn from "../../assets/lottie/Linkdin.json";
+import Whatsapp from "../../assets/lottie/Whatsapp.json";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -51,23 +53,66 @@ export default function Footer() {
             </Text>
 
             {/* SOCIAL ICONS */}
-            <HStack spacing={4} justify={{ base: "center", md: "flex-start" }}>
-              {[FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter].map(
-                (Icon, index) => (
-                  <Box
-                    key={index}
-                    p={2}
-                    borderRadius="50%"
-                    bg="gray.700"
-                    cursor="pointer"
-                    _hover={{ bg: "#04327b" }}
-                    transition="all 0.3s ease"
-                  >
-                    <Icon size={14} color="white" />
-                  </Box>
-                )
-              )}
-            </HStack>
+            <HStack>
+                      {[
+                        {
+                          animation: Facebook,
+                          href: "https://www.facebook.com/profile.php?id=61582465814810",
+                          label: "Facebook",
+                        },
+                        {
+                          animation: Instagram,
+                          href: "https://www.instagram.com/genius36.in/",
+                          label: "Instagram",
+                        },
+                        {
+                          animation: Youtube,
+                          href: "https://www.youtube.com/@Geniusindia36",
+                          label: "Youtube",
+                        },
+                        {
+                          animation: LinkedIn,
+                          href: "linkedin.com/company/genius36",
+                          label: "LinkedIn",
+                        },
+                        // {
+                        //   animation: Twitter,
+                        //   href: "https://Twitter.com",
+                        //   label: "Twitter",
+                        // },
+                        {
+                          animation: Whatsapp,
+                          href: "https://Whatsapp.com",
+                          label: "Whatsapp",
+                        },
+                      ].map((social, index) => (
+                        <Box
+                          key={index}
+                          as={Link}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
+                          w="50px"
+                          h="50px"
+                          borderRadius="full"
+                          bg="#9e9fa3"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                          cursor="pointer"
+                          _hover={{ bg: "#93b7f1" }}
+                          // transition="all 0.3s ease"
+                        >
+                          <Lottie
+                            animationData={social.animation}
+                            // loop={false}
+                            autoplay={true}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </Box>
+                      ))}
+                    </HStack>
           </VStack>
         </GridItem>
 
@@ -105,18 +150,23 @@ export default function Footer() {
             <Text fontWeight="600" color="white">
               Services
             </Text>
-
             {[
-              "Web Development",
-              "Software Solutions",
-              "CCTV & Security",
-              "Networking",
-              "Cloud Solutions",
-              "IT Training",
-            ].map((service, index) => (
-              <Text key={index} fontSize="sm">
-                {service}
-              </Text>
+              { label: "Website Design & Development", path: "/" },
+              { label: "Software Development", path: "/" },
+              { label: "CCTV & Security", path: "/" },
+              { label: "Networking & IT Infrastructure", path: "/" },
+              { label: "Cloud Solutions", path: "/" },
+              { label: "IT Training", path: "/" },
+            ].map((services, index) => (
+              <Link
+                key={index}
+                fontSize="sm"
+                color="white"
+                onClick={() => navigate(services.path)}
+                _hover={{ color: "#04327b" }}
+              >
+                {services.label}
+              </Link>
             ))}
           </VStack>
         </GridItem>
@@ -149,8 +199,8 @@ export default function Footer() {
 
             <HStack>
               <FaEnvelope color="#04327b" />
-              <Link href="mailto:info@genius36tech.com" fontSize="sm" color="white">
-                info@genius36tech.com
+              <Link href="mailto:info@genius36.com" fontSize="sm" color="white">
+                info@genius36.com
               </Link>
             </HStack>
 

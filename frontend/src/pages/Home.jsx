@@ -1,127 +1,221 @@
 import {
   Box,
-  Flex,
   Heading,
   Text,
   Button,
   SimpleGrid,
   VStack,
+  Container,
+  Stack,
+  Image,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { heroImages, stats, testimonials } from "../mockData";
+import Seo from "../seo/Seo";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import Lottie from "lottie-react";
+// import Award from "../assets/lottie/Award.json";
+import Year from "../assets/flaticons/fireworks.gif";
+import Client from "../assets/flaticons/best-customer-experience.gif";
+import India from "../assets/flaticons/india.gif";
+import Support from "../assets/flaticons/customer-service.gif";
+import ServicesCarousel from "../components/ui/servicesCarousel";
+import TestimonialsSection from "../components/ui/TestimonialsSection";
+import OurOfferings from "../components/ui/OurOfferings";
+import WorkWithG36 from "../components/ui/WorkWithG36";
+import MarqueOne from "../components/sections/marqueOne";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const handleMouseMove = (e) => {
+  const card = e.currentTarget;
+  const rect = card.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  const rotateX = ((y - centerY) / centerY) * 8;
+  const rotateY = ((x - centerX) / centerX) * -8;
+
+  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+};
+
+const handleMouseLeave = (e) => {
+  const card = e.currentTarget;
+  card.style.transform =
+    "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+};
 
 export default function Home() {
+  const heroBgRef = useRef(null);
+  const whyRef = useRef(null);
+
   return (
-    <Box>
-      {/* ================= HERO SECTION ================= */}
-      <Flex
-        minH="100vh"
-        px={{ base: 6, md: 20 }}
-        align="center"
-        justify="center"
-        flexDir="column"
-        bg="gray.50"
-        textAlign="center"
-      >
-        <Heading
-          fontSize={{ base: "3xl", md: "5xl" }}
-          color="#04327b"
-          mb={4}
-        >
-          Genius36 Technologies India LLP
-        </Heading>
+    <>
+      <Seo
+        title="Genius36 | Trusted IT, Digital Marketing & Software Solutions."
+        description="Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs."
+        content="Genius36 Technologies India LLP is a trusted IT company providing digital marketing, web development, software solutions, and AI services across India."
+      />
 
-        <Text
-          fontSize={{ base: "md", md: "lg" }}
-          color="gray.600"
-          maxW="700px"
-          mb={6}
+      {/* HERO */}
+      <Box minH="100vh" position="relative" overflow="hidden">
+        <Box
+          ref={heroBgRef}
+          position="absolute"
+          inset="0"
+          bgImage={`url(${heroImages.primary})`}
+          bgColor="seashell"
+          bgSize="cover"
+          bgPosition="center"
+          willChange="transform"
+          alt="Hero Image"
         >
-          Your trusted pan-India IT solutions partner delivering excellence
-          in web development, software solutions, digital growth and IT
-          training.
-        </Text>
+          <Box
+            position="absolute"
+            inset="0"
+            bg="#1d3ca8"
+            opacity={0.8} // 👈 adjust transparency here
+            zIndex={0}
+          />
+        </Box>
 
-        <Flex gap={4} flexWrap="wrap" justify="center">
-          <Button bg="#04327b" color="white" _hover={{ bg: "#03245a" }}>
-            Get Started
-          </Button>
-          <Button
-            variant="outline"
-            borderColor="#04327b"
-            color="#04327b"
+        <Container
+          maxW="7xl"
+          position="relative"
+          zIndex={1}
+          py={24}
+          textAlign="center"
+        >
+          <Box
+            display="inline-block"
+            px={6}
+            py={2}
+            mb={6}
+            bg="whiteAlpha.200"
+            borderRadius="full"
+            border="1px solid"
+            borderColor="whiteAlpha.300"
           >
-            Contact Us
-          </Button>
-        </Flex>
-      </Flex>
-
-      {/* ================= SERVICES ================= */}
-      <Box py={20} px={{ base: 6, md: 20 }}>
-        <VStack spacing={4} mb={10}>
-          <Heading color="#04327b">Our Services</Heading>
-          <Text color="gray.600">
-            Technology solutions designed for business growth
-          </Text>
-        </VStack>
-
-        <SimpleGrid
-          columns={{ base: 1, md: 2, lg: 4 }}
-          spacing={8}
-        >
-          {services.map((service, index) => (
-            <Box
-              key={index}
-              p={6}
-              bg="white"
-              borderRadius="12px"
-              boxShadow="md"
-              textAlign="center"
+            <Text color="blue.300" fontWeight="medium" fontSize="sm">
+              Pan-India IT Solutions Partner
+            </Text>
+          </Box>
+          <VStack spacing={8} textAlign="center" padding={10}>
+            <Heading
+              as="h1"
+              color="white"
+              fontSize={{ base: "3xl", md: "6xl" }}
+              mb={4}
             >
-              <Text fontWeight="600" mb={2}>
-                {service.title}
-              </Text>
-              <Text fontSize="sm" color="gray.600">
-                {service.desc}
-              </Text>
-            </Box>
-          ))}
-        </SimpleGrid>
+              Next-Generation IT Solution
+            </Heading>
+
+            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={2} as="h2">
+              for Your Business
+            </Heading>
+            <Heading color="white" fontSize={{ base: "2xl", md: "4xl" }} as="h2">
+              Designed to accelerate growth and efficiency.
+            </Heading>
+            <Text color="white" maxW="4xl" padding={4} textStyle="xl">
+              Delivering cutting-edge IT solutions, software development, and
+              training across India. We provide comprehensive technology
+              solutions tailored to empower your business and educational needs.
+            </Text>
+
+            <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
+              <Link to="/services">
+                <Button bg="#0951d8" color="white">
+                  Explore Services <ArrowRight size={16} />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button
+                  variant="outline"
+                  colorScheme="whiteAlpha"
+                  color="white"
+                >
+                  Free Consultation
+                </Button>
+              </Link>
+            </Stack>
+
+            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} pt={10}>
+              {stats.map((s, i) => (
+                <Box key={i}>
+                  <Heading color="white">{s.value}</Heading>
+                  <Text color="white">{s.label}</Text>
+                </Box>
+              ))}
+            </SimpleGrid>
+          </VStack>
+        </Container>
       </Box>
 
-      {/* ================= ABOUT ================= */}
-      <Box py={20} px={{ base: 6, md: 20 }} bg="gray.50">
-        <VStack spacing={4} maxW="800px" mx="auto" textAlign="center">
-          <Heading color="#04327b">
-            Building Digital Success with Innovation & Technology
-          </Heading>
+      {/* Service Section Started Here */}
+      <ServicesCarousel />
 
-          <Text color="gray.600">
-            At Genius36 Technologies, we focus on innovation, scalability
-            and reliability. Our mission is to help businesses adopt
-            modern technology and grow digitally with confidence.
-          </Text>
-        </VStack>
+      {/* Our Offerings */}
+      <OurOfferings />
+
+      {/* Why Work with Genius36 */}
+      <WorkWithG36 />
+
+      {/* WHY CHOOSE US */}
+      <Box py={20} ref={whyRef}>
+        <Container maxW="7xl">
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
+            {[
+              { icon: Year, title: "5+ Years" },
+              { icon: Client, title: "150+ Clients" },
+              { icon: India, title: "Pan-India" },
+              { icon: Support, title: "24/7 Support" },
+            ].map((item, i) => (
+              <VStack key={i} className="why-item" spacing={4}>
+                <Box
+                  w={20}
+                  h={20}
+                  bgGradient="linear(to-br, blue.500, blue.700)"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  transition="all 0.3s ease" // ✅ smooth animation
+                  _hover={{
+                    transform: "scale(1.5)", // ✅ zoom effect
+                  }}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    boxSize="48px"
+                    objectFit="contain"
+                  />
+                  
+                </Box>
+
+                <Heading size="lg">{item.title}</Heading>
+              </VStack>
+            ))}
+          </SimpleGrid>
+        </Container>
       </Box>
-    </Box>
+
+      {/* TRUSTED BY BRANDS section started here */}
+        <MarqueOne />
+
+      {/* TESTIMONIALS section started here */}
+      <TestimonialsSection
+        testimonials={testimonials}
+        handleMouseMove={handleMouseMove}
+        handleMouseLeave={handleMouseLeave}
+      />
+    </>
   );
 }
-
-/* ================= DATA ================= */
-
-const services = [
-  {
-    title: "Web Development",
-    desc: "Modern, responsive and scalable websites and web apps.",
-  },
-  {
-    title: "Software Solutions",
-    desc: "Custom software tailored to business requirements.",
-  },
-  {
-    title: "Digital Growth",
-    desc: "SEO, marketing and growth-focused digital strategies.",
-  },
-  {
-    title: "IT Training",
-    desc: "Professional training programs for students and teams.",
-  },
-];

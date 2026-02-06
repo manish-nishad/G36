@@ -1,0 +1,15 @@
+# robots.txt for Genius36 Technologies
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://genius36.com/sitemap.xml
+
+# Crawl-delay (optional - adjust if needed)
+# Crawl-delay: 1
