@@ -142,7 +142,7 @@ const Services = () => {
                 maxW="2xl"
               >
                 Empowering businesses with innovative technology solutions since
-                2014.
+                2025.
               </Text>
             </VStack>
 
