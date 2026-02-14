@@ -14,12 +14,9 @@ import {
   Dialog,
   Portal,
   CloseButton,
-  Popover,
   Field,
   Fieldset,
-  For,
   Input,
-  NativeSelect,
   Select,
   createListCollection,
 } from "@chakra-ui/react";
@@ -32,8 +29,6 @@ import Lottie from "lottie-react";
 import TrainingLottie from "../assets/lottie/Training.json";
 
 const Training = () => {
-  const [open, setOpen] = useState(false);
-  const [selectedProgram, setSelectedProgram] = useState(null);
 
   // Training programs data
   const trainingPrograms = [

@@ -49,108 +49,130 @@ export default function About() {
   const whyChooseRef = useRef(null);
   const statsRef = useRef(null);
 
-  useEffect(() => {
-    // HERO PARALLAX
-    gsap.to(heroBgRef.current, {
-      yPercent: 15,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroBgRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+  const handleTiltMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
 
-    // COMPANY OVERVIEW
-    gsap.from(".overview-content", {
-      scrollTrigger: {
-        trigger: overviewRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 40,
-      duration: 0.8,
-      stagger: 0.2,
-    });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-    // MISSION & VISION CARDS
-    gsap.from(".mission-card", {
-      scrollTrigger: {
-        trigger: missionRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 40,
-      stagger: 0.2,
-      duration: 0.6,
-    });
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-    // VALUES SECTION
-    gsap.from(".value-item", {
-      scrollTrigger: {
-        trigger: valuesRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      scale: 0.9,
-      stagger: 0.15,
-      duration: 0.5,
-    });
+    const rotateX = ((y - centerY) / centerY) * 8; // up-down
+    const rotateY = ((x - centerX) / centerX) * -8; // left-right
 
-    // WHY CHOOSE US
-    gsap.from(".why-item", {
-      scrollTrigger: {
-        trigger: whyChooseRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 30,
-      stagger: 0.1,
-      duration: 0.6,
-    });
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+  };
 
-    // STATS SECTION
-    gsap.from(".stat-item", {
-      scrollTrigger: {
-        trigger: statsRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      scale: 0.95,
-      stagger: 0.1,
-      duration: 0.5,
-    });
+  const handleTiltLeave = (e) => {
+    const card = e.currentTarget;
+    card.style.transform =
+      "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+  };
 
-    // Hover animations for cards
-    const cards = document.querySelectorAll(".animated-card");
-    cards.forEach((card) => {
-      card.addEventListener("mouseenter", () => {
-        gsap.to(card, {
-          scale: 1.03,
-          y: -6,
-          boxShadow: "0 0 25px rgba(9, 81, 216, 0.6)", // 🔥 blue glow
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
+  // useEffect(() => {
+  //   // HERO PARALLAX
+  //   gsap.to(heroBgRef.current, {
+  //     yPercent: 15,
+  //     ease: "none",
+  //     scrollTrigger: {
+  //       trigger: heroBgRef.current,
+  //       start: "top top",
+  //       end: "bottom top",
+  //       scrub: true,
+  //     },
+  //   });
 
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          scale: 1,
-          y: 0,
-          boxShadow: "0 0 0 rgba(0,0,0,0)", // ❌ glow remove
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
-    });
+  //   // COMPANY OVERVIEW
+  //   gsap.from(".overview-content", {
+  //     scrollTrigger: {
+  //       trigger: overviewRef.current,
+  //       start: "top 80%",
+  //     },
+  //     opacity: 0,
+  //     y: 40,
+  //     duration: 0.8,
+  //     stagger: 0.2,
+  //   });
 
-    // Cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+  //   // MISSION & VISION CARDS
+  //   gsap.from(".mission-card", {
+  //     scrollTrigger: {
+  //       trigger: missionRef.current,
+  //       start: "top 80%",
+  //     },
+  //     opacity: 0,
+  //     y: 40,
+  //     stagger: 0.2,
+  //     duration: 0.6,
+  //   });
+
+  //   // VALUES SECTION
+  //   gsap.from(".value-item", {
+  //     scrollTrigger: {
+  //       trigger: valuesRef.current,
+  //       start: "top 80%",
+  //     },
+  //     opacity: 0,
+  //     scale: 0.9,
+  //     stagger: 0.15,
+  //     duration: 0.5,
+  //   });
+
+  //   // WHY CHOOSE US
+  //   gsap.from(".why-item", {
+  //     scrollTrigger: {
+  //       trigger: whyChooseRef.current,
+  //       start: "top 80%",
+  //     },
+  //     opacity: 0,
+  //     y: 30,
+  //     stagger: 0.1,
+  //     duration: 0.6,
+  //   });
+
+  //   // STATS SECTION
+  //   gsap.from(".stat-item", {
+  //     scrollTrigger: {
+  //       trigger: statsRef.current,
+  //       start: "top 80%",
+  //     },
+  //     opacity: 0,
+  //     scale: 0.95,
+  //     stagger: 0.1,
+  //     duration: 0.5,
+  //   });
+
+  //   // Hover animations for cards
+  //   const cards = document.querySelectorAll(".animated-card");
+  //   cards.forEach((card) => {
+  //     card.addEventListener("mouseenter", () => {
+  //       gsap.to(card, {
+  //         scale: 1.03,
+  //         y: -6,
+  //         boxShadow: "0 0 25px rgba(9, 81, 216, 0.6)", // 🔥 blue glow
+  //         duration: 0.3,
+  //         ease: "power2.out",
+  //       });
+  //     });
+
+  //     card.addEventListener("mouseleave", () => {
+  //       gsap.to(card, {
+  //         scale: 1,
+  //         y: 0,
+  //         boxShadow: "0 0 0 rgba(0,0,0,0)", // ❌ glow remove
+  //         duration: 0.3,
+  //         ease: "power2.out",
+  //       });
+  //     });
+  //   });
+
+  //   // Cleanup
+  //   return () => {
+  //     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  //   };
+  // }, []);
 
   const values = [
     {
@@ -357,13 +379,7 @@ export default function About() {
               </Text>
             </VStack>
             <Box className="overview-content">
-              <Box
-                borderRadius="2xl"
-                overflow="hidden"
-                boxShadow="2xl"
-                position="relative"
-                paddingLeft={5}
-              >
+              <Box overflow="hidden" position="relative" paddingLeft={5}>
                 <Image
                   src={aboutImages.itProfessionals}
                   alt="Genius36 Technologies Team"
@@ -412,6 +428,21 @@ export default function About() {
                 p={{ base: 6, md: 8 }}
                 borderRadius="xl"
                 boxShadow="md"
+                borderLeftColor="transparent"
+                transition="all 0.3s ease"
+                transformStyle="preserve-3d"
+                onMouseMove={handleTiltMove}
+                onMouseLeave={handleTiltLeave}
+                _hover={{
+                  transform:
+                    "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
+                  boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
+                  backdropFilter: "blur(6px)",
+                }}
+                _open={{
+                  borderLeftColor: "blue.500",
+                  boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
+                }}
               >
                 <Card.Body>
                   <VStack spacing={4} align="start">
@@ -461,6 +492,21 @@ export default function About() {
                 p={{ base: 6, md: 8 }}
                 borderRadius="xl"
                 boxShadow="md"
+                borderLeftColor="transparent"
+                transition="all 0.3s ease"
+                transformStyle="preserve-3d"
+                onMouseMove={handleTiltMove}
+                onMouseLeave={handleTiltLeave}
+                _hover={{
+                  transform:
+                    "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
+                  boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
+                  backdropFilter: "blur(6px)",
+                }}
+                _open={{
+                  borderLeftColor: "blue.500",
+                  boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
+                }}
               >
                 <Card.Body>
                   <VStack spacing={4} align="start">
@@ -545,6 +591,21 @@ export default function About() {
                   borderRadius="xl"
                   h="full"
                   boxShadow="sm"
+                  borderLeftColor="transparent"
+                  transition="all 0.3s ease"
+                  transformStyle="preserve-3d"
+                  onMouseMove={handleTiltMove}
+                  onMouseLeave={handleTiltLeave}
+                  _hover={{
+                    transform:
+                      "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
+                    boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
+                    backdropFilter: "blur(6px)",
+                  }}
+                  _open={{
+                    borderLeftColor: "blue.500",
+                    boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
+                  }}
                 >
                   <Card.Body>
                     <VStack spacing={4} align="start">
@@ -626,6 +687,21 @@ export default function About() {
                   borderRadius="xl"
                   h="full"
                   boxShadow="md"
+                  borderLeftColor="transparent"
+                  transition="all 0.3s ease"
+                  transformStyle="preserve-3d"
+                  onMouseMove={handleTiltMove}
+                  onMouseLeave={handleTiltLeave}
+                  _hover={{
+                    transform:
+                      "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
+                    boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
+                    backdropFilter: "blur(6px)",
+                  }}
+                  _open={{
+                    borderLeftColor: "blue.500",
+                    boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
+                  }}
                 >
                   <Card.Body>
                     <VStack spacing={4} align="start">
