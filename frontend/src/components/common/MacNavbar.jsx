@@ -25,7 +25,7 @@ import { useState } from "react";
 import logo from "../../assets/images/logo.png";
 import { Link as RouterLink } from "react-router-dom";
 
-const MotionBox = motion.create(Box);
+const MotionBox = motion(Box);
 
 const navItems = [
   { label: "Home", icon: FaHome, path: "/" },
@@ -82,9 +82,10 @@ export default function MacNavbar() {
             size="sm"
             bg="#04327b"
             color="white"
+            leftIcon={<FaPhoneAlt />}
             onClick={() => (window.location.href = "tel:08200593901")}
           >
-            Call <FaPhoneAlt/>
+            Call
           </Button>
         </Flex>
 
@@ -181,9 +182,10 @@ export default function MacNavbar() {
           size="sm"
           bg="#04327b"
           color="white"
+          leftIcon={<FaPhoneAlt />}
           onClick={() => (window.location.href = "tel:08200593901")}
         >
-          Call <FaPhoneAlt/>
+          Call
         </Button>
       </Flex>
     );
@@ -258,10 +260,11 @@ export default function MacNavbar() {
         <Button
           bg="#04327b"
           color="white"
+          leftIcon={<FaPhoneAlt />}
           _hover={{ bg: "#03245a" }}
           onClick={() => (window.location.href = "tel:08200593901")}
         >
-          Call Now <FaPhoneAlt/>
+          Call Now
         </Button>
       </Box>
     </Flex>

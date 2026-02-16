@@ -171,10 +171,10 @@ export const courses = [
 export const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform for Retail Chain",
+    title: "E-Commerce for Retail Chain",
     category: "Web Development",
     client: "Retail Corp",
-    description: "Developed a scalable e-commerce platform with inventory management, payment gateway, and real-time analytics.",
+    description: "Built comprehensive multi-vendor e-commerce platform with inventory management, secure payment gateway integration, order tracking, customer analytics, mobile responsiveness, and seamless checkout experience for nationwide retail operations.",
     technologies: ["React", "Node.js", "MongoDB", "AWS"],
     image: servicesImages.development,
     year: "2024"
@@ -184,7 +184,7 @@ export const projects = [
     title: "Hospital Management System",
     category: "Software Development",
     client: "City Hospital",
-    description: "Comprehensive HMS with patient records, appointment scheduling, billing, and pharmacy management.",
+    description: "Developed integrated healthcare solution with patient records management, appointment scheduling, billing automation, pharmacy inventory, doctor consultation modules, real-time reporting, and HIPAA-compliant data security for streamlined operations.",
     technologies: ["Python", "Django", "PostgreSQL", "React"],
     image: servicesImages.workspace,
     year: "2024"
@@ -194,7 +194,7 @@ export const projects = [
     title: "Corporate Network Infrastructure",
     category: "Networking",
     client: "Manufacturing Ltd",
-    description: "Designed and deployed complete network infrastructure for 500+ workstations with security protocols.",
+    description: "Designed enterprise-grade network architecture with firewall protection, VPN connectivity, load balancing, redundant systems, scalable bandwidth management, network monitoring tools, and robust security protocols for business continuity.",
     technologies: ["Cisco", "Firewall", "VPN", "Active Directory"],
     image: servicesImages.networking,
     year: "2023"
@@ -204,7 +204,7 @@ export const projects = [
     title: "Smart Campus Security System",
     category: "CCTV & Security",
     client: "University Campus",
-    description: "Installed 200+ HD CCTV cameras with AI-powered monitoring and cloud storage solution.",
+    description: "Integrated IoT-based security solution featuring AI-powered surveillance cameras, facial recognition access control, real-time threat detection, automated alerts, visitor management, and centralized monitoring dashboard for campus safety.",
     technologies: ["IP Cameras", "NVR", "Cloud Storage", "AI Analytics"],
     image: servicesImages.general,
     year: "2023"
@@ -214,7 +214,7 @@ export const projects = [
     title: "Cloud Migration for Financial Services",
     category: "Cloud Solutions",
     client: "FinTech Company",
-    description: "Successfully migrated on-premise infrastructure to AWS with high availability and disaster recovery.",
+    description: "Seamlessly migrated legacy banking systems to AWS cloud infrastructure, ensuring zero downtime, enhanced security compliance, scalable architecture, automated backups, and improved performance for critical financial operations.",
     technologies: ["AWS", "Docker", "Kubernetes", "Terraform"],
     image: servicesImages.team,
     year: "2024"
@@ -224,7 +224,7 @@ export const projects = [
     title: "Mobile Banking Application",
     category: "Mobile Development",
     client: "Regional Bank",
-    description: "Feature-rich mobile banking app with biometric authentication and real-time transactions.",
+    description: "Secure mobile banking app offering fingerprint and facial recognition login, instant money transfers, real-time balance updates, bill payments, and intuitive interface for effortless banking.",
     technologies: ["React Native", "Node.js", "MongoDB", "Firebase"],
     image: servicesImages.mobile,
     year: "2023"
@@ -442,28 +442,37 @@ Stay vigilant, stay informed, and prioritize cybersecurity as a fundamental aspe
 export const testimonials = [
   {
     id: 1,
-    name: "Ramesh Gupta",
-    company: "CEO, TechStart Pvt Ltd",
-    text: "Genius36 Technologies transformed our digital presence with an outstanding website and robust software solution. Their team is professional, responsive, and truly understands business needs.",
+    name: "Ravi Kumar",
+    company: "CEO, ONO Travels ",
+    text: "Our website was practically invisible on Google before we hired them for SEO services. Within 4 months, we're ranking on the first page for our target keywords, and organic traffic has tripled! Their digital marketing team is knowledgeable, professional, and truly understands the local market. The monthly reports are detailed and show clear ROI. Best investment we made for our online presence!",
     rating: 5,
     image: aboutImages.itProfessionals
   },
   {
     id: 2,
-    name: "Dr. Meera Shah",
-    company: "Director, Apollo Hospital Bhilai",
-    text: "The hospital management system developed by Genius36 has streamlined our operations significantly. Excellent work and great support team.",
+    name: "Jitendra Singh",
+    company: "Director, Jitendra Sir's Coaching",
+    text: "We needed a complete overhaul of our website and a strong SEO strategy to attract more students. Genius36 Technologies delivered beyond our expectations. The new website is visually stunning, user-friendly, and optimized for search engines. Our online inquiries have increased significantly, and we're now ranking for competitive keywords in the education sector. The team was responsive, easy to work with, and provided excellent support throughout the process.",
     rating: 5,
     image: aboutImages.friendlyTeam
   },
   {
     id: 3,
-    name: "Suresh Patel",
-    company: "IT Manager, Manufacturing Corp",
-    text: "Their networking and infrastructure services are top-notch. They completed our campus-wide network setup ahead of schedule with zero downtime.",
+    name: "Arayansh Gupta",
+    company: "CEO, Arayansh Prints",
+    text: "Our old website looked outdated and was very slow. They completely redesigned it with a modern, mobile-responsive design that loads incredibly fast. The new website beautifully showcases our programs, and parents can now easily fill admission forms online. Their hosting service is reliable with 99.9% uptime, and the SSL certificate gives parents confidence in data security. Great value for money!",
+    rating: 5,
+    image: aboutImages.teamCollaboration
+  },
+  {
+    id: 4,
+    name: "Rahul Mehta",
+    company: "Founder, PropertyHub",
+    text: "We needed a sophisticated property listing platform with advanced search filters, and they delivered exactly what we envisioned using Laravel framework. The admin panel is powerful yet easy to use, and the frontend is beautiful and responsive. They incorporated our feedback at every stage and delivered on time. The code quality is excellent, making future updates easy. Exceptional PHP developers with deep Laravel expertise!",
     rating: 5,
     image: aboutImages.teamCollaboration
   }
+  
 ];
 
 export const stats = [
@@ -608,5 +617,123 @@ export const brands = [
     id: 6,
     name: "TCS",
     logo: "/brands/tcs.png",
+  },
+];
+
+
+export const serviceDetailsData = [
+  {
+    id: 1,
+    title: "Custom Website Design & Development",
+    description:
+      "We create stunning, responsive websites tailored to your business needs using modern technologies and best practices. Our web development services ensure your online presence is both visually appealing and functionally robust.",
+    image: "https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
+    imageAlt: "Web Development",
+    features: [
+      "Responsive & Mobile-First Design",
+      "Custom CMS Integration (WordPress, Drupal)",
+      "SEO-Optimized Code Structure",
+      "Fast Loading & Performance Optimization",
+
+    ],
+    ctaText: "Start Your Project",
+    ctaLink: "/contact",
+    bgColor: "gray.50",
+    reversed: false,
+  },
+  {
+    id: 2,
+    title: "Digital Marketing & SEO Solutions",
+    description:
+      "Boost your online visibility and drive targeted traffic with our comprehensive digital marketing strategies. From SEO optimization to social media campaigns, we help your business reach the right audience at the right time.",
+    image: servicesImages.general,
+    imageAlt: "Digital Marketing",
+    features: [
+      "Google Ads & PPC Campaigns",
+      "Social Media Marketing",
+      "Content Marketing Strategy",
+      "Analytics & Performance Tracking",
+    ],
+    ctaText: "Grow Your Business",
+    ctaLink: "/contact",
+    bgColor: "white",
+    reversed: true,
+  },
+  {
+    id: 3,
+    title: "Mobile App Development",
+    description:
+      "Transform your ideas into powerful mobile applications. We develop native and cross-platform apps for iOS and Android with seamless user experiences and robust functionality.",
+    image: servicesImages.mobile,
+    imageAlt: "Mobile App Development",
+    features: [
+      "Native iOS & Android Development",
+      "Cross-Platform Solutions (React Native, Flutter)",
+      "UI/UX Design & Prototyping",
+      "API Integration & Backend Development",
+      "Push Notifications & Analytics",
+    ],
+    ctaText: "Build Your App",
+    ctaLink: "/contact",
+    bgColor: "gray.50",
+    reversed: false,
+  },
+  {
+    id: 4,
+    title: "Cloud & Hosting Services",
+    description:
+      "Secure, scalable, and reliable cloud infrastructure for your business. We provide managed hosting solutions with 99.9% uptime guarantee and 24/7 technical support.",
+    image: servicesImages.team,
+    imageAlt: "Cloud & Hosting Services",
+    features: [
+      "AWS, Azure & Google Cloud Setup",
+      "VPS & Dedicated Server Hosting",
+      "SSL Certificates & Security",
+      "CDN Integration for Speed",
+      "24/7 Server Monitoring & Support",
+    ],
+    ctaText: "Get Started",
+    ctaLink: "/contact",
+    bgColor: "white",
+    reversed: true,
+  },
+  {
+    id: 5,
+    title: "IT Training & Skill Development",
+    description:
+      "Empower your team with cutting-edge technology skills. Our expert-led training programs cover the latest programming languages, frameworks, and industry best practices.",
+    image: servicesImages.development,
+    imageAlt: "IT Training",
+    features: [
+      "Web Development (PHP, Laravel, React)",
+      "Mobile App Development (Android, Flutter)",
+      "Digital Marketing & SEO Courses",
+      
+      "Hands-on Projects & Certifications",
+      "Corporate Training Programs",
+    ],
+    ctaText: "Enroll Now",
+    ctaLink: "/contact",
+    bgColor: "gray.50",
+    reversed: false,
+  },
+  {
+    id: 6,
+    title: "Cybersecurity & Data Protection",
+    description:
+      "Protect your digital assets with enterprise-grade security solutions. We implement comprehensive security measures to safeguard your business from cyber threats and data breaches.",
+    image: servicesImages.networking,
+    imageAlt: "Cybersecurity",
+    features: [
+      "Vulnerability Assessment & Penetration Testing",
+    
+      "Data Encryption & Backup Solutions",
+      "Security Audits & Compliance",
+      "Incident Response & Recovery",
+    ],
+    ctaText: "Secure Your Business",
+    ctaLink: "/contact",
+    bgColor: "white",
+    reversed: true,
   },
 ];

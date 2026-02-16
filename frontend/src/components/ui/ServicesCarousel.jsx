@@ -57,10 +57,11 @@ export default function ServicesCarousel() {
         mx="auto"
         textAlign="center"
       >
-        Genius36 Technologies offers comprehensive IT services including custom
-        software development, web solutions, digital marketing, SEO, computer
-        services, and professional training. We deliver innovative, scalable,
-        and cost-effective technology solutions across India.
+        At <b>Genius36 Technologies</b>, we specialize in delivering end-to-end IT services tailored to your unique business needs.
+        Our expertise spans custom software development, cutting-edge web solutions, result-driven digital marketing, strategic SEO optimization,
+         comprehensive computer services, and professional skill development training. Partner with us for innovative,
+          scalable, and cost-effective technology solutions that empower your business across India.
+    
       </Text>
 
       <Container maxW="7xl">

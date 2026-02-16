@@ -65,7 +65,7 @@ export default function Home() {
       />
 
       {/* HERO */}
-      <Box minH="100vh" position="relative" overflow="hidden">
+      <Box minH="70vh" position="relative" overflow="hidden">
         <Box
           ref={heroBgRef}
           position="absolute"
@@ -81,11 +81,10 @@ export default function Home() {
             position="absolute"
             inset="0"
             bg="#1d3ca8"
-            opacity={0.8} // 👈 adjust transparency here
+            opacity={0.8} //  adjust transparency here
             zIndex={0}
           />
         </Box>
-
         <Container
           maxW="7xl"
           position="relative"
@@ -116,7 +115,6 @@ export default function Home() {
             >
               Next-Generation IT Solution
             </Heading>
-
             <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={2} as="h2">
               for Your Business
             </Heading>
@@ -124,9 +122,8 @@ export default function Home() {
               Designed to accelerate growth and efficiency.
             </Heading>
             <Text color="white" maxW="4xl" padding={4} textStyle="xl">
-              Delivering cutting-edge IT solutions, software development, and
-              training across India. We provide comprehensive technology
-              solutions tailored to empower your business and educational needs.
+             Your trusted technology partner across India, delivering world-class IT solutions, bespoke software development, 
+             and skill-enhancing training programs designed to accelerate your business growth and digital transformation journey.
             </Text>
 
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>

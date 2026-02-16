@@ -11,10 +11,13 @@ import {
   Card,
   Image,
   Icon,
+  Badge,
+  Flex
+  
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle } from "lucide-react";
-import { services, servicesImages, aboutImages } from "../mockData";
+import { ArrowRight, CheckCircle ,Sparkles, Check, MoveRight,CheckCircle2 } from "lucide-react";
+import { services, servicesImages, aboutImages, serviceDetailsData } from "../mockData";
 import { servicePages } from "../data/servicePagesContent";
 import Seo from "../seo/Seo";
 import Lottie from "lottie-react";
@@ -99,6 +102,16 @@ const Services = () => {
     },
   ];
 
+
+   const gradients = [
+    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+    "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+    "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+    "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+    "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+  ];
+
   return (
     <>
       <Seo
@@ -142,7 +155,7 @@ const Services = () => {
                 maxW="2xl"
               >
                 Empowering businesses with innovative technology solutions since
-                2025.
+                2014.
               </Text>
             </VStack>
 
@@ -192,7 +205,7 @@ const Services = () => {
                 size="2xl"
                 mb={4}
                 color="gray.900"
-                fontSize={{ base: "xl", md: "2xl" }}
+                fontSize={{ base: "xl", md: "4xl" }}
               >
                 Our Services
               </Heading>
@@ -202,456 +215,406 @@ const Services = () => {
                 maxW="3xl"
                 mx="auto"
               >
-                Explore our comprehensive range of IT services. Click any card
-                to view details and get started.
+                Your trusted technology partner across India, delivering world-class IT solutions, bespoke software development, and skill-enhancing training programs designed to accelerate your business growth and digital transformation journey.
               </Text>
             </Box>
+            
+           <SimpleGrid
+      columns={{ base: 1, md: 2, lg: 3 }}
+      spacing={{ base: 6, md: 8 }}
+      gap={{ base: 6, md: 10 }}
+      w="100%"
+    >
+      {servicePages.map((sp, index) => {
+        const desc = sp.hero.description;
+        const shortDesc =
+          desc.length > 140 ? desc.slice(0, 137) + "..." : desc;
+        const lottieAnimation =
+          serviceLotties[sp.lottieKey] || WebDevelopment;
+        const gradient = gradients[index % gradients.length];
 
-            <SimpleGrid
-              columns={{ base: 1, md: 2, lg: 3 }}
-              spacing={{ base: 6, md: 8 }}
-              gap={10}
-              w="100%"
+        return (
+          <Link
+            key={sp.slug}
+            to={`/services/${sp.slug}`}
+            _hover={{ textDecoration: "none" }}
+            style={{ height: "100%", textDecoration: "none" }}
+          >
+            <Card.Root
+              position="relative"
+              bg="white"
+              borderRadius="3xl"
+              overflow="hidden"
+              h="full"
+              border="1px solid"
+              borderColor="gray.100"
+              boxShadow="lg"
+              transition="all 0.4s ease"
+              cursor="pointer"
+              _hover={{
+                transform: "translateY(-12px) scale(1.02)",
+                boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)",
+              }}
             >
-              {servicePages.map((sp) => {
-                const desc = sp.description.overview;
-                const shortDesc =
-                  desc.length > 140 ? desc.slice(0, 137) + "..." : desc;
-                const lottieAnimation =
-                  serviceLotties[sp.lottieKey] || WebDevelopment;
-                return (
-                  <Link
-                    key={sp.slug}
-                    to={`/services/${sp.slug}`}
-                    _hover={{ textDecoration: "none" }}
-                    style={{ height: "100%", textDecoration: "none" }}
+              {/* Gradient Header with Lottie */}
+              <Box
+                position="relative"
+                h="220px"
+                bg={gradient}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                overflow="hidden"
+              >
+                {/* Animated Background Elements */}
+                <Box
+                  position="absolute"
+                  top="10%"
+                  left="10%"
+                  w="60px"
+                  h="60px"
+                  borderRadius="full"
+                  bg="whiteAlpha.200"
+                  animation="float 6s ease-in-out infinite"
+                />
+                <Box
+                  position="absolute"
+                  bottom="15%"
+                  right="15%"
+                  w="40px"
+                  h="40px"
+                  borderRadius="full"
+                  bg="whiteAlpha.300"
+                  animation="float 4s ease-in-out infinite reverse"
+                />
+
+                {/* Service Icon Badge
+                <Box
+                  position="absolute"
+                  top={4}
+                  left={4}
+                  bg="whiteAlpha.300"
+                  backdropFilter="blur(10px)"
+                  borderRadius="full"
+                  p={2}
+                  border="1px solid"
+                  borderColor="whiteAlpha.400"
+                >
+                  <Icon as={Sparkles} color="white" boxSize={5} />
+                </Box> */}
+
+                {/* Lottie Animation */}
+                <Box
+                  bg="whiteAlpha.200"
+                  backdropFilter="blur(10px)"
+                  borderRadius="2xl"
+                  p={4}
+                  border="1px solid"
+                  borderColor="whiteAlpha.300"
+                >
+                  <Lottie
+                    animationData={lottieAnimation}
+                    loop
+                    style={{ width: "140px", height: "140px" }}
+                  />
+                </Box>
+              </Box>
+
+              <Card.Body p={{ base: 6, md: 7 }}>
+                <VStack spacing={4} align="stretch">
+                  {/* Service Title */}
+                  <Heading
+                    size="lg"
+                    color="gray.900"
+                    fontSize={{ base: "xl", md: "2xl" }}
+                    fontWeight="800"
+                    letterSpacing="-0.5px"
+                    as="h3"
                   >
-                    <Card.Root
-                      bg="gray.50"
-                      borderRadius="xl"
-                      overflow="hidden"
-                      h="full"
-                      boxShadow="md"
+                    {sp.name}
+                  </Heading>
+
+                  {/* Description */}
+                  <Text
+                    fontSize={{ base: "sm", md: "md" }}
+                    color="gray.600"
+                    lineHeight="1.8"
+                    as="p"
+                  >
+                    {shortDesc}
+                  </Text>
+
+                  {/* Features with Enhanced Styling */}
+                  <Stack spacing={3} pt={2}>
+                    {(sp.services || [])
+                      .slice(0, 3)
+                      .map((feature, idx) => (
+                        <HStack
+                          key={idx}
+                          spacing={2}
+                          align="start"
+                          bg="gray.50"
+                          p={1}
+                          borderRadius="lg"
+                          transition="all 0.3s ease"
+                          _hover={{
+                            bg: "blue.50",
+                            transform: "translateX(4px)",
+                          }}
+                        >
+                          <Box
+                            bg="blue.500"
+                            borderRadius="full"
+                            p={1}
+                            width={8}
+                            textAlign="center"
+                            flexShrink={0}
+                          >
+                            <Icon
+                              as={CheckCircle}
+                              color="white"
+                              boxSize={4}
+                            />
+                          </Box>
+                          <Text
+                            fontSize={{ base: "sm", md: "sm" }}
+                            color="gray.700"
+                            fontWeight="500"
+                            lineHeight="1.6"
+                          >
+                            {feature.title}
+                          </Text>
+                        </HStack>
+                      ))}
+                  </Stack>
+
+                  {/* Call to Action Button */}
+                  <Box
+                    mt={4}
+                    py={3}
+                    px={5}
+                    bg={gradient}
+                    color="white"
+                    textAlign="center"
+                    borderRadius="xl"
+                    fontWeight="600"
+                    fontSize="sm"
+                    letterSpacing="0.5px"
+                    transition="all 0.3s ease"
+                    _hover={{
+                      transform: "scale(1.05)",
+                      boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
+                    }}
+                  >
+                    EXPLORE NOW →
+                  </Box>
+                </VStack>
+              </Card.Body>
+
+              {/* Floating Animation CSS */}
+              <style jsx>{`
+                @keyframes float {
+                  0%, 100% {
+                    transform: translateY(0);
+                  }
+                  50% {
+                    transform: translateY(-20px);
+                  }
+                }
+              `}</style>
+            </Card.Root>
+          </Link>
+        );
+      })}
+    </SimpleGrid>
+      
+          </VStack>
+        </Container>
+      </Box>
+      
+      {serviceDetailsData.map((service, index) => (
+        <Box
+          key={service.id}
+          py={{ base: 16, md: 24 }}
+          bg={service.bgColor}
+          position="relative"
+          overflow="hidden"
+        >
+          {/* Decorative Background Elements */}
+          <Box
+            position="absolute"
+            top="-100px"
+            right="-100px"
+            w="400px"
+            h="400px"
+            borderRadius="full"
+            bg="blue.50"
+            opacity={0.3}
+            filter="blur(80px)"
+          />
+
+          <Container maxW="7xl">
+            <SimpleGrid
+              columns={{ base: 1, lg: 2 }}
+              spacing={{ base: 10, lg: 16 }}
+              alignItems="center"
+              direction={service.reversed ? "row-reverse" : "row"}
+            >
+              {/* Content Section */}
+              <VStack
+                spacing={6}
+                align="start"
+                p={4}
+                w="100%"
+                order={{ base: 1, lg: service.reversed ? 2 : 1 }}
+              >
+                {/* Service Number Badge */}
+                <Badge
+                  bg="blue.500"
+                  color="white"
+                  px={4}
+                  py={2}
+                  borderRadius="full"
+                  fontSize="sm"
+                  fontWeight="bold"
+                >
+                  Service {String(index + 1).padStart(2, "0")}
+                </Badge>
+
+                {/* Title */}
+                <Heading
+                  size="2xl"
+                  color="gray.900"
+                  fontSize={{ base: "2xl", md: "4xl" }}
+                  fontWeight="800"
+                  lineHeight="1.2"
+                  letterSpacing="-0.5px"
+                >
+                  {service.title}
+                </Heading>
+
+                {/* Description */}
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color="gray.600"
+                  lineHeight="1.8"
+                  textAlign="left"
+                >
+                  {service.description}
+                </Text>
+
+                {/* Features Grid */}
+                <SimpleGrid
+                  columns={{ base: 1, md: 1 }}
+                  spacing={4}
+                  w="100%"
+                  pt={4}
+                >
+                  {service.features.map((feature, idx) => (
+                    <HStack
+                      key={idx}
+                      spacing={3}
+                      align="start"
+                      bg="white"
+                      p={4}
+                      marginBottom={2}
+                      borderRadius="lg"
+                      boxShadow="sm"
                       transition="all 0.3s ease"
-                      cursor="pointer"
                       _hover={{
-                        transform: "translateY(-4px)",
-                        boxShadow: "0 0 25px rgba(9, 81, 216, 0.6)",
-                        borderColor: "blue.200",
-                        borderWidth: "1px",
+                        boxShadow: "md",
+                        transform: "translateY(-2px)",
                       }}
                     >
-                      {/* Lottie Animation - Matching Index page */}
-                      <Box
-                        h="180px"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        bg="white"
+                      <Icon
+                        as={CheckCircle2}
+                        color="blue.500"
+                        boxSize={5}
+                        mt="2px"
+                        flexShrink={0}
+                      />
+                      <Text
+                        fontSize={{ base: "sm", md: "md" }}
+                        color="gray.700"
+                        fontWeight="500"
+                        lineHeight="1.6"
                       >
-                        <Lottie
-                          animationData={lottieAnimation}
-                          loop
-                          style={{ width: "100%", height: "100%" }}
-                        />
-                      </Box>
+                        {feature}
+                      </Text>
+                    </HStack>
+                  ))}
+                </SimpleGrid>
 
-                      <Card.Body p={6}>
-                        <VStack spacing={4} align="start">
-                          <Heading
-                            size="md"
-                            color="gray.900"
-                            fontSize={{ base: "sm", md: "md" }}
-                            as="h3"
-                          >
-                            {sp.name}
-                          </Heading>
-                          <Text
-                            fontSize={{ base: "xs", md: "sm" }}
-                            color="gray.800"
-                            lineHeight="1.7"
-                            as="p"
-                          >
-                            {shortDesc}
-                          </Text>
-                          <VStack align="start" spacing={2} w="100%" pt={2}>
-                            {(sp.keyFeatures || [])
-                              .slice(0, 3)
-                              .map((feature, idx) => (
-                                <HStack key={idx} spacing={2}>
-                                  <Icon
-                                    as={CheckCircle}
-                                    color="blue.500"
-                                    boxSize={4}
-                                  />
-                                  <Text
-                                    fontSize={{ base: "xs", md: "sm" }}
-                                    color="gray.700"
-                                  >
-                                    {feature}
-                                  </Text>
-                                </HStack>
-                              ))}
-                          </VStack>
-                          <Text
-                            fontSize="sm"
-                            color="#0951d8"
-                            fontWeight="500"
-                            pt={2}
-                          >
-                            View details →
-                          </Text>
-                        </VStack>
-                      </Card.Body>
-                    </Card.Root>
-                  </Link>
-                );
-              })}
-            </SimpleGrid>
-          </VStack>
-        </Container>
-      </Box>
-
-      {/* DETAILED SERVICE SECTIONS - Alternating text/image layout */}
-      {/* Service 1: Web Development */}
-      <Box py={{ base: 12, md: 20 }} bg="gray.50">
-        <Container maxW="7xl">
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center"
-          >
-            <VStack spacing={6} align="start" w="100%">
-              <Heading
-                size="2xl"
-                color="gray.900"
-                fontSize={{ base: "2xl", md: "3xl" }}
-              >
-                Custom Website Design & Development
-              </Heading>
-              <Text
-                fontSize={{ base: "sm", md: "md" }}
-                color="gray.900"
-                lineHeight="1.8"
-                textAlign="left"
-              >
-                We create stunning, responsive websites tailored to your
-                business needs using modern technologies and best practices. Our
-                web development services ensure your online presence is both
-                visually appealing and functionally robust.
-              </Text>
-              <VStack align="start" spacing={3} w="100%">
-                {services[0].features.map((feature, idx) => (
-                  <HStack key={idx} spacing={3} align="start">
-                    <Box
-                      w="6px"
-                      h="6px"
-                      borderRadius="full"
-                      bg="blue.500"
-                      mt={2}
-                      flexShrink={0}
-                    />
-                    <Text
-                      fontSize={{ base: "sm", md: "md" }}
-                      color="gray.800"
-                      lineHeight="1.6"
-                    >
-                      {feature}
-                    </Text>
-                  </HStack>
-                ))}
-              </VStack>
-            </VStack>
-            <Box w="100%" display="flex" alignItems="center">
-              <Box
-                borderRadius="2xl"
-                overflow="hidden"
-                boxShadow="2xl"
-                position="relative"
-                w="100%"
-                h={{ base: "300px", md: "400px" }}
-              >
-                <Image
-                  src={servicesImages.development}
-                  alt="Web Development"
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                />
-              </Box>
-            </Box>
-          </SimpleGrid>
-        </Container>
-      </Box>
-
-      {/* Service 2: Software Development */}
-      <Box py={{ base: 12, md: 20 }} bg="white">
-        <Container maxW="7xl">
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center"
-          >
-            <Box
-              w="100%"
-              order={{ base: 2, lg: 1 }}
-              display="flex"
-              alignItems="center"
-            >
-              <Box
-                borderRadius="2xl"
-                overflow="hidden"
-                boxShadow="2xl"
-                position="relative"
-                w="100%"
-                h={{ base: "300px", md: "400px" }}
-              >
-                <Image
-                  src={servicesImages.workspace}
-                  alt="Software Development"
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                />
-              </Box>
-            </Box>
-            <VStack
-              spacing={6}
-              align="start"
-              w="100%"
-              order={{ base: 1, lg: 2 }}
-              p={5}
-            >
-              <Heading
-                size="2xl"
-                color="gray.900"
-                fontSize={{ base: "2xl", md: "3xl" }}
-              >
-                Software Development
-              </Heading>
-              <Text
-                fontSize={{ base: "sm", md: "md" }}
-                color="gray.900"
-                lineHeight="1.8"
-                textAlign="left"
-              >
-                Enterprise-grade software solutions for web and mobile platforms
-                with scalable architecture. We build custom applications that
-                streamline your business processes and drive growth.
-              </Text>
-              <VStack align="start" spacing={3} w="100%">
-                {services[1].features.map((feature, idx) => (
-                  <HStack key={idx} spacing={3} align="start">
-                    <Box
-                      w="6px"
-                      h="6px"
-                      borderRadius="full"
-                      bg="blue.500"
-                      mt={2}
-                      flexShrink={0}
-                    />
-                    <Text
-                      fontSize={{ base: "sm", md: "md" }}
-                      color="gray.800"
-                      lineHeight="1.6"
-                    >
-                      {feature}
-                    </Text>
-                  </HStack>
-                ))}
-              </VStack>
-            </VStack>
-          </SimpleGrid>
-        </Container>
-      </Box>
-
-      {/* Service 3: IT Infrastructure */}
-      <Box py={{ base: 12, md: 20 }} bg="gray.50">
-        <Container maxW="7xl">
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center"
-          >
-            <VStack spacing={6} align="start" w="100%">
-              <Heading
-                size="2xl"
-                color="gray.900"
-                fontSize={{ base: "2xl", md: "3xl" }}
-              >
-                Networking & IT Infrastructure
-              </Heading>
-              <Text
-                fontSize={{ base: "sm", md: "md" }}
-                color="gray.900"
-                lineHeight="1.8"
-                textAlign="left"
-              >
-                Complete networking solutions including LAN/WAN setup, server
-                configuration, and infrastructure management. We ensure your IT
-                infrastructure is secure, reliable, and optimized for
-                performance.
-              </Text>
-              <VStack align="start" spacing={3} w="100%">
-                {services[5].features.map((feature, idx) => (
-                  <HStack key={idx} spacing={3} align="start">
-                    <Box
-                      w="6px"
-                      h="6px"
-                      borderRadius="full"
-                      bg="blue.500"
-                      mt={2}
-                      flexShrink={0}
-                    />
-                    <Text
-                      fontSize={{ base: "sm", md: "md" }}
-                      color="gray.800"
-                      lineHeight="1.6"
-                    >
-                      {feature}
-                    </Text>
-                  </HStack>
-                ))}
-              </VStack>
-            </VStack>
-            <Box w="100%" display="flex" alignItems="center">
-              <Box
-                borderRadius="2xl"
-                overflow="hidden"
-                boxShadow="2xl"
-                position="relative"
-                w="100%"
-                h={{ base: "300px", md: "400px" }}
-              >
-                <Image
-                  src={servicesImages.networking}
-                  alt="IT Infrastructure"
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                />
-              </Box>
-            </Box>
-          </SimpleGrid>
-        </Container>
-      </Box>
-
-      {/* PROCESS / HOW WE WORK SECTION */}
-      <Box py={{ base: 12, md: 20 }} bg="white">
-        <Container maxW="7xl">
-          <VStack spacing={12}>
-            <Box textAlign="center">
-              <Heading
-                size="2xl"
-                mb={4}
-                color="gray.900"
-                fontSize={{ base: "xl", md: "2xl" }}
-              >
-                How We Work
-              </Heading>
-              <Text
-                fontSize={{ base: "md", md: "lg" }}
-                color="gray.800"
-                maxW="3xl"
-                mx="auto"
-              >
-                Our proven process ensures successful project delivery from
-                start to finish
-              </Text>
-            </Box>
-
-            <SimpleGrid
-              columns={{ base: 1, md: 2, lg: 4 }}
-              spacing={{ base: 6, md: 8 }}
-              gap={10}
-              w="100%"
-            >
-              {processSteps.map((step, i) => (
-                <VStack
-                  key={i}
-                  spacing={4}
-                  align="start"
-                  p={{ base: 4, md: 6 }}
-                  bg="gray.50"
+                {/* CTA Button */}
+                <Button
+                  as="a"
+                  href={service.ctaLink}
+                  size="lg"
+                  bg="blue.500"
+                  color="white"
+                  px={8}
+                  py={6}
+                  fontSize="md"
+                  fontWeight="600"
                   borderRadius="xl"
-                  boxShadow="sm"
-                  h="full"
-                  overflow="hidden"
-                  borderLeftColor="transparent"
-                  transition="all 0.3s ease"
-                  transformStyle="preserve-3d"
-                  onMouseMove={handleTiltMove}
-                  onMouseLeave={handleTiltLeave}
+                  rightIcon={<Icon as={ArrowRight} boxSize={5} />}
                   _hover={{
-                    transform:
-                      "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
-                    boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
-                    backdropFilter: "blur(6px)",
+                    bg: "blue.600",
+                    transform: "translateY(-2px)",
+                    boxShadow: "0 10px 25px rgba(9, 81, 216, 0.3)",
                   }}
-                  _open={{
-                    borderLeftColor: "blue.500",
-                    boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
+                  transition="all 0.3s ease"
+                >
+                  {service.ctaText}
+                </Button>
+              </VStack>
+
+              {/* Image Section */}
+              <Box
+                w="100%"
+                order={{ base: 2, lg: service.reversed ? 1 : 2 }}
+              >
+                <Box
+                  borderRadius="3xl"
+                  overflow="hidden"
+                  boxShadow="2xl"
+                  position="relative"
+                  w="100%"
+                  h={{ base: "350px", md: "500px" }}
+                  border="1px solid"
+                  borderColor="gray.200"
+                  transition="all 0.4s ease"
+                  _hover={{
+                    transform: "scale(1.02)",
+                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)",
                   }}
                 >
-                  <HStack spacing={4} w="100%">
-                    <Box
-                      w={{ base: 12, md: 14 }}
-                      h={{ base: 12, md: 14 }}
-                      bgGradient="linear(to-br, blue.500, blue.700)"
-                      borderRadius="xl"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      flexShrink={0}
-                    >
-                      {/* <Text
-                        color="white"
-                        fontWeight="bold"
-                        fontSize={{ base: "lg", md: "xl" }}
-                      >
-                        {step.step}
-                      </Text> */}
-                    </Box>
-                    <Box
-                      w={{ base: 12, md: 14 }}
-                      h={{ base: 12, md: 14 }}
-                      bgGradient="linear(to-br, blue.500, blue.700)"
-                      borderRadius="lg"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      p={2}
-                      flexShrink={0}
-                    >
-                      <Image
-                        src={step.icon}
-                        alt={step.title}
-                        w="100%"
-                        h="100%"
-                        objectFit="contain"
-                      />
-                    </Box>
-                  </HStack>
-                  <Heading
-                    size="md"
-                    color="gray.900"
-                    fontSize={{ base: "sm", md: "md" }}
-                  >
-                    {step.title}
-                  </Heading>
-                  <Text
-                    fontSize={{ base: "xs", md: "sm" }}
-                    color="gray.800"
-                    lineHeight="1.7"
-                  >
-                    {step.description}
-                  </Text>
-                </VStack>
-              ))}
+                  {/* Gradient Overlay */}
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    bg="linear-gradient(135deg, rgba(9, 81, 216, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%)"
+                    zIndex={1}
+                  />
+
+                  <Image
+                    src={service.image}
+                    alt={service.imageAlt}
+                    w="100%"
+                    h="100%"
+                    objectFit="cover"
+                  />
+                </Box>
+              </Box>
             </SimpleGrid>
-          </VStack>
-        </Container>
-      </Box>
+          </Container>
+        </Box>
+      ))}
+   
+   
 
       {/* CALL-TO-ACTION SECTION - Matching About page CTA */}
       <Box

@@ -23,42 +23,39 @@ const reasons = [
   {
     title: "Client-Centric Approach",
     description:
-      "Your success is our priority. We listen carefully to your requirements and work closely with you to deliver solutions that match your business goals.",
-    icon: FaUsers,
+      `Your success is our priority. We listen carefully to your requirements and work closely with you to deliver solutions that match your business goals. Our dedicated team maintains transparent communication throughout the project lifecycle, ensuring your vision is perfectly translated into reality with personalized attention and continuous collaboration.`,
+
+      icon: FaUsers,
   },
   {
-    title: "Affordable & Transparent Pricing",
-    description:
-      "We offer high-quality IT and digital services at competitive prices with complete transparency—no hidden costs, no surprises.",
+    title: "End-to-End Solutions",
+    description:`From initial consultation to post-deployment support, we provide comprehensive services under one roof. Whether you need web development, digital marketing, cybersecurity, or IT training, our integrated approach ensures seamless coordination, consistent quality, and faster project completion without the hassle of managing multiple vendors.`,
     icon: FaRupeeSign,
   },
   {
-    title: "Strong Team Collaboration",
-    description:
-      "Our skilled team of developers, designers, and marketers works together to ensure smooth project execution and outstanding results.",
+    title: "Cutting-Edge Technology Stack",
+    description:`We leverage the latest technologies and industry best practices to build future-proof solutions. Our expertise spans modern frameworks like Laravel, React, Flutter, cloud platforms (AWS, Azure), AI/ML integration, and automation tools. We continuously upgrade our skills to deliver innovative solutions that keep you ahead of the competition.`,
     icon: FaPeopleCarry,
   },
   {
-    title: "Commitment to Quality",
+    title: "Proven Expertise & Experience",
     description:
-      "We follow strict quality standards in every project, ensuring reliable, secure, and high-performance solutions for your business.",
+      "we bring deep technical knowledge across web development, digital marketing, cloud solutions, and emerging technologies. Our portfolio demonstrates successful project delivery for diverse industries, combining innovation with proven methodologies to deliver reliable, high-quality results every time.",
     icon: FaCheckCircle,
   },
   {
-    title: "Innovative Thinking",
-    description:
-      "We stay updated with the latest technologies and trends to provide modern, future-ready solutions that give you a competitive edge.",
+    title: "Cost-Effective & Transparent Pricing",
+    description:`We offer competitive pricing without compromising on quality. Our transparent quotation process ensures no hidden costs, and flexible engagement models (fixed-price, hourly, or retainer) fit various budgets. We maximize your ROI by delivering efficient solutions that reduce operational costs and drive measurable business growth.`,
     icon: FaLightbulb,
   },
   {
-    title: "Reliable Support & Maintenance",
-    description:
-      "Our dedicated support team is always available to assist you with updates, maintenance, and technical issues whenever needed.",
+    title: "Timely Delivery & Ongoing Support",
+    description:`We respect deadlines and deliver projects on time through agile methodologies and efficient project management. Our commitment extends beyond launch with comprehensive maintenance, 24/7 technical support, regular updates, and scalability options. We build long-term partnerships, ensuring your technology infrastructure evolves with your growing business needs.`,
     icon: FaHeadset,
   },
 ];
 
-const MotionBox = motion.create(Box);
+const MotionBox = motion(Box);
 
 /* ===================== TILT HANDLERS ===================== */
 
@@ -166,7 +163,7 @@ export default function WorkWithG36() {
                     </Heading>
 
                     {/* Description */}
-                    <Text color="gray.600" fontSize="sm" lineHeight="1.7">
+                    <Text color="gray.600" fontSize="sm" lineHeight="1.7" textAlign="justify">
                       {item.description}
                     </Text>
                   </VStack>

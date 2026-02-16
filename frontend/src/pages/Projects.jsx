@@ -12,9 +12,10 @@ import {
   Image,
   Badge,
   Icon,
+  Flex
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight,Layers,Clock ,ArrowUpRight , ExternalLink, Calendar, User } from "lucide-react";
 import { projects } from "../mockData";
 import Seo from "../seo/Seo";
 import Lottie from "lottie-react";
@@ -152,165 +153,249 @@ const Projects = () => {
                 industries and technology domains
               </Text>
             </Box>
+  <SimpleGrid
+      columns={{ base: 1, md: 2, lg: 3 }}
+      spacing={{ base: 6, md: 8 }}
+      gap={{ base: 6, md: 8 }}
+      w="100%"
+    >
+      {projects.map((project) => (
+        <Card.Root
+          key={project.id}
+          bg="white"
+          borderRadius="2xl"
+          overflow="hidden"
+          boxShadow="lg"
+          h="full"
+          border="1px solid"
+          borderColor="gray.100"
+          transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+          cursor="pointer"
+          position="relative"
+          onMouseMove={handleTiltMove}
+          onMouseLeave={handleTiltLeave}
+          _hover={{
+            transform: "translateY(-8px)",
+            boxShadow: "0 20px 40px rgba(9, 81, 216, 0.2)",
+            borderColor: "blue.400",
+          }}
+        >
+          {/* Project Image with Gradient Overlay */}
+          <Box
+            w="100%"
+            h={{ base: "220px", md: "260px" }}
+            overflow="hidden"
+            position="relative"
+          >
+            {/* Gradient Overlay */}
+            <Box
+              position="absolute"
+              top={0}
+              left={0}
+              right={0}
+              bottom={0}
+              bg="linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%)"
+              zIndex={1}
+              opacity={0}
+              transition="opacity 0.3s ease"
+              _groupHover={{ opacity: 1 }}
+            />
 
-            <SimpleGrid
-              columns={{ base: 1, md: 2, lg: 3 }}
-              spacing={{ base: 6, md: 8 }}
-              gap={6}
-              w="100%"
+            {/* Category Badge - Floating */}
+            <Badge
+              position="absolute"
+              top={4}
+              left={4}
+              zIndex={2}
+              bg="white"
+              color="blue.600"
+              px={4}
+              py={2}
+              borderRadius="full"
+              fontSize="xs"
+              fontWeight="700"
+              textTransform="uppercase"
+              letterSpacing="wider"
+              boxShadow="0 4px 12px rgba(0,0,0,0.1)"
             >
-              {projects.map((project) => (
-                <Card.Root
-                  key={project.id}
-                  bg="white"
-                  borderRadius="xl"
-                  overflow="hidden"
-                  boxShadow="md"
-                  h="full"
-                  borderLeftColor="transparent"
-                  transition="all 0.3s ease"
-                  transformStyle="preserve-3d"
-                  onMouseMove={handleTiltMove}
-                  onMouseLeave={handleTiltLeave}
-                  _hover={{
-                    transform:
-                      "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
-                    boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
-                    backdropFilter: "blur(6px)",
-                  }}
-                  _open={{
-                    borderLeftColor: "blue.500",
-                    boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
-                  }}
+              {project.category}
+            </Badge>
+
+            {/* Year Badge */}
+            {project.year && (
+              <Badge
+                position="absolute"
+                top={4}
+                right={4}
+                zIndex={2}
+                bg="blackAlpha.600"
+                color="white"
+                px={3}
+                py={1.5}
+                borderRadius="full"
+                fontSize="xs"
+                fontWeight="600"
+                backdropFilter="blur(10px)"
+              >
+                <HStack spacing={1.5}>
+                  <Icon as={Calendar} boxSize={3} />
+                  <Text>{project.year}</Text>
+                </HStack>
+              </Badge>
+            )}
+
+            <Image
+              src={project.image}
+              alt={project.title}
+              w="100%"
+              h="100%"
+              objectFit="cover"
+              transition="transform 0.4s ease"
+              _groupHover={{
+                transform: "scale(1.08)",
+              }}
+            />
+          </Box>
+
+          <Card.Body p={6}>
+            <VStack spacing={4} align="stretch" w="100%">
+              {/* Project Title */}
+              <Heading
+                size="lg"
+                color="gray.900"
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="700"
+                lineHeight="1.3"
+                noOfLines={2}
+              >
+                {project.title}
+              </Heading>
+
+              {/* Project Description */}
+              <Text
+                fontSize={{ base: "sm", md: "md" }}
+                color="gray.600"
+                lineHeight="1.7"
+                noOfLines={3}
+                textAlign="justify"
+              >
+                {project.description}
+              </Text>
+
+              {/* Client Info */}
+              {project.client && (
+                <HStack
+                  spacing={2}
+                  pt={2}
+                  pb={2}
+                  borderTop="1px solid"
+                  borderColor="gray.100"
                 >
-                  {/* Project Image */}
-                  <Box
-                    w="100%"
-                    h={{ base: "200px", md: "240px" }}
-                    overflow="hidden"
-                    bg="gray.200"
-                    position="relative"
+                  <Icon as={User} boxSize={4} color="gray.500" />
+                  <Text fontSize="sm" color="gray.600" fontWeight="500">
+                    {project.client}
+                  </Text>
+                </HStack>
+              )}
+
+              {/* Technologies - Improved Layout */}
+              {project.technologies && project.technologies.length > 0 && (
+                <Box>
+                  <Text
+                    fontSize="xs"
+                    color="gray.500"
+                    fontWeight="600"
+                    textTransform="uppercase"
+                    letterSpacing="wider"
+                    mb={3}
                   >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      w="100%"
-                      h="100%"
-                      objectFit="cover"
-                      transition="transform 0.3s ease"
-                      _hover={{
-                        transform: "scale(1.05)",
-                      }}
-                    />
-                  </Box>
-
-                  <Card.Body p={6}>
-                    <VStack spacing={4} align="start" w="100%">
-                      {/* Category Badge */}
-                      <HStack spacing={2} flexWrap="wrap">
-                        <Badge
-                          colorScheme="blue"
+                    Tech Stack
+                  </Text>
+                  <HStack spacing={2} flexWrap="wrap">
+                    {project.technologies.slice(0, 4).map((tech, idx) => {
+                      const TechIcon = techIcons[tech];
+                      return (
+                        <Box
+                          key={idx}
                           px={3}
-                          py={1}
-                          borderRadius="full"
-                          fontSize="xs"
-                          variant="outline"
-                          colorPalette="blue"
+                          py={2}
+                          borderRadius="lg"
+                          bg="blue.50"
+                          border="1px solid"
+                          borderColor="blue.100"
+                          transition="all 0.3s ease"
+                          _hover={{
+                            bg: "blue.100",
+                            borderColor: "blue.300",
+                            transform: "translateY(-2px)",
+                          }}
                         >
-                          {project.category}
-                        </Badge>
-                        {project.year && (
-                          <Badge
-                            fontSize="xs"
-                            color="gray.500"
-                            fontWeight="500"
-                            colorPalette="blue"
-                          >
-                            {project.year}
-                          </Badge>
-                        )}
-                      </HStack>
-
-                      {/* Project Title */}
-                      <Heading
-                        size="md"
-                        color="gray.900"
-                        fontSize={{ base: "sm", md: "md" }}
+                          {TechIcon ? (
+                            <Icon as={TechIcon} boxSize={5} color="blue.600" />
+                          ) : (
+                            <Text fontSize="xs" fontWeight="600" color="blue.700">
+                              {tech}
+                            </Text>
+                          )}
+                        </Box>
+                      );
+                    })}
+                    {project.technologies.length > 4 && (
+                      <Badge
+                        bg="gray.100"
+                        color="gray.600"
+                        px={3}
+                        py={1}
+                        borderRadius="lg"
+                        fontSize="xs"
+                        fontWeight="600"
                       >
-                        {project.title}
-                      </Heading>
+                        +{project.technologies.length - 4}
+                      </Badge>
+                    )}
+                  </HStack>
+                </Box>
+              )}
 
-                      {/* Project Description */}
-                      <Text
-                        fontSize={{ base: "xs", md: "sm" }}
-                        color="gray.800"
-                        lineHeight="1.7"
-                        noOfLines={3}
-                      >
-                        {project.description}
-                      </Text>
+              {/* View Project Link */}
+              {/* <Button
+                variant="ghost"
+                color="blue.600"
+                size="sm"
+                justifyContent="start"
+                px={0}
+                fontWeight="600"
+                rightIcon={<Icon as={ExternalLink} boxSize={4} />}
+                _hover={{
+                  color: "blue.700",
+                  bg: "transparent",
+                  transform: "translateX(4px)",
+                }}
+                transition="all 0.3s ease"
+              >
+              
+              </Button> */}
+            </VStack>
+          </Card.Body>
 
-                      {/* Client Info */}
-                      {project.client && (
-                        <Text
-                          fontSize="xs"
-                          color="gray.600"
-                          fontWeight="500"
-                          pt={2}
-                        >
-                          Client: {project.client}
-                        </Text>
-                      )}
-
-                      {/* Technologies */}
-                      {project.technologies &&
-                        project.technologies.length > 0 && (
-                          <HStack spacing={3} flexWrap="wrap" pt={2}>
-                            {project.technologies
-                              .slice(0, 4)
-                              .map((tech, idx) => {
-                                const TechIcon = techIcons[tech];
-
-                                return (
-                                  <Box
-                                    key={idx}
-                                    p={2}
-                                    borderRadius="md"
-                                    border="1px solid"
-                                    borderColor="gray.200"
-                                    bg="gray.50"
-                                    title={tech}
-                                    cursor="pointer"
-                                  >
-                                    {TechIcon ? (
-                                      <Icon
-                                        as={TechIcon}
-                                        boxSize={5}
-                                        color="gray.700"
-                                        _hover={{
-                                          color: "#0951d8",
-                                          transform: "scale(1.15)",
-                                        }}
-                                      />
-                                    ) : (
-                                      <Text fontSize="xs">{tech}</Text>
-                                    )}
-                                  </Box>
-                                );
-                              })}
-
-                            {project.technologies.length > 4 && (
-                              <Text fontSize="xs" color="gray.500">
-                                +{project.technologies.length - 4} more
-                              </Text>
-                            )}
-                          </HStack>
-                        )}
-                    </VStack>
-                  </Card.Body>
-                </Card.Root>
-              ))}
-            </SimpleGrid>
+          {/* Bottom Accent Line */}
+          <Box
+            position="absolute"
+            bottom={0}
+            left={0}
+            right={0}
+            h="4px"
+            bg="linear-gradient(90deg, #0951d8 0%, #4299e1 100%)"
+            transform="scaleX(0)"
+            transformOrigin="left"
+            transition="transform 0.4s ease"
+            _groupHover={{
+              transform: "scaleX(1)",
+            }}
+          />
+        </Card.Root>
+      ))}
+    </SimpleGrid>
           </VStack>
         </Container>
       </Box>

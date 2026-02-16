@@ -10,17 +10,7 @@ import {
   Stack,
   Card,
   Image,
-  Dialog,
-  Portal,
-  CloseButton,
-  Field,
-  Fieldset,
-  Input,
-  Select,
-  createListCollection,
-  FileUpload,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { aboutImages, jobOpenings } from "../mockData";
@@ -38,30 +28,6 @@ import teamwork from "../assets/flaticons/teamwork.gif";
 
 import Lottie from "lottie-react";
 import CareerImg from "../assets/lottie/Colleagues Working Together.json";
-
-import { FaUpload } from "react-icons/fa";
-
-const handleTiltMove = (e) => {
-  const card = e.currentTarget;
-  const rect = card.getBoundingClientRect();
-
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-
-  const rotateX = ((y - centerY) / centerY) * 8; // up-down
-  const rotateY = ((x - centerX) / centerX) * -8; // left-right
-
-  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-};
-
-const handleTiltLeave = (e) => {
-  const card = e.currentTarget;
-  card.style.transform =
-    "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
-};
 
 const Career = () => {
   // Why Work With Us - matching About page structure
@@ -134,9 +100,6 @@ const Career = () => {
     "Employee recognition programs",
   ];
 
-  const [selectedJob, setSelectedJob] = useState([]); // Select expects array
-  const [openDialog, setOpenDialog] = useState(false);
-
   return (
     <>
       <Seo
@@ -194,35 +157,17 @@ const Career = () => {
               maxW="420px"
               justifyContent="center"
             >
-              <Dialog.Root>
-                <Dialog.Trigger asChild>
-                  <Button
-                    size="lg"
-                    bg="#0951d8"
-                    color="white"
-                    _hover={{ bg: "#073fa6" }}
-                  >
-                    Apply Now <ArrowRight size={18} />
-                  </Button>
-                </Dialog.Trigger>
-                <Portal>
-                  <Dialog.Backdrop />
-                  <Dialog.Positioner>
-                    <Dialog.Content>
-                      <Dialog.CloseTrigger asChild>
-                        <CloseButton />
-                      </Dialog.CloseTrigger>
-                      <Dialog.Header>
-                        <Dialog.Title>Career Form</Dialog.Title>
-                      </Dialog.Header>
-                      <Dialog.Body>
-                        <CareerForm />
-                      </Dialog.Body>
-                      <Dialog.Footer />
-                    </Dialog.Content>
-                  </Dialog.Positioner>
-                </Portal>
-              </Dialog.Root>
+              <Link to="/contact">
+                <Button
+                  w="100%"
+                  size="lg"
+                  bg="#0951d8"
+                  color="white"
+                  _hover={{ bg: "#073fa6" }}
+                >
+                  Apply Now <ArrowRight size={18} />
+                </Button>
+              </Link>
 
               <Link to="#openings">
                 <Button
@@ -277,21 +222,7 @@ const Career = () => {
                   borderRadius="xl"
                   h="full"
                   boxShadow="md"
-                  borderLeftColor="transparent"
-                  transition="all 0.3s ease"
-                  transformStyle="preserve-3d"
-                  onMouseMove={handleTiltMove}
-                  onMouseLeave={handleTiltLeave}
-                  _hover={{
-                    transform:
-                      "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
-                    boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
-                    backdropFilter: "blur(6px)",
-                  }}
-                  _open={{
-                    borderLeftColor: "blue.500",
-                    boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
-                  }}
+                  
                 >
                   <Card.Body>
                     <VStack spacing={4} align="start">
@@ -304,6 +235,7 @@ const Career = () => {
                         alignItems="center"
                         justifyContent="center"
                         p={2}
+                        
                       >
                         <Image
                           src={item.icon}
@@ -373,21 +305,6 @@ const Career = () => {
                   borderRadius="xl"
                   boxShadow="sm"
                   h="full"
-                  borderLeftColor="transparent"
-                  transition="all 0.3s ease"
-                  transformStyle="preserve-3d"
-                  onMouseMove={handleTiltMove}
-                  onMouseLeave={handleTiltLeave}
-                  _hover={{
-                    transform:
-                      "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
-                    boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
-                    backdropFilter: "blur(6px)",
-                  }}
-                  _open={{
-                    borderLeftColor: "blue.500",
-                    boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
-                  }}
                 >
                   <Card.Body>
                     <VStack spacing={4} align="start">
@@ -464,7 +381,7 @@ const Career = () => {
                         </VStack>
                       </Box>
 
-                      {/* <Link to="/contact" style={{ width: "100%" }}>
+                      <Link to="/contact" style={{ width: "100%" }}>
                         <Button
                           w="100%"
                           size={{ base: "sm", md: "md" }}
@@ -474,7 +391,7 @@ const Career = () => {
                         >
                           Apply Now <ArrowRight size={16} />
                         </Button>
-                      </Link> */}
+                      </Link>
                     </VStack>
                   </Card.Body>
                 </Card.Root>
@@ -526,12 +443,7 @@ const Career = () => {
               </Text>
             </VStack>
             <Box w="100%">
-              <SimpleGrid
-                columns={{ base: 1, md: 2 }}
-                spacing={6}
-                w="100%"
-                gap={10}
-              >
+              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="100%" gap={10}>
                 {cultureValues.map((value, i) => (
                   <Card.Root
                     key={i}
@@ -540,21 +452,6 @@ const Career = () => {
                     borderRadius="xl"
                     boxShadow="sm"
                     h="full"
-                    borderLeftColor="transparent"
-                    transition="all 0.3s ease"
-                    transformStyle="preserve-3d"
-                    onMouseMove={handleTiltMove}
-                    onMouseLeave={handleTiltLeave}
-                    _hover={{
-                      transform:
-                        "perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px)",
-                      boxShadow: "0 20px 60px rgba(59,130,246,0.35)",
-                      backdropFilter: "blur(6px)",
-                    }}
-                    _open={{
-                      borderLeftColor: "blue.500",
-                      boxShadow: "0 16px 50px rgba(59,130,246,0.35)",
-                    }}
                   >
                     <Card.Body>
                       <VStack spacing={3} align="start">
@@ -691,35 +588,15 @@ const Career = () => {
               to learn more about career opportunities.
             </Text>
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
-              <Dialog.Root>
-                <Dialog.Trigger asChild>
-                  <Button
-                    size="lg"
-                    bg="#0951d8"
-                    color="white"
-                    _hover={{ bg: "#073fa6" }}
-                  >
-                    Apply Now <ArrowRight size={18} />
-                  </Button>
-                </Dialog.Trigger>
-                <Portal>
-                  <Dialog.Backdrop />
-                  <Dialog.Positioner>
-                    <Dialog.Content>
-                      <Dialog.CloseTrigger asChild>
-                        <CloseButton />
-                      </Dialog.CloseTrigger>
-                      <Dialog.Header>
-                        <Dialog.Title>Career Form</Dialog.Title>
-                      </Dialog.Header>
-                      <Dialog.Body>
-                        <CareerForm />
-                      </Dialog.Body>
-                      <Dialog.Footer />
-                    </Dialog.Content>
-                  </Dialog.Positioner>
-                </Portal>
-              </Dialog.Root>
+              <Link to="/contact">
+                <Button
+                  bg="#0951d8"
+                  color="white"
+                  size={{ base: "md", md: "lg" }}
+                >
+                  Apply Now <ArrowRight size={18} />
+                </Button>
+              </Link>
               <Link to="#openings">
                 <Button
                   variant="outline"
@@ -737,186 +614,5 @@ const Career = () => {
     </>
   );
 };
-
-function CareerForm() {
-  const [fileKey, setFileKey] = useState(0);
-
-  const jobOpenings = createListCollection({
-    items: [
-      { label: "Full Stack Web Developer", value: "fswd" },
-      { label: "UI/UX Designer", value: "uiux" },
-      { label: "Network Engineer", value: "networkeng" },
-      { label: "IT Trainer", value: "ittrainer" },
-      { label: "Sales Executive", value: "salesexe" },
-      { label: "DevOps Engineer", value: "devopseng" },
-    ],
-  });
-
-  const [formData, setFormData] = useState({
-    fullname: "",
-    email: "",
-    mobile: "",
-    job: [],
-    cctc: "",
-    ectc: "",
-    lpl: "",
-    resume: null, // ✅ extra field
-  });
-
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-
-    // File input handle
-    if (name === "resume") {
-      setFormData((prev) => ({
-        ...prev,
-        resume: files[0],
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log("Career Form Data:", formData);
-    console.log("Resume file:", formData.resume);
-
-    // Reset form
-    setFormData({
-      fullname: "",
-      email: "",
-      mobile: "",
-      job: [],
-      cctc: "",
-      ectc: "",
-      lpl: "",
-      resume: null,
-    });
-    setFileKey((prev) => prev + 1);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <Fieldset.Root size="lg" maxW="md">
-        <Fieldset.Content>
-          <Field.Root>
-            <Field.Label>Full Name</Field.Label>
-            <Input
-              name="fullname"
-              value={formData.fullname}
-              onChange={handleChange}
-            />
-          </Field.Root>
-
-          <Field.Root>
-            <Field.Label>Email address</Field.Label>
-            <Input
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </Field.Root>
-
-          <Field.Root>
-            <Field.Label>Mobile No.</Field.Label>
-            <Input
-              name="mobile"
-              type="number"
-              value={formData.mobile}
-              onChange={handleChange}
-            />
-          </Field.Root>
-
-          {/* ✅ Course Select */}
-          <Field.Root>
-            <Select.Root
-              collection={jobOpenings}
-              value={formData.job}
-              onValueChange={(val) =>
-                setFormData((prev) => ({ ...prev, job: val.value }))
-              }
-            >
-              <Select.HiddenSelect />
-              <Select.Label>Select Job Position</Select.Label>
-              <Select.Control>
-                <Select.Trigger>
-                  <Select.ValueText placeholder="Select Job Position" />
-                </Select.Trigger>
-              </Select.Control>
-              <Portal>
-                <Select.Positioner>
-                  <Select.Content>
-                    {jobOpenings.items.map((job) => (
-                      <Select.Item item={job} key={job.value}>
-                        {job.label}
-                        <Select.ItemIndicator />
-                      </Select.Item>
-                    ))}
-                  </Select.Content>
-                </Select.Positioner>
-              </Portal>
-            </Select.Root>
-          </Field.Root>
-
-          <Field.Root>
-            <Field.Label>Current CTC</Field.Label>
-            <Input
-              name="cctc"
-              type="number"
-              value={formData.cctc}
-              onChange={handleChange}
-            />
-          </Field.Root>
-
-          <Field.Root>
-            <Field.Label>Expected CTC</Field.Label>
-            <Input
-              name="ectc"
-              type="number"
-              value={formData.ectc}
-              onChange={handleChange}
-            />
-          </Field.Root>
-
-          <Field.Root>
-            <Field.Label>Linkedin Profile Link</Field.Label>
-            <Input
-              name="lpl"
-              type="text"
-              value={formData.lpl}
-              onChange={handleChange}
-            />
-          </Field.Root>
-
-          <FileUpload.Root
-            key={fileKey} // ✅ this will reset FileUpload UI
-            onChange={(e) => {
-              const file = e.target.files[0];
-              setFormData((prev) => ({ ...prev, resume: file }));
-            }}
-          >
-            <FileUpload.HiddenInput />
-            <FileUpload.Trigger asChild>
-              <Button variant="outline" size="sm">
-                <FaUpload /> Upload Resume
-              </Button>
-            </FileUpload.Trigger>
-            <FileUpload.List />
-          </FileUpload.Root>
-        </Fieldset.Content>
-
-        <Button type="submit" alignSelf="flex-start">
-          Apply Now
-        </Button>
-      </Fieldset.Root>
-    </form>
-  );
-}
 
 export default Career;
