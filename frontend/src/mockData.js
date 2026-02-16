@@ -12,7 +12,8 @@ export const servicesImages = {
   development: "https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
   team: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
   workspace: "https://images.unsplash.com/photo-1579403124614-197f69d8187b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHw0fHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
-  mobile: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg"
+  mobile: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg",
+  datarecovery: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
 };
 
 export const trainingImages = {

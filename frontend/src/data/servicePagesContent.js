@@ -24,6 +24,8 @@ const IMAGES = {
   cloudCyber: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80",
   aiMl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
   labs3d: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1200&q=80",
+  datarecovery: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+
 };
 
 export const servicePages = [
@@ -1698,7 +1700,7 @@ export const servicePages = [
     slug: "cloud-solutions-server-setup",
     name: "Cloud, Cybersecurity & IT Consultancy",
     // Map to Index page service: "Networking & IT Infrastructure" - uses Networking Lottie
-    lottieKey: "Networking",
+    lottieKey: "Cloud",
     cardImage: servicesImages.networking,
     seo: {
       metaTitle: "Networking Solutions Company India | IT Infrastructure Setup",
@@ -2033,7 +2035,7 @@ export const servicePages = [
     slug: "ai-ml-training-technology-workshops",
     name: "AI/ML Training & Technology Workshops",
     // Map to Index page service: "AI/ML Training & Technology Workshops" - uses AI Lottie
-    lottieKey: "AI",
+    lottieKey: "AIML",
     cardImage: servicesImages.networking,
     seo: {
       metaTitle: "AI/ML Training & Technology Workshops India | Genius36",
@@ -2641,7 +2643,328 @@ export const servicePages = [
       secondary: { label: "View Syllabus", to: "/training" },
     },
     relatedServices: ["software-development", "custom-website-design-development", "cloud-solutions-server-setup"],
+  },
+  {
+  slug: "data-recovery-services",
+  name: "Data Recovery Services",
+  lottieKey: "Datarecovery",
+  cardImage: servicesImages.datarecovery,
+  seo: {
+    metaTitle: "Professional Data Recovery Services in India | Hard Drive & RAID Recovery",
+    metaDescription: "Secure and reliable data recovery services in India. We recover data from damaged hard drives, SSDs, RAIDs, and mobile devices. High success rate & 100% confidentiality.",
+    focusKeywords: [
+      "data recovery services in india",
+      "hard drive data recovery",
+      "raid recovery services",
+      "database recovery company",
+      "secure data retrieval services",
+      "crashed hard disk recovery"
+    ]
+  },
+  breadcrumb: "Data Recovery Services",
+  "hero": {
+    "headline": "Professional Data Recovery Services – Retrieve Your Critical Lost Data Securely",
+    "description": "Experiencing data loss due to hardware failure, accidental deletion, or a cyberattack? Genius36 Technologies provides industry-leading data recovery services to restore your valuable information. With specialized labs and advanced forensic tools, we handle everything from simple file recovery to complex server RAID reconstruction, ensuring maximum data safety and privacy.",
+    "subheadline": "Data loss can strike at any time, threatening business continuity and personal memories. Whether it’s a corrupted drive, a formatted system, or a natural disaster, the need to recover information is urgent.<br><br>At <strong>Genius36 Technologies</strong>, we offer specialized <strong>Data Recovery Services</strong> designed to retrieve data from damaged, failed, or inaccessible storage media. Our 'No Data, No Fee' policy and strict non-disclosure agreements ensure a risk-free and secure experience for our clients.",
+    "image": IMAGES.datarecovery,
+    "imageAlt": "Professional data recovery lab with engineers working on hard drives and storage systems"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Genius36 Technologies for Data Recovery?",
+    "description": "Data recovery requires precision, expertise, and the right environment. We go beyond standard software fixes to ensure the highest chance of successful retrieval.",
+    "features": [
+      "Class 100 Cleanroom lab standards",
+      "High success rate on complex cases",
+      "Strict confidentiality & NDAs",
+      " 'No Data, No Fee' guarantee",
+      "Quick turnaround times",
+      "Expertise in encrypted drives",
+      "24/7 emergency support available"
+    ]
+  },
+  "services_overview": { "title": "Our Comprehensive Data Recovery Solutions" },
+  "services": [
+    {
+      "id": 1,
+      "title": "Hard Drive Recovery (HDD & SSD)",
+      "description": "We recover data from all types of hard drives, including SATA, SAS, SSD, and SCSI, facing mechanical or logical failures.",
+      "features": [
+        "Head crash repair",
+        "Bad sector management",
+        "SSD chip-off recovery",
+        "Firmware corruption fixes",
+        "PCB board repair"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "RAID & NAS Server Recovery",
+      "description": "Specialized reconstruction for failed RAID arrays (0, 1, 5, 6, 10) and Network Attached Storage devices.",
+      "features": [
+        "Multiple drive failure handling",
+        "RAID controller failure recovery",
+        "Re-striping and reconstruction",
+        "NAS file system repair",
+        "VMware/Hyper-V recovery"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Database & Email Recovery",
+      "description": "Repair and extraction of data from corrupted database files and email servers for business continuity.",
+      "features": [
+        "SQL/Oracle DB repair",
+        "Exchange/Outlook recovery",
+        "Table row extraction",
+        "Corrupted file header repair",
+        "Migration error rollback"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Mobile & Device Recovery",
+      "description": "Retrieving lost photos, contacts, and messages from smartphones, tablets, and flash storage.",
+      "features": [
+        "Android & iOS recovery",
+        "Water damage restoration",
+        "Locked/Disabled device access",
+        "SD Card recovery",
+        "Internal chip extraction"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Logical Data Recovery",
+      "description": "Software-based recovery for data lost due to formatting, deletion, viruses, or partition errors.",
+      "features": [
+        "Accidental deletion recovery",
+        "Formatted drive restoration",
+        "Virus/malware removal",
+        "Partition table recovery",
+        "Raw file extraction"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Tape Data Recovery",
+      "description": "Restoring data from damaged or degraded magnetic tapes used for archival backups.",
+      "features": [
+        "LTO, DLT, DAT formats",
+        "Tape splicing and repair",
+        "Mold and water damage treatment",
+        "Legacy system migration",
+        "Data compression decompression"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Forensic Data Recovery",
+      "description": "Legal-grade data extraction and preservation for investigations and e-discovery.",
+      "features": [
+        "Chain of custody maintenance",
+        "Deleted artifact recovery",
+        "Hash value verification",
+        "Court-admissible reports",
+        "Fraud investigation support"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Encrypted Drive Recovery",
+      "description": "Unlocking and recovering data from BitLocker, FileVault, and other encrypted storage volumes.",
+      "features": [
+        "Password recovery assistance",
+        "Key damage recovery",
+        "Corrupted decryption fix",
+        "Safe data extraction",
+        "Volume remounting"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Data Backup Solutions",
+      "description": "Proactive setup to prevent future data loss through automated and secure backup strategies.",
+      "features": [
+        "Cloud backup integration",
+        "Hybrid backup strategies",
+        "Disaster recovery planning (DRP)",
+        "Automated scheduling",
+        "Redundancy setup"
+      ]
+    }
+  ],
+  "benefits": {
+    "title": "Business Benefits of Professional Recovery",
+    "description": "Losing data can be catastrophic. Our services provide a safety net that ensures your operations keep running.",
+    "points": [
+      {
+        "icon": "🛡️",
+        "text": "Minimized operational downtime"
+      },
+      {
+        "icon": "🔒",
+        "text": "Guaranteed data confidentiality"
+      },
+      {
+        "icon": "💰",
+        "text": "Cost savings vs data recreation"
+      },
+      {
+        "icon": "⚖️",
+        "text": "Compliance with legal requirements"
+      },
+      {
+        "icon": "🧠",
+        "text": "Peace of mind"
+      }
+    ]
+  },
+  "industries": {
+    "title": "Industries We Serve",
+    "description": "Data is critical across all sectors. We have experience recovering sensitive information for diverse industries.",
+    "list": [
+      "Banking & Finance",
+      "Healthcare & Medical",
+      "Legal Services",
+      "IT & Software",
+      "Government",
+      "Education",
+      "Media & Entertainment",
+      "E-Commerce",
+      "Manufacturing",
+      "Telecommunications"
+    ]
+  },
+  "methodology": {
+    "title": "Our Recovery Process",
+    "description": "We use a systematic, forensic approach to maximize the chances of recovering your data.",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Free Media Evaluation",
+        "description": "We analyze the device to determine the failure type and recovery potential."
+      },
+      {
+        "step": 2,
+        "title": "Quote & Approval",
+        "description": "We provide a fixed-price quote and await your authorization to proceed."
+      },
+      {
+        "step": 3,
+        "title": "Imaging & Cloning",
+        "description": "We create a sector-by-sector copy of the drive to prevent further damage."
+      },
+      {
+        "step": 4,
+        "title": "Data Extraction",
+        "description": "Using specialized tools, we extract raw data from the clone."
+      },
+      {
+        "step": 5,
+        "title": "Verification & Integrity Check",
+        "description": "We verify file integrity to ensure recovered data is usable."
+      },
+      {
+        "step": 6,
+        "title": "Secure Transfer",
+        "description": "Recovered data is transferred to a new secure storage device."
+      },
+      {
+        "step": 7,
+        "title": "Return & Data Destruction",
+        "description": "We return the recovered data and securely wipe the original failed media if requested."
+      }
+    ]
+  },
+  "technologies": {
+    "title": "Tools & Technologies We Use",
+    "description": "We utilize state-of-the-art hardware and software for successful recovery.",
+    "categories": [
+      {
+        "category": "Hardware Tools",
+        "tools": ["PC-3000", "DeepSpar", "Head Combs", "Soldering Stations", "Write Blockers"]
+      },
+      {
+        "category": "Software Utilities",
+        "tools": ["R-Studio", "UFS Explorer", "WinHex", "Encase", "FTK Imager"]
+      },
+      {
+        "category": "Cleanroom Standards",
+        "tools": ["Class 100 Cleanroom", "ESD Protection", "Anti-static mats"]
+      },
+      {
+        "category": "Encryption",
+        "tools": ["BitLocker Toolkits", "OpenSSL", "Forensic Decryption"]
+      },
+      {
+        "category": "Storage Target",
+        "tools": ["External HDDs", "SSDs", "NAS Arrays", "Cloud Secure Storage"]
+      }
+    ]
+  },
+  "pricingModels": {
+    "title": "Service Tiers",
+    "description": "We offer transparent pricing based on the complexity and urgency of the recovery.",
+    "models": [
+      {
+        "icon": "🔹",
+        "title": "Standard Recovery",
+        "description": "For logical failures and non-physical issues (5-7 business days)."
+      },
+      {
+        "icon": "🔹",
+        "title": "Priority Recovery",
+        "description": "Expedited service for critical business needs (24-48 hours)."
+      },
+      {
+        "icon": "🔹",
+        "title": "Emergency Recovery",
+        "description": "24/7 dedicated engineering for immediate disaster response."
+      }
+    ]
+  },
+  "clientAchievements": {
+    "title": "Client Success Stories",
+    "description": "We have recovered millions of gigabytes of data for satisfied clients.",
+    "achievements": [
+      "Saved critical financial records",
+      "Restored family photo archives",
+      "Recovered multi-terabyte RAID servers",
+      "Helped legal teams win cases"
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "What is the success rate of data recovery?",
+        "answer": "Success rates vary, but for logical failures, it is above 95%. For physical damage, it depends on the severity of the drive condition."
+      },
+      {
+        "question": "Do you charge if data cannot be recovered?",
+        "answer": "No, we operate on a 'No Data, No Fee' policy for most standard recovery cases."
+      },
+      {
+        "question": "Is my data kept confidential?",
+        "answer": "Absolutely. We adhere to strict NDAs and data privacy protocols to ensure your information remains secure."
+      },
+      {
+        "question": "How long does the recovery process take?",
+        "answer": "Standard services typically take 3-5 business days, while emergency services can be completed within 24 hours."
+      },
+      {
+        "question": "Should I run data recovery software myself?",
+        "answer": "If data is critical, avoid DIY software as it can overwrite data. Professional diagnosis is recommended for physical failures."
+      }
+    ]
+  },
+  cta: {
+    primary: { "label": "Get Free Quote", "to": "/contact" },
+    secondary: { "label": "Call Expert Now", "to": "/contact" }
+  },
+  relatedServices: ["it-infrastructure-support", "cloud-solutions", "cyber-security-services"]
   }
+
 ];
 
 

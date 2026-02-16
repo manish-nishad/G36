@@ -30,6 +30,8 @@ import ItConsultation from "../assets/lottie/IT CONSULTATION & DIGITAL TRANSFORM
 import Cloud from "../assets/lottie/CLOUD SOLUTION AND SERVER SETUP.json";
 import ItTraining from "../assets/lottie/IT TRAINING.json";
 import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
+import AIML from "../assets/lottie/Artificial Intelligence Chatbot.json"
+import Datarecovery from "../assets/lottie/DATA RECOVERY 2.json";
 
 // Import Flaticons
 import consultation from "../assets/flaticons/consultation.gif";
@@ -68,6 +70,8 @@ const Services = () => {
     ItTraining: ItTraining,
     Cloud: Cloud,
     ComputerHardware: ComputerHardware,
+    AIML: AIML,
+    Datarecovery: Datarecovery,
   };
 
   // Process steps for "How We Work" section
@@ -246,7 +250,7 @@ const Services = () => {
               borderRadius="3xl"
               overflow="hidden"
               h="full"
-              border="1px solid"
+              border="1px solid "
               borderColor="gray.100"
               boxShadow="lg"
               transition="all 0.4s ease"

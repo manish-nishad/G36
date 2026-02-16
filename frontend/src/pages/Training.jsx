@@ -16,7 +16,12 @@ import {
   Badge,
   CloseButton,
   Flex,
-  Grid
+  Grid,
+  Field,
+  Fieldset,
+  Input,
+  Select,
+  createListCollection,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -241,17 +246,35 @@ const Training = () => {
               maxW="420px"
               justifyContent="center"
             >
-              <Link to="/contact">
-                <Button
-                  w="100%"
-                  size="lg"
-                  bg="#0951d8"
-                  color="white"
-                  _hover={{ bg: "#073fa6" }}
-                >
-                  Enroll Now <ArrowRight size={18} />
-                </Button>
-              </Link>
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <Button
+                    size="lg"
+                    bg="#0951d8"
+                    color="white"
+                    _hover={{ bg: "#073fa6" }}
+                  >
+                    Enroll Now <ArrowRight size={18} />
+                  </Button>
+                </Dialog.Trigger>
+                <Portal>
+                  <Dialog.Backdrop />
+                  <Dialog.Positioner>
+                    <Dialog.Content>
+                      <Dialog.CloseTrigger asChild>
+                        <CloseButton />
+                      </Dialog.CloseTrigger>
+                      <Dialog.Header>
+                        <Dialog.Title>Training Form</Dialog.Title>
+                      </Dialog.Header>
+                      <Dialog.Body>
+                        <TrainingForm />
+                      </Dialog.Body>
+                      <Dialog.Footer />
+                    </Dialog.Content>
+                  </Dialog.Positioner>
+                </Portal>
+              </Dialog.Root>
 
               <Link to="/about">
                 <Button
@@ -587,9 +610,9 @@ const Training = () => {
 
                 {/* CTA Buttons */}
                 <Stack direction={{ base: "column", sm: "row" }} spacing={4} pt={2} w="100%">
-                  <Link to="/contact" style={{ flex: 1 }}>
-                    <Button
-                      w="100%"
+                 <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <Button
                       size="lg"
                       bg={`${program.color}.500`}
                       color="white"
@@ -604,10 +627,28 @@ const Training = () => {
                         boxShadow: `0 10px 25px rgba(0, 0, 0, 0.15)`,
                       }}
                       transition="all 0.3s ease"
-                    >
-                      Enroll Now
-                    </Button>
-                  </Link>
+                  >
+                    Enroll Now <ArrowRight size={18} />
+                  </Button>
+                </Dialog.Trigger>
+                <Portal>
+                  <Dialog.Backdrop />
+                  <Dialog.Positioner>
+                    <Dialog.Content>
+                      <Dialog.CloseTrigger asChild>
+                        <CloseButton />
+                      </Dialog.CloseTrigger>
+                      <Dialog.Header>
+                        <Dialog.Title>Training Form</Dialog.Title>
+                      </Dialog.Header>
+                      <Dialog.Body>
+                        <TrainingForm />
+                      </Dialog.Body>
+                      <Dialog.Footer />
+                    </Dialog.Content>
+                  </Dialog.Positioner>
+                </Portal>
+              </Dialog.Root>
 
                   <Link to="/contact" style={{ flex: 1 }}>
                     <Button
@@ -772,11 +813,35 @@ const Training = () => {
               more about course schedules and enrollment.
             </Text>
             <Stack direction={{ base: "column", sm: "row" }} spacing={4}>
-              <Link to="/contact">
-                <Button bg="#0951d8" color="white" size={{ base: "md", md: "lg" }}>
-                  Enroll Now <ArrowRight size={18} />
-                </Button>
-              </Link>
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <Button
+                    size="lg"
+                    bg="#0951d8"
+                    color="white"
+                    _hover={{ bg: "#073fa6" }}
+                  >
+                    Enroll Now <ArrowRight size={18} />
+                  </Button>
+                </Dialog.Trigger>
+                <Portal>
+                  <Dialog.Backdrop />
+                  <Dialog.Positioner>
+                    <Dialog.Content>
+                      <Dialog.CloseTrigger asChild>
+                        <CloseButton />
+                      </Dialog.CloseTrigger>
+                      <Dialog.Header>
+                        <Dialog.Title>Training Form</Dialog.Title>
+                      </Dialog.Header>
+                      <Dialog.Body>
+                        <TrainingForm />
+                      </Dialog.Body>
+                      <Dialog.Footer />
+                    </Dialog.Content>
+                  </Dialog.Positioner>
+                </Portal>
+              </Dialog.Root>
               <Link to="/services">
                 <Button
                   variant="outline"
@@ -794,5 +859,299 @@ const Training = () => {
     </>
   );
 };
+
+function TrainingForm() {
+  const courses = createListCollection({
+    items: [
+      { label: "Java Development", value: "javadevelopment" },
+      { label: "PHP Development", value: "phpdevelopment" },
+      { label: "React Development", value: "reactdevelopment" },
+      { label: "DevOps", value: "devops" },
+      { label: "AI Automation", value: "aiautomation" },
+      { label: "AI & ML", value: "aiml" },
+    ],
+  });
+
+  const cities = createListCollection({
+    items: [
+      { label: "Agra", value: "agra" },
+      { label: "Ahmedabad", value: "ahmedabad" },
+      { label: "Ajmer", value: "ajmer" },
+      { label: "Akola", value: "akola" },
+      { label: "Aligarh", value: "aligarh" },
+      { label: "Amravati", value: "amravati" },
+      { label: "Amritsar", value: "amritsar" },
+      { label: "Ankola", value: "ankola" },
+      { label: "Aurangabad", value: "aurangabad" },
+
+      { label: "Bagalkot", value: "bagalkot" },
+      { label: "Ballari", value: "ballari" },
+      { label: "Bareilly", value: "bareilly" },
+      { label: "Belagavi", value: "belagavi" },
+      { label: "Beed", value: "beed" },
+      { label: "Bengaluru", value: "bengaluru" },
+      { label: "Bhandara", value: "bhandara" },
+      { label: "Bhilai", value: "bhilai" },
+      { label: "Bhopal", value: "bhopal" },
+      { label: "Bhubaneswar", value: "bhubaneswar" },
+      { label: "Bidar", value: "bidar" },
+      { label: "Bilaspur", value: "bilaspur" },
+      { label: "Buldhana", value: "buldhana" },
+
+      { label: "Chamarajanagar", value: "chamarajanagar" },
+      { label: "Chandigarh", value: "chandigarh" },
+      { label: "Chandrapur", value: "chandrapur" },
+      { label: "Chennai", value: "chennai" },
+      { label: "Chikkamagaluru", value: "chikkamagaluru" },
+      { label: "Chitradurga", value: "chitradurga" },
+      { label: "Coimbatore", value: "coimbatore" },
+      { label: "Cuttack", value: "cuttack" },
+
+      { label: "Davangere", value: "davangere" },
+      { label: "Dehradun", value: "dehradun" },
+      { label: "Delhi", value: "delhi" },
+      { label: "Dharwad", value: "dharwad" },
+      { label: "Durg", value: "durg" },
+
+      { label: "Faridabad", value: "faridabad" },
+
+      { label: "Ghaziabad", value: "ghaziabad" },
+      { label: "Gondia", value: "gondia" },
+      { label: "Gurgaon", value: "gurgaon" },
+      { label: "Guwahati", value: "guwahati" },
+      { label: "Gwalior", value: "gwalior" },
+
+      { label: "Haridwar", value: "haridwar" },
+      { label: "Hassan", value: "hassan" },
+      { label: "Hingoli", value: "hingoli" },
+      { label: "Hubballi", value: "hubballi" },
+      { label: "Hyderabad", value: "hyderabad" },
+
+      { label: "Indore", value: "indore" },
+
+      { label: "Jabalpur", value: "jabalpur" },
+      { label: "Jaipur", value: "jaipur" },
+      { label: "Jalandhar", value: "jalandhar" },
+      { label: "Jalgaon", value: "jalgaon" },
+      { label: "Jodhpur", value: "jodhpur" },
+
+      { label: "Kalaburagi", value: "kalaburagi" },
+      { label: "Kanpur", value: "kanpur" },
+      { label: "Karwar", value: "karwar" },
+      { label: "Kochi", value: "kochi" },
+      { label: "Kolar", value: "kolar" },
+      { label: "Kolkata", value: "kolkata" },
+      { label: "Kolhapur", value: "kolhapur" },
+      { label: "Koppal", value: "koppal" },
+      { label: "Kota", value: "kota" },
+
+      { label: "Latur", value: "latur" },
+      { label: "Lucknow", value: "lucknow" },
+      { label: "Ludhiana", value: "ludhiana" },
+
+      { label: "Madurai", value: "madurai" },
+      { label: "Mangaluru", value: "mangaluru" },
+      { label: "Margao", value: "margao" },
+      { label: "Meerut", value: "meerut" },
+      { label: "Moradabad", value: "moradabad" },
+      { label: "Mumbai", value: "mumbai" },
+      { label: "Mysuru", value: "mysuru" },
+
+      { label: "Nagpur", value: "nagpur" },
+      { label: "Nanded", value: "nanded" },
+      { label: "Nashik", value: "nashik" },
+      { label: "Noida", value: "noida" },
+
+      { label: "Osmanabad", value: "osmanabad" },
+
+      { label: "Panaji", value: "panaji" },
+      { label: "Parbhani", value: "parbhani" },
+      { label: "Patna", value: "patna" },
+      { label: "Prayagraj", value: "prayagraj" },
+      { label: "Pune", value: "pune" },
+
+      { label: "Raichur", value: "raichur" },
+      { label: "Raipur", value: "raipur" },
+      { label: "Ramanagara", value: "ramanagara" },
+      { label: "Ranchi", value: "ranchi" },
+      { label: "Ratnagiri", value: "ratnagiri" },
+      { label: "Rishikesh", value: "rishikesh" },
+      { label: "Roorkee", value: "roorkee" },
+
+      { label: "Saharanpur", value: "saharanpur" },
+      { label: "Sangli", value: "sangli" },
+      { label: "Satara", value: "satara" },
+      { label: "Shimla", value: "shimla" },
+      { label: "Shivamogga", value: "shivamogga" },
+      { label: "Sirsi", value: "sirsi" },
+      { label: "Solapur", value: "solapur" },
+      { label: "Sindhudurg", value: "sindhudurg" },
+
+      { label: "Trivandrum", value: "trivandrum" },
+      { label: "Tumakuru", value: "tumakuru" },
+
+      { label: "Udaipur", value: "udaipur" },
+      { label: "Udupi", value: "udupi" },
+
+      { label: "Varanasi", value: "varanasi" },
+      { label: "Vasco da Gama", value: "vascodagama" },
+      { label: "Vijayawada", value: "vijayawada" },
+      { label: "Visakhapatnam", value: "visakhapatnam" },
+
+      { label: "Wardha", value: "wardha" },
+      { label: "Washim", value: "washim" },
+      { label: "Yadgir", value: "yadgir" },
+      { label: "Yavatmal", value: "yavatmal" },
+    ],
+  });
+
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    mobile: "",
+    course: [],
+    city: [],
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log("Form Data:", formData);
+
+    setFormData({
+      fullname: "",
+      email: "",
+      mobile: "",
+      course: [],
+      city: [],
+    });
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <Fieldset.Root as="form" size="lg" maxW="md">
+          <Fieldset.Content>
+            <Field.Root>
+              <Field.Label>Full Name</Field.Label>
+              <Input
+                name="fullname"
+                type="name"
+                value={formData.fullname}
+                onChange={handleChange}
+              />
+            </Field.Root>
+
+            <Field.Root>
+              <Field.Label>Email address</Field.Label>
+              <Input
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </Field.Root>
+
+            <Field.Root>
+              <Field.Label>Mobile No.</Field.Label>
+              <Input
+                name="mobile"
+                type="number"
+                value={formData.mobile}
+                onChange={handleChange}
+              />
+            </Field.Root>
+
+            <Field.Root>
+              <Select.Root
+                collection={courses}
+                value={formData.course}
+                onValueChange={(val) =>
+                  setFormData((prev) => ({ ...prev, course: val.value }))
+                }
+              >
+                <Select.HiddenSelect />
+                <Select.Label>Select Course</Select.Label>
+                <Select.Control>
+                  <Select.Trigger
+                    borderColor="colorPalette.muted"
+                    bg="colorPalette.subtle"
+                    color="colorPalette.fg"
+                  >
+                    <Select.ValueText placeholder="Select framework" />
+                  </Select.Trigger>
+                  <Select.IndicatorGroup>
+                    <Select.Indicator color="colorPalette.fg" />
+                  </Select.IndicatorGroup>
+                </Select.Control>
+                <Portal>
+                  <Select.Positioner>
+                    <Select.Content>
+                      {courses.items.map((course) => (
+                        <Select.Item item={course} key={course.value}>
+                          {course.label}
+                          <Select.ItemIndicator />
+                        </Select.Item>
+                      ))}
+                    </Select.Content>
+                  </Select.Positioner>
+                </Portal>
+              </Select.Root>
+            </Field.Root>
+
+            <Field.Root>
+              <Select.Root
+                collection={cities}
+                value={formData.city}
+                onValueChange={(val) =>
+                  setFormData((prev) => ({ ...prev, city: val.value }))
+                }
+              >
+                <Select.HiddenSelect />
+                <Select.Label>Select City</Select.Label>
+                <Select.Control>
+                  <Select.Trigger
+                    borderColor="colorPalette.muted"
+                    bg="colorPalette.subtle"
+                    color="colorPalette.fg"
+                  >
+                    <Select.ValueText placeholder="Select City" />
+                  </Select.Trigger>
+                  <Select.IndicatorGroup>
+                    <Select.Indicator color="colorPalette.fg" />
+                  </Select.IndicatorGroup>
+                </Select.Control>
+                <Portal>
+                  <Select.Positioner>
+                    <Select.Content>
+                      {cities.items.map((city) => (
+                        <Select.Item item={city} key={city.value}>
+                          {city.label}
+                          <Select.ItemIndicator />
+                        </Select.Item>
+                      ))}
+                    </Select.Content>
+                  </Select.Positioner>
+                </Portal>
+              </Select.Root>
+            </Field.Root>
+          </Fieldset.Content>
+
+          <Button type="submit" alignSelf="flex-start">
+            Submit
+          </Button>
+        </Fieldset.Root>
+      </form>
+    </>
+  );
+}
+
 
 export default Training;

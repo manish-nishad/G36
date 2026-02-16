@@ -9,11 +9,10 @@ import {
   Textarea,
   Button,
   SimpleGrid,
-  Icon,
   Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 import Seo from "../seo/Seo";
 import Lottie from "lottie-react";
 import Facebook from "../assets/lottie/Facebook.json";
@@ -27,8 +26,6 @@ import phoneIcon from "../assets/flaticons/phone-contact.gif";
 import emailIcon from "../assets/flaticons/email.gif";
 import clockIcon from "../assets/flaticons/clock.gif";
 
-// import Twitter from "../assets/lottie/Twitter.json";
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -40,7 +37,12 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ show: false, type: "", message: "" });
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  // Get keys from environment variables
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_PHONE_NUMBER;
+  const WHATSAPP_API_KEY = import.meta.env.VITE_CALLMEBOT_API_KEY;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,24 +52,85 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+    // Import the env variable at the top of the component
+  const TEXTMEBOT_API_KEY = import.meta.env.VITE_TEXTMEBOT_API_KEY;
+
+  // Replace the function
+    const sendWhatsAppMessage = async (data) => {
+    // Check if API key exists to prevent errors
+    if (!TEXTMEBOT_API_KEY) {
+      console.warn("TextMeBot API Key is missing in .env file");
+      return;
+    }
+
+    // Construct the message text
+    // Note: New lines must be %0A for URLs
+    const text = `*New Contact Form Submission*%0A%0A*Name:* ${data.fullName}%0A*Email:* ${data.email}%0A*Phone:* ${data.phone}%0A*Subject:* ${data.subject}%0A*Message:* ${data.message}`;
+    
+    // TextMeBot API Endpoint
+    const url = `https://textmebot.com/api/send?p=${WHATSAPP_NUMBER}&t=${encodeURIComponent(text)}&apikey=${TEXTMEBOT_API_KEY}`;
+    
+    try {
+      await fetch(url);
+      console.log("TextMeBot trigger sent successfully");
+    } catch (error) {
+      console.error("TextMeBot API error:", error);
+      // We don't show an alert to the user if WhatsApp fails, as the email likely succeeded.
+    }
+  };
+
+
+
+    const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setAlert({ show: false, type: "", message: "" });
 
-    try {
-      const response = await axios.post(`${API_URL}/api/contact`, formData);
+    // 1. Validate Keys
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      console.error("Missing API Keys. Check .env file");
+      setAlert({
+        show: true,
+        type: "error",
+        message: "Configuration error: API Keys are missing.",
+      });
+      setLoading(false); // Stop loading
+      return;
+    }
 
-      if (response.data.success) {
+    try {
+      // 2. Prepare Email Data
+      const templateParams = {
+        from_name: formData.fullName,
+        to_name: "Admin",
+        reply_to: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      // 3. Send Email via EmailJS
+      const response = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      );
+
+      // 4. If Email is successful
+      if (response.status === 200) {
+        
+        // Send WhatsApp notification (Fire and Forget)
+        await sendWhatsAppMessage(formData);
+
+        // Show Success Alert
         setAlert({
           show: true,
           type: "success",
-          message:
-            response.data.message ||
-            "Thank you for contacting us! We'll get back to you soon.",
+          message: "Thank you! Your message has been sent successfully.",
         });
 
-        // Reset form
+        // Reset Form
         setFormData({
           fullName: "",
           email: "",
@@ -76,28 +139,32 @@ const Contact = () => {
           message: "",
         });
 
-        // Hide alert after 5 seconds
+        // Hide Alert after 5 seconds
         setTimeout(() => {
           setAlert({ show: false, type: "", message: "" });
         }, 5000);
       }
     } catch (error) {
+      console.error("Full Error Object:", error);
+      
+      // Show Error Alert
       setAlert({
         show: true,
         type: "error",
-        message:
-          error.response?.data?.message ||
-          "Failed to send message. Please try again later.",
+        message: "Failed to send message. Please try again later.",
       });
-
-      // Hide alert after 5 seconds
+      
+      // Hide Error Alert after 5 seconds
       setTimeout(() => {
         setAlert({ show: false, type: "", message: "" });
       }, 5000);
     } finally {
+      // 5. ALWAYS stop loading, whether success or fail
       setLoading(false);
     }
   };
+
+
 
   return (
     <>
@@ -132,11 +199,11 @@ const Contact = () => {
           </VStack>
         </Container>
       </Box>
+      
       <Box py={20} bg="gray.50" minH="100vh">
         <Container maxW="7xl">
           <VStack spacing={12} align="stretch">
-            {/* Heading */}
-
+            
             {/* Alert Messages */}
             {alert.show && (
               <Box
@@ -295,28 +362,33 @@ const Contact = () => {
                     </Button>
                   </VStack>
                 </Box>
-                <Box borderRadius="xl" boxShadow="md" mt={4} p={4} bg="white">
-                  <Text fontSize="sm" color="gray.800" mt={2} fontWeight="800">
-                    Find Us on the Map:{" "}
-                    <Box
-                      borderRadius="lg"
-                      overflow="hidden"
-                      w="100%"
-                      h={{ base: "300px", md: "220px" }}
-                    >
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25923.979038964844!2d81.32175730489945!3d21.157357643339893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfcc82501b9f%3A0xeb84b5c363036f34!2sGenius36%20Technolgies%20India%20LLP!5e0!3m2!1sen!2sin!4v1768401597073!5m2!1sen!2sin"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="Genius36 Technologies Location"
-                      />
-                    </Box>
-                  </Text>
-                </Box>
+                {/* --- NEW CODE (FIXED) --- */}
+<Box borderRadius="xl" boxShadow="md" mt={4} p={4} bg="white">
+  {/* 1. Keep the Label inside Text */}
+  <Text fontSize="sm" color="gray.800" mt={2} fontWeight="800" mb={2}>
+    Find Us on the Map:
+  </Text>
+
+  {/* 2. Move the Map Box OUTSIDE the Text component (sibling) */}
+  <Box
+    borderRadius="lg"
+    overflow="hidden"
+    w="100%"
+    h={{ base: "300px", md: "220px" }}
+  >
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25923.979038964844!2d81.32175730489945!3d21.157357643339893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfcc82501b9f%3A0xeb84b5c363036f34!2sGenius36%20Technolgies%20India%20LLP!5e0!3m2!1sen!2sin!4v1768401597073!5m2!1sen!2sin"
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      allowFullScreen=""
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      title="Genius36 Technologies Location"
+    />
+  </Box>
+</Box>
+
               </Box>
 
               {/* Contact Information */}
@@ -464,11 +536,6 @@ const Contact = () => {
                           href: "linkedin.com/company/genius36",
                           label: "LinkedIn",
                         },
-                        // {
-                        //   animation: Twitter,
-                        //   href: "https://Twitter.com",
-                        //   label: "Twitter",
-                        // },
                         {
                           animation: Whatsapp,
                           href: "https://Whatsapp.com",
@@ -491,11 +558,9 @@ const Contact = () => {
                           justifyContent="center"
                           cursor="pointer"
                           _hover={{ bg: "#93b7f1" }}
-                          // transition="all 0.3s ease"
                         >
                           <Lottie
                             animationData={social.animation}
-                            // loop={false}
                             autoplay={true}
                             style={{ width: "100%", height: "100%" }}
                           />
