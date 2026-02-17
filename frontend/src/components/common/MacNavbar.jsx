@@ -25,7 +25,7 @@ import { useState } from "react";
 import logo from "../../assets/images/logo.png";
 import { Link as RouterLink } from "react-router-dom";
 
-const MotionBox = motion(Box);
+const MotionBox = motion.create(Box);
 
 const navItems = [
   { label: "Home", icon: FaHome, path: "/" },

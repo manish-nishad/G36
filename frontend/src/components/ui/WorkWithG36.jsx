@@ -55,7 +55,7 @@ const reasons = [
   },
 ];
 
-const MotionBox = motion(Box);
+const MotionBox = motion.create(Box);
 
 /* ===================== TILT HANDLERS ===================== */
 

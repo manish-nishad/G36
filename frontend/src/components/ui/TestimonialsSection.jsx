@@ -209,25 +209,25 @@ export default function TestimonialsSection({
         </Box>
 
         {/* Custom Pagination Styles */}
-        <style jsx global>{`
-          .swiper-pagination-bullet {
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 1;
-            transition: all 0.3s ease;
-          }
+        <style>{`
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
 
-          .swiper-pagination-bullet-active {
-            background: white;
-            width: 30px;
-            border-radius: 5px;
-          }
+  .swiper-pagination-bullet-active {
+    background: white;
+    width: 30px;
+    border-radius: 5px;
+  }
 
-          .swiper-pagination {
-            bottom: 10px !important;
-          }
-        `}</style>
+  .swiper-pagination {
+    bottom: 10px !important;
+  }
+`}</style>
       </Container>
     </Box>
   );
