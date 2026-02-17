@@ -14,8 +14,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { ArrowRight } from "lucide-react";
-import { Link
-} from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import axios from "axios";
@@ -23,7 +22,6 @@ import Seo from "../seo/Seo";
 import { blogPosts } from "../mockData";
 import Lottie from "lottie-react";
 import BlogPost from "../assets/lottie/Blog post.json";
-
 
 /* -------------------- Helpers -------------------- */
 
@@ -177,8 +175,7 @@ export default function Blogs() {
           {JSON.stringify(blogListSchema)}
         </script>
       </Seo>
-      
-      
+
       {/* <Box bg="gray.900" color="white">
         <Container maxW="6xl" py={{ base: 14, md: 20 }}>
           <VStack spacing={8} textAlign="center">
@@ -188,10 +185,9 @@ export default function Blogs() {
           </VStack>
         </Container>
       </Box> */}
-      
-      <Box bg="white" minH="100vh" pt="100px">
-        <Container maxW="7xl">
 
+      <Box bg="white" minH="100vh" pt="100px" padding={10}>
+        <Container maxW="7xl">
           {/* Search */}
           <Input
             placeholder="Search blog posts..."
@@ -227,8 +223,8 @@ export default function Blogs() {
           ) : (
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} gap={5}>
               {displayedBlogs.map((blog) => (
-                <Box key={blog.id} as={RouterLink} to={`/blogs/${blog.id}`} >
-                  <Box borderRadius="md" overflow="hidden" bg="gray.100"  >
+                <Box key={blog.id} as={RouterLink} to={`/blogs/${blog.id}`}>
+                  <Box borderRadius="md" overflow="hidden" bg="gray.100">
                     <Image
                       src={
                         blog.image ||
@@ -244,8 +240,13 @@ export default function Blogs() {
                   </Box>
 
                   <VStack align="start" spacing={3} mt={4}>
-                    <Heading size="md" transition="all 0.2s ease"
-                      _hover={{ textDecoration: "underline" }}>{blog.title}</Heading>
+                    <Heading
+                      size="md"
+                      transition="all 0.2s ease"
+                      _hover={{ textDecoration: "underline" }}
+                    >
+                      {blog.title}
+                    </Heading>
                     <Text fontSize="sm" color="gray.600">
                       {blog.excerpt}
                     </Text>

@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { aboutImages, stats, companyInfo } from "../mockData";
+import { aboutImages } from "../mockData";
 import Seo from "../seo/Seo";
 
 import { useEffect, useRef } from "react";
@@ -70,8 +70,6 @@ export default function About() {
     card.style.transform =
       "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
   };
-
-  // useEffect(() => {
   //   // HERO PARALLAX
   //   gsap.to(heroBgRef.current, {
   //     yPercent: 15,

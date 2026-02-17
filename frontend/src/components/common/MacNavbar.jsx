@@ -82,10 +82,9 @@ export default function MacNavbar() {
             size="sm"
             bg="#04327b"
             color="white"
-            leftIcon={<FaPhoneAlt />}
             onClick={() => (window.location.href = "tel:08200593901")}
           >
-            Call
+            Call <FaPhoneAlt />
           </Button>
         </Flex>
 
@@ -182,10 +181,9 @@ export default function MacNavbar() {
           size="sm"
           bg="#04327b"
           color="white"
-          leftIcon={<FaPhoneAlt />}
           onClick={() => (window.location.href = "tel:08200593901")}
         >
-          Call
+          Call <FaPhoneAlt />
         </Button>
       </Flex>
     );
@@ -260,11 +258,10 @@ export default function MacNavbar() {
         <Button
           bg="#04327b"
           color="white"
-          leftIcon={<FaPhoneAlt />}
           _hover={{ bg: "#03245a" }}
           onClick={() => (window.location.href = "tel:08200593901")}
         >
-          Call Now
+          Call Now <FaPhoneAlt />
         </Button>
       </Box>
     </Flex>

@@ -12,8 +12,6 @@ import {
   Image,
   Icon,
   Badge,
-  Flex
-  
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle ,Sparkles, Check, MoveRight,CheckCircle2 } from "lucide-react";
@@ -228,6 +226,7 @@ const Services = () => {
       spacing={{ base: 6, md: 8 }}
       gap={{ base: 6, md: 10 }}
       w="100%"
+      padding={5}
     >
       {servicePages.map((sp, index) => {
         const desc = sp.hero.description;

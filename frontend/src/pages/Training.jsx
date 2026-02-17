@@ -46,6 +46,28 @@ import Lottie from "lottie-react";
 import TrainingLottie from "../assets/lottie/Training.json";
 import { px } from "framer-motion";
 
+const handleTiltMove = (e) => {
+  const card = e.currentTarget;
+  const rect = card.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  const rotateX = ((y - centerY) / centerY) * 8; // up-down
+  const rotateY = ((x - centerX) / centerX) * -8; // left-right
+
+  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+};
+
+const handleTiltLeave = (e) => {
+  const card = e.currentTarget;
+  card.style.transform =
+    "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+};
+
 const Training = () => {
   const [open, setOpen] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState(null);
@@ -160,7 +182,8 @@ const Training = () => {
     {
       icon: Users,
       title: "Expert Instructors",
-      description: "Learn from industry professionals with 10+ years experience",
+      description:
+        "Learn from industry professionals with 10+ years experience",
     },
     {
       icon: Code,
@@ -292,7 +315,7 @@ const Training = () => {
           </VStack>
         </Container>
       </Box>
-    <Box py={{ base: 16, md: 24 }} bg="gray.50">
+      <Box py={{ base: 16, md: 24 }} bg="gray.50">
         <Container maxW="7xl">
           <VStack spacing={12}>
             {/* Section Header */}
@@ -316,9 +339,13 @@ const Training = () => {
               >
                 Training That Transforms Careers
               </Heading>
-              <Text fontSize={{ base: "md", md: "lg" }} color="gray.600" maxW="2xl">
-                Join thousands of successful graduates who advanced their careers
-                through our comprehensive training programs
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.600"
+                maxW="2xl"
+              >
+                Join thousands of successful graduates who advanced their
+                careers through our comprehensive training programs
               </Text>
             </VStack>
 
@@ -336,12 +363,15 @@ const Training = () => {
                   borderRadius="2xl"
                   boxShadow="md"
                   border="1px solid"
-                  borderColor="gray.200"
-                  overflow="hidden"
-                  transition="all 0.3s ease"
+                  borderColor="gray.100"
+                  transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  cursor="pointer"
+                  position="relative"
+                  onMouseMove={handleTiltMove}
+                  onMouseLeave={handleTiltLeave}
                   _hover={{
-                    transform: "translateY(-6px)",
-                    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+                    transform: "translateY(-8px)",
+                    boxShadow: "0 20px 40px rgba(9, 81, 216, 0.2)",
                     borderColor: "blue.400",
                   }}
                 >
@@ -349,7 +379,6 @@ const Training = () => {
                     <VStack spacing={4} align="start">
                       <Flex
                         w="60px"
-                        
                         h="60px"
                         bg="blue.50"
                         borderRadius="xl"
@@ -376,9 +405,12 @@ const Training = () => {
           </VStack>
         </Container>
       </Box>
-       <Box py={{ base: 12, md: 16 }} bg="white">
+      <Box py={{ base: 12, md: 16 }} bg="white">
         <Container maxW="7xl">
-          <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 6, md: 10 }}>
+          <SimpleGrid
+            columns={{ base: 2, md: 4 }}
+            spacing={{ base: 6, md: 10 }}
+          >
             {stats.map((stat, idx) => (
               <VStack
                 key={idx}
@@ -389,15 +421,23 @@ const Training = () => {
                 bg="gray.50"
                 border="1px solid"
                 borderColor="gray.100"
-                transition="all 0.3s ease"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                cursor="pointer"
+                position="relative"
+                onMouseMove={handleTiltMove}
+                onMouseLeave={handleTiltLeave}
                 _hover={{
-                  bg: "blue.50",
-                  borderColor: "blue.200",
-                  transform: "translateY(-4px)",
+                  transform: "translateY(-8px)",
+                  boxShadow: "0 20px 40px rgba(9, 81, 216, 0.2)",
+                  borderColor: "blue.400",
                 }}
               >
                 <Icon as={stat.icon} boxSize={8} color="blue.500" />
-                <Heading size="2xl" color="gray.900" fontSize={{ base: "2xl", md: "3xl" }}>
+                <Heading
+                  size="2xl"
+                  color="gray.900"
+                  fontSize={{ base: "2xl", md: "3xl" }}
+                >
                   {stat.number}
                 </Heading>
                 <Text fontSize="sm" color="gray.600" textAlign="center">
@@ -409,393 +449,449 @@ const Training = () => {
         </Container>
       </Box>
 
-<Box py={{ base: 16, md: 24 }} bg="white">
-  <Container maxW="7xl">
-    <VStack spacing={16}>
-      {/* Section Header */}
-      <VStack spacing={4} textAlign="center">
-        <Badge
-          bg="blue.100"
-          color="blue.700"
-          px={4}
-          py={2}
-          borderRadius="full"
-          fontSize="sm"
-          fontWeight="bold"
-          textTransform="uppercase"
-          letterSpacing="wide"
-        >
-          Our Programs
-        </Badge>
-        <Heading
-          size="2xl"
-          color="gray.900"
-          fontSize={{ base: "2xl", md: "4xl" }}
-          fontWeight="800"
-          letterSpacing="-0.5px"
-        >
-          Explore Our Training Programs
-        </Heading>
-        <Text fontSize={{ base: "md", md: "lg" }} color="gray.600" maxW="2xl">
-          Industry-relevant courses designed to make you job-ready
-        </Text>
-      </VStack>
-
-      {/* Programs - Alternating Layout */}
-      <VStack spacing={20} w="100%">
-        {trainingPrograms.map((program, index) => {
-          const isEven = index % 2 === 0;
-          
-          return (
-            <Grid
-              key={program.id}
-              templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
-              gap={{ base: 10, lg: 16 }}
-              alignItems="center"
-              w="100%"
-            >
-              {/* Content Section */}
-              <VStack
-                spacing={6}
-                paddingTop={10}
-                align="start"
-                  
-                order={{ base: 1, lg: isEven ? 1 : 2 }}
+      <Box py={{ base: 16, md: 24 }} bg="white">
+        <Container maxW="7xl">
+          <VStack spacing={16}>
+            {/* Section Header */}
+            <VStack spacing={4} textAlign="center">
+              <Badge
+                bg="blue.100"
+                color="blue.700"
+                px={4}
+                py={2}
+                borderRadius="full"
+                fontSize="sm"
+                fontWeight="bold"
+                textTransform="uppercase"
+                letterSpacing="wide"
               >
-                {/* Category Badge */}
-              
+                Our Programs
+              </Badge>
+              <Heading
+                size="2xl"
+                color="gray.900"
+                fontSize={{ base: "2xl", md: "4xl" }}
+                fontWeight="800"
+                letterSpacing="-0.5px"
+              >
+                Explore Our Training Programs
+              </Heading>
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.600"
+                maxW="2xl"
+              >
+                Industry-relevant courses designed to make you job-ready
+              </Text>
+            </VStack>
 
-                {/* Title */}
-                <Heading
-                  size="2xl"
-                  color="gray.900"
-                  fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
-                  fontWeight="800"
-                  lineHeight="1.2"
-                  letterSpacing="-0.5px"
-                >
-                  {program.title}
-                </Heading>
+            {/* Programs - Alternating Layout */}
+            <VStack spacing={20} w="100%">
+              {trainingPrograms.map((program, index) => {
+                const isEven = index % 2 === 0;
 
-                {/* Description */}
-                <Text
-                  fontSize={{ base: "md", md: "lg" }}
-                  color="gray.600"
-                  lineHeight="1.8"
-                >
-                  {program.description}
-                </Text>
-
-                {/* Meta Info Cards */}
-                <SimpleGrid columns={3} spacing={4} w="100%" >
-                  <Box
-                    bg="gray.50"
-                    p={4}
-                    mr={2}
-                    borderRadius="xl"
-                    border="1px solid"
-                    borderColor="gray.200"
-                    textAlign="center"
+                return (
+                  <Grid
+                    key={program.id}
+                    templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
+                    gap={{ base: 10, lg: 16 }}
+                    alignItems="center"
+                    w="100%"
                   >
-                    <Icon as={Clock} boxSize={6} color={`${program.color}.500`} mb={2} />
-                    <Text fontSize="xs" color="gray.500" mb={1}>
-                      Duration
-                    </Text>
-                    <Text fontSize="sm" fontWeight="700" color="gray.900">
-                      {program.duration}
-                    </Text>
-                  </Box>
-
-                  <Box
-                    bg="gray.50"
-                    p={4}
-                     mr={2}
-                    borderRadius="xl"
-                    border="1px solid"
-                    borderColor="gray.200"
-                    textAlign="center"
-                  >
-                    <Icon as={Users} boxSize={6} color={`${program.color}.500`} mb={2} />
-                    <Text fontSize="xs" color="gray.500" mb={1}>
-                      Enrolled
-                    </Text>
-                    <Text fontSize="sm" fontWeight="700" color="gray.900">
-                      {program.students}
-                    </Text>
-                  </Box>
-
-                  <Box
-                    bg="gray.50"
-                    p={4}
-                    mr={2}
-                    borderRadius="xl"
-                    border="1px solid"
-                    borderColor="gray.200"
-                    textAlign="center"
-                  >
-                    <Icon as={Target} boxSize={6} color={`${program.color}.500`} mb={2} />
-                    <Text fontSize="xs" color="gray.500" mb={1}>
-                      Level
-                    </Text>
-                    <Text fontSize="sm" fontWeight="700" color="gray.900" noOfLines={1}>
-                      {program.level}
-                    </Text>
-                  </Box>
-                </SimpleGrid>
-
-                {/* Topics Section */}
-                <Box w="100%">
-                  <Flex align="center" justify="space-between" mb={4}>
-                    <Text
-                      fontSize="sm"
-                      color="gray.900"
-                      fontWeight="700"
-                      textTransform="uppercase"
-                      letterSpacing="wide"
+                    {/* Content Section */}
+                    <VStack
+                      spacing={6}
+                      paddingTop={10}
+                      align="start"
+                      order={{ base: 1, lg: isEven ? 1 : 2 }}
                     >
-                      What You'll Learn
-                    </Text>
-                    <Badge
-                      bg={`${program.color}.100`}
-                      color={`${program.color}.700`}
-                      px={3}
-                      py={1}
-                      borderRadius="full"
-                      fontSize="xs"
-                      fontWeight="700"
-                    >
-                      {program.topics.length} Topics
-                    </Badge>
-                  </Flex>
+                      {/* Category Badge */}
 
-                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3}>
-                    {program.topics.map((topic, idx) => (
-                      <HStack
-                        key={idx}
-                        spacing={3}
-                        bg="white"
-                        p={3}
-                        borderRadius="lg"
-                        border="1px solid"
-                        borderColor="gray.200"
-                        transition="all 0.3s ease"
-                        _hover={{
-                          borderColor: `${program.color}.300`,
-                          bg: `${program.color}.50`,
-                          transform: "translateX(4px)",
-                        }}
+                      {/* Title */}
+                      <Heading
+                        size="2xl"
+                        color="gray.900"
+                        fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                        fontWeight="800"
+                        lineHeight="1.2"
+                        letterSpacing="-0.5px"
                       >
-                        <Flex
-                          w="24px"
-                          h="24px"
-                          bg={`${program.color}.100`}
-                          borderRadius="md"
-                          align="center"
-                          justify="center"
-                          flexShrink={0}
+                        {program.title}
+                      </Heading>
+
+                      {/* Description */}
+                      <Text
+                        fontSize={{ base: "md", md: "lg" }}
+                        color="gray.600"
+                        lineHeight="1.8"
+                      >
+                        {program.description}
+                      </Text>
+
+                      {/* Meta Info Cards */}
+                      <SimpleGrid columns={3} spacing={4} w="100%">
+                        <Box
+                          bg="gray.50"
+                          p={4}
+                          mr={2}
+                          borderRadius="xl"
+                          border="1px solid"
+                          borderColor="gray.200"
+                          textAlign="center"
                         >
                           <Icon
-                            as={CheckCircle}
-                            color={`${program.color}.600`}
-                            boxSize={4}
+                            as={Clock}
+                            boxSize={6}
+                            color={`${program.color}.500`}
+                            mb={2}
                           />
+                          <Text fontSize="xs" color="gray.500" mb={1}>
+                            Duration
+                          </Text>
+                          <Text fontSize="sm" fontWeight="700" color="gray.900">
+                            {program.duration}
+                          </Text>
+                        </Box>
+
+                        <Box
+                          bg="gray.50"
+                          p={4}
+                          mr={2}
+                          borderRadius="xl"
+                          border="1px solid"
+                          borderColor="gray.200"
+                          textAlign="center"
+                        >
+                          <Icon
+                            as={Users}
+                            boxSize={6}
+                            color={`${program.color}.500`}
+                            mb={2}
+                          />
+                          <Text fontSize="xs" color="gray.500" mb={1}>
+                            Enrolled
+                          </Text>
+                          <Text fontSize="sm" fontWeight="700" color="gray.900">
+                            {program.students}
+                          </Text>
+                        </Box>
+
+                        <Box
+                          bg="gray.50"
+                          p={4}
+                          mr={2}
+                          borderRadius="xl"
+                          border="1px solid"
+                          borderColor="gray.200"
+                          textAlign="center"
+                        >
+                          <Icon
+                            as={Target}
+                            boxSize={6}
+                            color={`${program.color}.500`}
+                            mb={2}
+                          />
+                          <Text fontSize="xs" color="gray.500" mb={1}>
+                            Level
+                          </Text>
+                          <Text
+                            fontSize="sm"
+                            fontWeight="700"
+                            color="gray.900"
+                            noOfLines={1}
+                          >
+                            {program.level}
+                          </Text>
+                        </Box>
+                      </SimpleGrid>
+
+                      {/* Topics Section */}
+                      <Box w="100%">
+                        <Flex align="center" justify="space-between" mb={4}>
+                          <Text
+                            fontSize="sm"
+                            color="gray.900"
+                            fontWeight="700"
+                            textTransform="uppercase"
+                            letterSpacing="wide"
+                          >
+                            What You'll Learn
+                          </Text>
+                          <Badge
+                            bg={`${program.color}.100`}
+                            color={`${program.color}.700`}
+                            px={3}
+                            py={1}
+                            borderRadius="full"
+                            fontSize="xs"
+                            fontWeight="700"
+                          >
+                            {program.topics.length} Topics
+                          </Badge>
                         </Flex>
-                        <Text fontSize="sm" color="gray.700" fontWeight="500" lineHeight="1.5">
-                          {topic}
-                        </Text>
-                      </HStack>
-                    ))}
-                  </SimpleGrid>
-                </Box>
 
-                {/* CTA Buttons */}
-                <Stack direction={{ base: "column", sm: "row" }} spacing={4} pt={2} w="100%">
-                 <Dialog.Root>
-                <Dialog.Trigger asChild>
-                  <Button
-                      size="lg"
-                      bg={`${program.color}.500`}
-                      color="white"
-                      px={8}
-                      py={6}
-                      fontSize="md"
-                      fontWeight="700"
-                      rightIcon={<Icon as={ArrowRight} boxSize={5} />}
-                      _hover={{
-                        bg: `${program.color}.600`,
-                        transform: "translateY(-2px)",
-                        boxShadow: `0 10px 25px rgba(0, 0, 0, 0.15)`,
-                      }}
-                      transition="all 0.3s ease"
-                  >
-                    Enroll Now <ArrowRight size={18} />
-                  </Button>
-                </Dialog.Trigger>
-                <Portal>
-                  <Dialog.Backdrop />
-                  <Dialog.Positioner>
-                    <Dialog.Content>
-                      <Dialog.CloseTrigger asChild>
-                        <CloseButton />
-                      </Dialog.CloseTrigger>
-                      <Dialog.Header>
-                        <Dialog.Title>Training Form</Dialog.Title>
-                      </Dialog.Header>
-                      <Dialog.Body>
-                        <TrainingForm />
-                      </Dialog.Body>
-                      <Dialog.Footer />
-                    </Dialog.Content>
-                  </Dialog.Positioner>
-                </Portal>
-              </Dialog.Root>
+                        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3}>
+                          {program.topics.map((topic, idx) => (
+                            <HStack
+                              key={idx}
+                              spacing={3}
+                              bg="white"
+                              p={3}
+                              borderRadius="lg"
+                              border="1px solid"
+                              borderColor="gray.200"
+                              transition="all 0.3s ease"
+                              _hover={{
+                                borderColor: `${program.color}.300`,
+                                bg: `${program.color}.50`,
+                                transform: "translateX(4px)",
+                              }}
+                            >
+                              <Flex
+                                w="24px"
+                                h="24px"
+                                bg={`${program.color}.100`}
+                                borderRadius="md"
+                                align="center"
+                                justify="center"
+                                flexShrink={0}
+                              >
+                                <Icon
+                                  as={CheckCircle}
+                                  color={`${program.color}.600`}
+                                  boxSize={4}
+                                />
+                              </Flex>
+                              <Text
+                                fontSize="sm"
+                                color="gray.700"
+                                fontWeight="500"
+                                lineHeight="1.5"
+                              >
+                                {topic}
+                              </Text>
+                            </HStack>
+                          ))}
+                        </SimpleGrid>
+                      </Box>
 
-                  <Link to="/contact" style={{ flex: 1 }}>
-                    <Button
-                      w="100%"
-                      size="lg"
-                      variant="outline"
-                      color={`${program.color}.600`}
-                      borderColor={`${program.color}.300`}
-                      px={8}
-                      py={6}
-                      fontSize="md"
-                      fontWeight="700"
-                      rightIcon={<Icon as={Calendar} boxSize={5} />}
-                      _hover={{
-                        bg: `${program.color}.50`,
-                        borderColor: `${program.color}.500`,
-                      }}
+                      {/* CTA Buttons */}
+                      <Stack
+                        direction={{ base: "column", sm: "row" }}
+                        spacing={4}
+                        pt={2}
+                        w="100%"
+                      >
+                        <Dialog.Root>
+                          <Dialog.Trigger asChild>
+                            <Button
+                              size="lg"
+                              bg={`${program.color}.500`}
+                              color="white"
+                              px={8}
+                              py={6}
+                              fontSize="md"
+                              fontWeight="700"
+                              rightIcon={<Icon as={ArrowRight} boxSize={5} />}
+                              _hover={{
+                                bg: `${program.color}.600`,
+                                transform: "translateY(-2px)",
+                                boxShadow: `0 10px 25px rgba(0, 0, 0, 0.15)`,
+                              }}
+                              transition="all 0.3s ease"
+                            >
+                              Enroll Now <ArrowRight size={18} />
+                            </Button>
+                          </Dialog.Trigger>
+                          <Portal>
+                            <Dialog.Backdrop />
+                            <Dialog.Positioner>
+                              <Dialog.Content>
+                                <Dialog.CloseTrigger asChild>
+                                  <CloseButton />
+                                </Dialog.CloseTrigger>
+                                <Dialog.Header>
+                                  <Dialog.Title>Training Form</Dialog.Title>
+                                </Dialog.Header>
+                                <Dialog.Body>
+                                  <TrainingForm />
+                                </Dialog.Body>
+                                <Dialog.Footer />
+                              </Dialog.Content>
+                            </Dialog.Positioner>
+                          </Portal>
+                        </Dialog.Root>
+
+                        <Link to="/contact" style={{ flex: 1 }}>
+                          <Button
+                            w="100%"
+                            size="lg"
+                            variant="outline"
+                            color={`${program.color}.600`}
+                            borderColor={`${program.color}.300`}
+                            px={8}
+                            py={6}
+                            fontSize="md"
+                            fontWeight="700"
+                            rightIcon={<Icon as={Calendar} boxSize={5} />}
+                            _hover={{
+                              bg: `${program.color}.50`,
+                              borderColor: `${program.color}.500`,
+                            }}
+                          >
+                            View Schedule
+                          </Button>
+                        </Link>
+                      </Stack>
+                    </VStack>
+
+                    {/* Image Section */}
+                    <Box
+                      order={{ base: 2, lg: isEven ? 2 : 1 }}
+                      position="relative"
                     >
-                      View Schedule
-                    </Button>
-                  </Link>
-                </Stack>
-              </VStack>
-
-              {/* Image Section */}
-              <Box
-                order={{ base: 2, lg: isEven ? 2 : 1 }}
-                position="relative"
-              >
-                {/* Main Image Card */}
-                <Box
-                  borderRadius="3xl"
-                  overflow="hidden"
-                  boxShadow="2xl"
-                  position="relative"
-                  transition="all 0.4s ease"
-                  _hover={{
-                    transform: "scale(1.02)",
-                    boxShadow: "0 30px 60px rgba(0, 0, 0, 0.2)",
-                  }}
-                >
-                  <Image
-                    src={program.image}
-                    alt={program.title}
-                    w="100%"
-                    h={{ base: "350px", md: "450px", lg: "500px" }}
-                    objectFit="cover"
-                  />
-
-                  {/* Gradient Overlay */}
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    bgGradient={`linear(to-br, ${program.color}.500, transparent, ${program.color}.600)`}
-                    opacity={0.15}
-                    mixBlendMode="multiply"
-                  />
-
-                  {/* Decorative Element - Top Corner */}
-                  <Box
-                    position="absolute"
-                    top={-20}
-                    right={-20}
-                    w="150px"
-                    h="150px"
-                    borderRadius="full"
-                    bg={`${program.color}.400`}
-                    opacity={0.2}
-                    filter="blur(40px)"
-                  />
-                </Box>
-
-                {/* Floating Stats Card */}
-                <Box
-                  position="absolute"
-                  bottom={{ base: -8, md: -12 }}
-                  left={{ base: 4, md: 8 }}
-                  right={{ base: 4, md: 8 }}
-                  bg="white"
-                  borderRadius="2xl"
-                  boxShadow="2xl"
-                  p={{ base: 4, md: 6 }}
-                  border="1px solid"
-                  borderColor="gray.200"
-                  backdropFilter="blur(10px)"
-                >
-                  <SimpleGrid columns={3} spacing={4}>
-                    <VStack spacing={1}>
-                      <Flex
-                        w="40px"
-                        h="40px"
-                        bg={`${program.color}.100`}
-                        borderRadius="lg"
-                        align="center"
-                        justify="center"
+                      {/* Main Image Card */}
+                      <Box
+                        borderRadius="3xl"
+                        overflow="hidden"
+                        boxShadow="2xl"
+                        position="relative"
+                        transition="all 0.4s ease"
+                        _hover={{
+                          transform: "scale(1.02)",
+                          boxShadow: "0 30px 60px rgba(0, 0, 0, 0.2)",
+                        }}
                       >
-                        <Icon as={BookOpen} color={`${program.color}.600`} boxSize={5} />
-                      </Flex>
-                      <Text fontSize="xs" color="gray.500" textAlign="center">
-                        Live Projects
-                      </Text>
-                    </VStack>
+                        <Image
+                          src={program.image}
+                          alt={program.title}
+                          w="100%"
+                          h={{ base: "350px", md: "450px", lg: "500px" }}
+                          objectFit="cover"
+                        />
 
-                    <VStack spacing={1}>
-                      <Flex
-                        w="40px"
-                        h="40px"
-                        bg={`${program.color}.100`}
-                        borderRadius="lg"
-                        align="center"
-                        justify="center"
-                      >
-                        <Icon as={Award} color={`${program.color}.600`} boxSize={5} />
-                      </Flex>
-                      <Text fontSize="xs" color="gray.500" textAlign="center">
-                        Certificate
-                      </Text>
-                    </VStack>
+                        {/* Gradient Overlay */}
+                        <Box
+                          position="absolute"
+                          top={0}
+                          left={0}
+                          right={0}
+                          bottom={0}
+                          bgGradient={`linear(to-br, ${program.color}.500, transparent, ${program.color}.600)`}
+                          opacity={0.15}
+                          mixBlendMode="multiply"
+                        />
 
-                    <VStack spacing={1}>
-                      <Flex
-                        w="40px"
-                        h="40px"
-                        bg={`${program.color}.100`}
-                        borderRadius="lg"
-                        align="center"
-                        justify="center"
+                        {/* Decorative Element - Top Corner */}
+                        <Box
+                          position="absolute"
+                          top={-20}
+                          right={-20}
+                          w="150px"
+                          h="150px"
+                          borderRadius="full"
+                          bg={`${program.color}.400`}
+                          opacity={0.2}
+                          filter="blur(40px)"
+                        />
+                      </Box>
+
+                      {/* Floating Stats Card */}
+                      <Box
+                        position="absolute"
+                        bottom={{ base: -8, md: -12 }}
+                        left={{ base: 4, md: 8 }}
+                        right={{ base: 4, md: 8 }}
+                        bg="white"
+                        borderRadius="2xl"
+                        boxShadow="2xl"
+                        p={{ base: 4, md: 6 }}
+                        border="1px solid"
+                        borderColor="gray.200"
+                        backdropFilter="blur(10px)"
                       >
-                        <Icon as={Briefcase} color={`${program.color}.600`} boxSize={5} />
-                      </Flex>
-                      <Text fontSize="xs" color="gray.500" textAlign="center">
-                        Placement
-                      </Text>
-                    </VStack>
-                  </SimpleGrid>
-                </Box>
-              </Box>
-            </Grid>
-          );
-        })}
-      </VStack>
-    </VStack>
-  </Container>
-</Box>
+                        <SimpleGrid columns={3} spacing={4}>
+                          <VStack spacing={1}>
+                            <Flex
+                              w="40px"
+                              h="40px"
+                              bg={`${program.color}.100`}
+                              borderRadius="lg"
+                              align="center"
+                              justify="center"
+                            >
+                              <Icon
+                                as={BookOpen}
+                                color={`${program.color}.600`}
+                                boxSize={5}
+                              />
+                            </Flex>
+                            <Text
+                              fontSize="xs"
+                              color="gray.500"
+                              textAlign="center"
+                            >
+                              Live Projects
+                            </Text>
+                          </VStack>
+
+                          <VStack spacing={1}>
+                            <Flex
+                              w="40px"
+                              h="40px"
+                              bg={`${program.color}.100`}
+                              borderRadius="lg"
+                              align="center"
+                              justify="center"
+                            >
+                              <Icon
+                                as={Award}
+                                color={`${program.color}.600`}
+                                boxSize={5}
+                              />
+                            </Flex>
+                            <Text
+                              fontSize="xs"
+                              color="gray.500"
+                              textAlign="center"
+                            >
+                              Certificate
+                            </Text>
+                          </VStack>
+
+                          <VStack spacing={1}>
+                            <Flex
+                              w="40px"
+                              h="40px"
+                              bg={`${program.color}.100`}
+                              borderRadius="lg"
+                              align="center"
+                              justify="center"
+                            >
+                              <Icon
+                                as={Briefcase}
+                                color={`${program.color}.600`}
+                                boxSize={5}
+                              />
+                            </Flex>
+                            <Text
+                              fontSize="xs"
+                              color="gray.500"
+                              textAlign="center"
+                            >
+                              Placement
+                            </Text>
+                          </VStack>
+                        </SimpleGrid>
+                      </Box>
+                    </Box>
+                  </Grid>
+                );
+              })}
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* CALL-TO-ACTION SECTION - Matching About/Services page CTA */}
       <Box
@@ -804,10 +900,18 @@ const Training = () => {
       >
         <Container maxW="7xl">
           <VStack spacing={8} textAlign="center">
-            <Heading color="black" size="2xl" fontSize={{ base: "xl", md: "2xl" }}>
+            <Heading
+              color="black"
+              size="2xl"
+              fontSize={{ base: "xl", md: "2xl" }}
+            >
               Ready to Start Your Training Journey?
             </Heading>
-            <Text color="gray.900" fontSize={{ base: "md", md: "lg" }} maxW="2xl">
+            <Text
+              color="gray.900"
+              fontSize={{ base: "md", md: "lg" }}
+              maxW="2xl"
+            >
               Enroll in our professional training programs and advance your
               career with industry-relevant skills. Contact us today to learn
               more about course schedules and enrollment.
@@ -1152,6 +1256,5 @@ function TrainingForm() {
     </>
   );
 }
-
 
 export default Training;
