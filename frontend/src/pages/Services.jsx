@@ -30,6 +30,9 @@ import ItTraining from "../assets/lottie/IT TRAINING.json";
 import ComputerHardware from "../assets/lottie/COMPUTER HARDWARE.json";
 import AIML from "../assets/lottie/Artificial Intelligence Chatbot.json"
 import Datarecovery from "../assets/lottie/DATA RECOVERY 2.json";
+import DigitalSEO from "../assets/lottie/Digital marketing strategy stickers.json"
+import Ecommerce from "../assets/lottie/Ecommerce.json"
+import UIUXDesign from "../assets/lottie/UI UX designer.json"
 
 // Import Flaticons
 import consultation from "../assets/flaticons/consultation.gif";
@@ -70,6 +73,9 @@ const Services = () => {
     ComputerHardware: ComputerHardware,
     AIML: AIML,
     Datarecovery: Datarecovery,
+    DigitalSEO: DigitalSEO,
+    Ecommerce: Ecommerce,
+    UIUXDesign: UIUXDesign,
   };
 
   // Process steps for "How We Work" section

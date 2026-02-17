@@ -1364,7 +1364,7 @@ export const servicePages = [
     slug: "digital-marketing-seo-services",
     name: "Digital Marketing & SEO Services",
     // Map to Index page service: "Digital Marketing & SEO Services" - uses DigitalMarketing Lottie
-    lottieKey: "DigitalMarketing",
+    lottieKey: "DigitalSEO",
     cardImage: servicesImages.ItTraining,
     seo: {
       metaTitle: "Digital Marketing & SEO Services India | Genius36",
@@ -1718,7 +1718,7 @@ export const servicePages = [
       "headline": "Cloud, Cybersecurity & IT Consultancy – Secure, Optimize & Transform Your Digital Infrastructure",
       "description": "In the era of digital transformation, businesses need robust cloud solutions, strong cybersecurity measures, and strategic IT consulting to stay competitive. At Genius36 Technologies, we provide comprehensive services that help organizations protect their data, improve performance, and adopt future-ready technologies. Our expertise in cloud architecture, security frameworks, and IT strategy enables us to build resilient systems that support growth and innovation.",
       "subheadline": `Modern businesses rely on technology to operate efficiently, serve customers, and stay competitive. However, managing digital systems without proper security and strategy can expose organizations to risks and inefficiencies. At <strong>Genius36 Technologies, </strong> we provide advanced < strong >Cloud Solutions, Cybersecurity Services, and IT Consulting </ strong >that help organizations protect their data, improve performance, and adopt future-ready technologies.<p>Our experts work closely with you to design reliable systems, minimize threats, and align technology investments with business objectives.</p>`,
-      "image": IMAGES.cloudCybersecurity,
+      "image": IMAGES.cloudCyber,
       "imageAlt": "Professional cloud, cybersecurity and IT consultancy services - secure digital infrastructure"
     },
     "whyChooseUs": {
