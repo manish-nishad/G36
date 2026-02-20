@@ -24,7 +24,6 @@ export default function Seo({
     /* =======================
        BASIC META
     ======================= */
-    setMeta("charset", "charset", "utf-8"); // safe fallback
     setMeta("name", "description", description);
     setMeta("name", "keywords", keywords);
     setMeta("name", "author", author);
