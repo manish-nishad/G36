@@ -230,6 +230,7 @@ export default function Blogs() {
                         blog.image ||
                         "https://images.unsplash.com/photo-1499750310107-5fef28a66643"
                       }
+                      alt={blog.title}
                       h="220px"
                       w="100%"
                       objectFit="cover"

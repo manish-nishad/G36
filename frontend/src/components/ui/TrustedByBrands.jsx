@@ -44,7 +44,7 @@ export default function TrustedByBrands({ brands = [] }) {
           textAlign="center"
           mb={{ base: 8, md: 12 }}
           fontSize={{ base: "2xl", md: "3xl" }}
-          as="h1"
+          as="h2"
         >
           Trusted by Leading Brands
         </Heading>

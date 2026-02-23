@@ -132,6 +132,36 @@ export default function BlogSingle() {
         description={blog.excerpt || blog.content?.slice(0, 160)}
       />
 
+      {/* Article Schema JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": blog.title,
+            "description": blog.excerpt || blog.content?.slice(0, 160),
+            "image": blog.coverImage || blog.image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643",
+            "datePublished": blog.createdAt || blog.date,
+            "dateModified": blog.updatedAt || blog.createdAt || blog.date,
+            "author": {
+              "@type": "Organization",
+              "name": "Genius36 Technologies",
+              "url": "https://genius36.com",
+              "logo": "https://genius36.com/assets/G_new.svg"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Genius36 Technologies",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://genius36.com/assets/G_new.svg"
+              }
+            }
+          })
+        }}
+      />
+
       <Box bg="white" pt="100px" pb={20}>
         <Container maxW="7xl">
           <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={12}>
@@ -163,6 +193,7 @@ export default function BlogSingle() {
                   blog.image ||
                   "https://images.unsplash.com/photo-1499750310107-5fef28a66643"
                 }
+                alt={blog.title}
                 borderRadius="md"
                 w="100%"
                 h={{ base: "260px", md: "420px" }}

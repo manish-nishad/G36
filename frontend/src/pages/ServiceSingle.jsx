@@ -159,6 +159,37 @@ const serviceIconsMap = {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
+      {/* Breadcrumb Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://genius36.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://genius36.com/services"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": service.breadcrumb,
+                "item": `https://genius36.com/services/${slug}`
+              }
+            ]
+          })
+        }}
+      />
+
       <Box bg="white" minH="100vh" pt={{ base: "90px", md: "100px" }} pb={{ base: 8, md: 12 }}>
         <Container maxW="7xl" px={{ base: 4, md: 6, lg: 8 }}>
           {/* BREADCRUMB */}

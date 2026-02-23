@@ -61,7 +61,6 @@ export default function Home() {
       <Seo
         title="Genius36 | Trusted IT, Digital Marketing & Software Solutions."
         description="Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs."
-        content="Genius36 Technologies India LLP is a trusted IT company providing digital marketing, web development, software solutions, and AI services across India."
       />
 
       {/* HERO */}
@@ -112,13 +111,11 @@ export default function Home() {
               color="white"
               fontSize={{ base: "3xl", md: "6xl" }}
               mb={4}
+              lineHeight={{ base: "1", md: "1" }}
             >
-              Next-Generation IT Solution
+              Next-Generation IT Solution for Your Business
             </Heading>
-            <Heading color="white" fontSize={{ base: "3xl", md: "6xl" }} mb={2} as="h2">
-              for Your Business
-            </Heading>
-            <Heading color="white" fontSize={{ base: "2xl", md: "4xl" }} as="h2">
+            <Heading color="white" fontSize={{ base: "2xl", md: "4xl" }} as="h2" mb={2}>
               Designed to accelerate growth and efficiency.
             </Heading>
             <Text color="white" maxW="4xl" padding={4} textStyle="xl">

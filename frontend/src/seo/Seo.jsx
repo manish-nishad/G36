@@ -5,7 +5,7 @@ export default function Seo({
   description = "Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs",
   keywords = "IT company, web development, software solutions, IT training, cloud services, networking, cybersecurity",
   url = "https://genius36.com",
-  image = "https://genius36.com/logo.png",
+  image = "/assets/images/G_new.svg",
   author = "Genius36 Technologies India LLP",
 }) {
   useEffect(() => {
@@ -77,15 +77,25 @@ export default function Seo({
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": "https://genius36.com/#organization",
-      name: "Genius36 Technologies",
+      name: "Genius36 Technologies India LLP",
       url: "https://genius36.com",
-      logo: image,
+      logo: "https://genius36.com/assets/G_new.svg",
       description: description,
       foundingDate: "2014",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+91-82005-93901",
+        contactType: "sales",
+        areaServed: "IN"
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "IN"
+      },
       sameAs: [
         "https://www.linkedin.com/company/genius36",
-        "https://www.instagram.com/genius36",
-        "https://twitter.com/genius36",
+        "https://www.facebook.com/genius36",
+        "https://x.com/genius36",
       ],
       knowsAbout: [
         "Web Development",
@@ -94,7 +104,75 @@ export default function Seo({
         "Cloud Solutions",
         "Cyber Security",
         "IT Training",
+        "Digital Marketing",
+        "SEO Services",
+        "E-commerce",
+        "3D Printing",
+        "AI/ML Training"
       ],
+    });
+
+    // Add LocalBusiness schema
+    const localBusinessId = "localbusiness-schema";
+    let localSchemaScript = document.getElementById(localBusinessId);
+    if (!localSchemaScript) {
+      localSchemaScript = document.createElement("script");
+      localSchemaScript.type = "application/ld+json";
+      localSchemaScript.id = localBusinessId;
+      document.head.appendChild(localSchemaScript);
+    }
+
+    localSchemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://genius36.com/#localbusiness",
+      name: "Genius36 Technologies India LLP",
+      url: "https://genius36.com",
+      telephone: "+91-82005-93901",
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "IN",
+        addressRegion: "India"
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "20.5937",
+        longitude: "78.9629"
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "09:00",
+        closes: "18:00"
+      },
+      priceRange: "$$"
+    });
+
+    // Add WebSite schema
+    const webSiteId = "website-schema";
+    let webSiteSchemaScript = document.getElementById(webSiteId);
+    if (!webSiteSchemaScript) {
+      webSiteSchemaScript = document.createElement("script");
+      webSiteSchemaScript.type = "application/ld+json";
+      webSiteSchemaScript.id = webSiteId;
+      document.head.appendChild(webSiteSchemaScript);
+    }
+
+    webSiteSchemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://genius36.com/#website",
+      url: "https://genius36.com",
+      name: "Genius36 Technologies",
+      description: "Leading IT Solutions Provider in India - Web Development, Software Training, Digital Marketing, Cloud Solutions",
+      publisher: {
+        "@id": "https://genius36.com/#organization"
+      },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://genius36.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     });
   }, [title, description, keywords, url, image, author]);
 

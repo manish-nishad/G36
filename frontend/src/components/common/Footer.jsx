@@ -151,12 +151,12 @@ export default function Footer() {
               Services
             </Text>
             {[
-              { label: "Website Design & Development", path: "/" },
-              { label: "Software Development", path: "/" },
-              { label: "CCTV & Security", path: "/" },
-              { label: "Networking & IT Infrastructure", path: "/" },
-              { label: "Cloud Solutions", path: "/" },
-              { label: "IT Training", path: "/" },
+              { label: "Website Design & Development", path: "/services/custom-website-design-development" },
+              { label: "Software Development", path: "/services/software-development-services" },
+              { label: "E-Commerce Solutions", path: "/services/ecommerce-solutions-platforms" },
+              { label: "Digital Marketing", path: "/services/digital-marketing-seo-services" },
+              { label: "Cloud Solutions", path: "/services/cloud-solutions-server-setup" },
+              { label: "Data Recovery", path: "/services/data-recovery-services" },
             ].map((services, index) => (
               <Link
                 key={index}
