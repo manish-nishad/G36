@@ -25,15 +25,12 @@ import BlogPost from "../assets/lottie/Blog post.json";
 
 /* -------------------- Helpers -------------------- */
 
-const formatDate = (dateString) => {
-  if (!dateString) return "";
-  const d = new Date(dateString);
-  return d.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-};
+const slugify = (text = "") =>
+  String(text)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 const useDebounce = (value, delay = 300) => {
   const [debounced, setDebounced] = useState(value);
@@ -70,6 +67,12 @@ export default function Blogs() {
   const debouncedSearch = useDebounce(searchQuery);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+  const getBlogPath = (blog) => {
+    if (blog?.slug) return `/blogs/${blog.slug}`;
+    if (blog?.title) return `/blogs/${slugify(blog.title)}`;
+    return `/blogs/${blog?.id}`;
+  };
 
   /* -------------------- Fetch Blogs -------------------- */
 
@@ -223,7 +226,7 @@ export default function Blogs() {
           ) : (
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} gap={5}>
               {displayedBlogs.map((blog) => (
-                <Box key={blog.id} as={RouterLink} to={`/blogs/${blog.id}`}>
+                <Box key={blog.id} as={RouterLink} to={getBlogPath(blog)}>
                   <Box borderRadius="md" overflow="hidden" bg="gray.100">
                     <Image
                       src={

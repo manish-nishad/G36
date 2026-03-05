@@ -10,6 +10,7 @@ export default function PageNotFound() {
       <Seo
         title="404 | Page Not Found - Genius36 Technologies"
         description="The page you are looking for is under construction or does not exist."
+        robots="noindex, follow"
       />
 
       <Box

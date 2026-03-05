@@ -317,6 +317,8 @@ export default function OurOfferings() {
                             <img
                               src={offer.image}
                               alt={offer.title}
+                              loading="lazy"
+                              decoding="async"
                               style={{
                                 width: "100%",
                                 height: "100%",

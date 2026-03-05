@@ -1,6 +1,4 @@
-import { Box } from "@chakra-ui/react";
-import Lottie from "lottie-react";
-import sandyLoading from "../../assets/lottie/Sandy-Loading.json";
+import { Box, Spinner } from "@chakra-ui/react";
 
 export default function PageLoader() {
   return (
@@ -13,13 +11,8 @@ export default function PageLoader() {
       alignItems="center"
       justifyContent="center"
     >
-      <Box w={{ base: "180px", md: "240px" }}>
-        <Lottie
-          animationData={sandyLoading}
-          loop
-          autoplay
-          rendererSettings={{ progressiveLoad: true }}
-        />
+      <Box textAlign="center">
+        <Spinner size="xl" thickness="4px" speed="0.7s" color="#04327b" />
       </Box>
     </Box>
   );

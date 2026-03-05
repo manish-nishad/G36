@@ -138,6 +138,8 @@ export default function ServicesCarousel() {
                         alt={s.text}
                         boxSize={{ base: "60px", md: "70px", lg: "80px" }}
                         objectFit="contain"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </Box>
 

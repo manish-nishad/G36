@@ -190,6 +190,8 @@ export default function Home() {
                     alt={item.title}
                     boxSize="48px"
                     objectFit="contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                   
                 </Box>

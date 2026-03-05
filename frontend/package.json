@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync:sitemap-lastmod": "node scripts/update-sitemap-lastmod.mjs",
+    "prebuild": "npm run sync:sitemap-lastmod",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

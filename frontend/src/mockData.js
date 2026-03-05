@@ -1,34 +1,34 @@
 // Mock data for Genius36 Technologies website
 
 export const heroImages = {
-  primary: "https://images.unsplash.com/photo-1644088379091-d574269d422f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NjY4MjIyMDF8MA&ixlib=rb-4.1.0&q=85",
-  secondary: "https://images.pexels.com/photos/5716032/pexels-photo-5716032.jpeg",
-  abstract: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwzfHx0ZWNobm9sb2d5JTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NjY4MjIyMDF8MA&ixlib=rb-4.1.0&q=85"
+  primary: "/images/hero/primary.jpg",
+  secondary: "/images/hero/secondary.jpg",
+  abstract: "/images/hero/abstract.jpg",
 };
 
 export const servicesImages = {
-  general: "https://images.pexels.com/photos/845451/pexels-photo-845451.jpeg",
-  networking: "https://images.pexels.com/photos/1054397/pexels-photo-1054397.jpeg",
-  development: "https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
-  team: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
-  workspace: "https://images.unsplash.com/photo-1579403124614-197f69d8187b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHw0fHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
-  mobile: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg",
-  datarecovery: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+  general: "/images/services/general.jpeg",
+  networking: "/images/services/networking.jpeg",
+  development: "/images/services/development.jpg",
+  team: "/images/services/team.jpg",
+  workspace: "/images/services/workspace.jpg",
+  mobile: "/images/services/mobile.jpeg",
+  datarecovery: "/images/services/datarecovery.jpg",
 };
 
 export const trainingImages = {
-  programming: "https://images.pexels.com/photos/249798/pexels-photo-249798.png",
-  classroom: "https://images.pexels.com/photos/3747481/pexels-photo-3747481.jpeg",
-  session: "https://images.pexels.com/photos/33920044/pexels-photo-33920044.jpeg",
-  learning: "https://images.pexels.com/photos/1181474/pexels-photo-1181474.jpeg"
+  programming: "/images/training/programming.jpg",
+  classroom: "/images/training/classroom.jpeg",
+  session: "/images/training/session.jpeg",
+  learning: "/images/training/learning.jpg"
 };
 
 export const aboutImages = {
-  teamCollaboration: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwdGVhbXxlbnwwfHx8fDE3NjY3Mjk2MDd8MA&ixlib=rb-4.1.0&q=85",
-  itProfessionals: "https://images.unsplash.com/photo-1632910121591-29e2484c0259?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwyfHx0ZWNobm9sb2d5JTIwdGVhbXxlbnwwfHx8fDE3NjY3Mjk2MDd8MA&ixlib=rb-4.1.0&q=85",
-  friendlyTeam: "https://images.unsplash.com/photo-1531539427495-97c44a449837?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHx0ZWNobm9sb2d5JTIwdGVhbXxlbnwwfHx8fDE3NjY3Mjk2MDd8MA&ixlib=rb-4.1.0&q=85",
-  office: "https://images.pexels.com/photos/6804068/pexels-photo-6804068.jpeg",
-  building: "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg"
+  teamCollaboration: "/images/about/teamCollaboration.jpg",
+  itProfessionals: "/images/about/itProfessionals.jpg",
+  friendlyTeam: "/images/about/friendlyTeam.jpg",
+  office: "/images/about/office.jpg",
+  building: "/images/about/building.jpg"
 };
 
 export const services = [
@@ -628,7 +628,7 @@ export const serviceDetailsData = [
     title: "Custom Website Design & Development",
     description:
       "We create stunning, responsive websites tailored to your business needs using modern technologies and best practices. Our web development services ensure your online presence is both visually appealing and functionally robust.",
-    image: "https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NjcyOTYxM3ww&ixlib=rb-4.1.0&q=85",
+    image: "/images/serviceDetails/webDevelopmentImage.jpg",
     imageAlt: "Web Development",
     features: [
       "Responsive & Mobile-First Design",

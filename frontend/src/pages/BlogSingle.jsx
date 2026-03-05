@@ -32,6 +32,13 @@ const formatDate = (dateString) => {
   });
 };
 
+const slugify = (text = "") =>
+  String(text)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 /* -------------------- Skeleton -------------------- */
 const BlogSingleSkeleton = () => (
   <Box bg="white" minH="100vh" pt="100px">
@@ -72,14 +79,41 @@ export default function BlogSingle() {
       try {
         setLoading(true);
 
+        const idParam = String(id || "");
+        const isNumericId = /^\d+$/.test(idParam);
+
+        if (isNumericId) {
+          try {
+            const res = await axios.get(`${API_URL}/api/blogs/${idParam}`);
+            setBlog(res.data?.data || res.data);
+            return;
+          } catch {
+            // Fallback to slug/title matching
+          }
+        }
+
         try {
-          const res = await axios.get(`${API_URL}/api/blogs/${id}`);
-          setBlog(res.data?.data || res.data);
-          return;
-        } catch {}
+          const res = await axios.get(`${API_URL}/api/blogs`);
+          const data = Array.isArray(res.data) ? res.data : res.data?.data || [];
+          const matched = data.find(
+            (b) =>
+              String(b.id) === idParam ||
+              String(b.slug || "").toLowerCase() === idParam.toLowerCase() ||
+              slugify(b.title) === idParam.toLowerCase(),
+          );
+          if (matched) {
+            setBlog(matched);
+            return;
+          }
+        } catch {
+          // Fallback to local mock content
+        }
 
         const fallback = blogPosts.find(
-          (b) => b.id === id || b.id === Number(id),
+          (b) =>
+            String(b.id) === idParam ||
+            String(b.slug || "").toLowerCase() === idParam.toLowerCase() ||
+            slugify(b.title) === idParam.toLowerCase(),
         );
 
         if (fallback) setBlog(fallback);
@@ -148,14 +182,14 @@ export default function BlogSingle() {
               "@type": "Organization",
               "name": "Genius36 Technologies",
               "url": "https://genius36.com",
-              "logo": "https://genius36.com/assets/G_new.svg"
+              "logo": "https://genius36.com/G_new.svg"
             },
             "publisher": {
               "@type": "Organization",
               "name": "Genius36 Technologies",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://genius36.com/assets/G_new.svg"
+                "url": "https://genius36.com/G_new.svg"
               }
             }
           })

@@ -3,12 +3,15 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  build: {
+    chunkSizeWarningLimit: 3000,
+  },
   plugins: [
     react(),
     VitePWA({
       registerType: "autoUpdate",
       workbox: {
-        maximumFileSizeToCacheInBytes: 8 * 1024 * 1024, // 8 MB
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3 MB
       },
       manifest: {
         name: "Genius36 Technologies",

@@ -16,15 +16,15 @@ const LAYOUT = {
 
 // Unsplash/placeholder images; alt text per service
 const IMAGES = {
-  webMobile: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80",
-  softwareDevelopment: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80",
-  uiUx: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
-  ecommerce: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80",
-  digitalMarketing: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-  cloudCyber: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80",
-  aiMl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
-  labs3d: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1200&q=80",
-  datarecovery: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+  webMobile: "/images/servicePage/webMobile.jpg",
+  softwareDevelopment: "/images/servicePage/webMobile.jpg",
+  uiUx: "/images/servicePage/uiUx.jpg",
+  ecommerce: "/images/servicePage/ecommerce.jpg",
+  digitalMarketing: "/images/servicePage/digitalMarketing.jpg",
+  cloudCyber: "/images/servicePage/cloudCyber.jpg",
+  aiMl: "/images/servicePage/aiMl.jpg",
+  labs3d: "/images/servicePage/labs3d.jpg",
+  datarecovery: "/images/servicePage/datarecovery.jpg"
 
 };
 

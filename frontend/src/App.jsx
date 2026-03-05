@@ -11,20 +11,16 @@ function AppWrapper() {
   const [loading, setLoading] = useState(true);
   const hasLoadedOnce = useRef(false);
 
-  // Initial load + route change loader
   useEffect(() => {
-    // 🔥 Only first time
-    if (!hasLoadedOnce.current) {
-      const timer = setTimeout(() => {
-        setLoading(false);
-        hasLoadedOnce.current = true;
-      }, 300);
+    setLoading(true);
 
-      return () => clearTimeout(timer);
-    } else {
-      // 🔥 Route changes = NO loader
+    const delay = hasLoadedOnce.current ? 220 : 300;
+    const timer = setTimeout(() => {
       setLoading(false);
-    }
+      hasLoadedOnce.current = true;
+    }, delay);
+
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (

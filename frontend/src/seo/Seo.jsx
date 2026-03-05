@@ -4,12 +4,23 @@ export default function Seo({
   title = "Genius36 | Trusted IT, Digital Marketing & Software Solutions.",
   description = "Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs",
   keywords = "IT company, web development, software solutions, IT training, cloud services, networking, cybersecurity",
-  url = "https://genius36.com",
-  image = "/assets/images/G_new.svg",
+  url,
+  image = "/G_new.svg",
   author = "Genius36 Technologies India LLP",
+  robots = "index, follow",
+  children,
 }) {
   useEffect(() => {
     document.title = title;
+
+    const absoluteUrl = (value) => {
+      if (!value) return "";
+      if (/^https?:\/\//i.test(value)) return value;
+      return `${window.location.origin}${value.startsWith("/") ? "" : "/"}${value}`;
+    };
+
+    const resolvedUrl = url || `${window.location.origin}${window.location.pathname}`;
+    const resolvedImage = absoluteUrl(image);
 
     const setMeta = (attr, key, content) => {
       let meta = document.querySelector(`meta[${attr}="${key}"]`);
@@ -27,7 +38,7 @@ export default function Seo({
     setMeta("name", "description", description);
     setMeta("name", "keywords", keywords);
     setMeta("name", "author", author);
-    setMeta("name", "robots", "index, follow");
+    setMeta("name", "robots", robots);
     setMeta("name", "theme-color", "#0d6efd");
 
     /* =======================
@@ -39,7 +50,7 @@ export default function Seo({
       canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute("href", url);
+    canonical.setAttribute("href", resolvedUrl);
 
     /* =======================
        OPEN GRAPH
@@ -47,8 +58,8 @@ export default function Seo({
     setMeta("property", "og:title", title);
     setMeta("property", "og:description", description);
     setMeta("property", "og:type", "website");
-    setMeta("property", "og:url", url);
-    setMeta("property", "og:image", image);
+    setMeta("property", "og:url", resolvedUrl);
+    setMeta("property", "og:image", resolvedImage);
     setMeta("property", "og:site_name", "Genius36");
 
     /* =======================
@@ -57,7 +68,7 @@ export default function Seo({
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
-    setMeta("name", "twitter:image", image);
+    setMeta("name", "twitter:image", resolvedImage);
     setMeta("name", "twitter:site", "@genius36");
 
     /* =======================
@@ -79,7 +90,7 @@ export default function Seo({
       "@id": "https://genius36.com/#organization",
       name: "Genius36 Technologies India LLP",
       url: "https://genius36.com",
-      logo: "https://genius36.com/assets/G_new.svg",
+      logo: "https://genius36.com/G_new.svg",
       description: description,
       foundingDate: "2014",
       contactPoint: {
@@ -167,14 +178,9 @@ export default function Seo({
       description: "Leading IT Solutions Provider in India - Web Development, Software Training, Digital Marketing, Cloud Solutions",
       publisher: {
         "@id": "https://genius36.com/#organization"
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: "https://genius36.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
       }
     });
-  }, [title, description, keywords, url, image, author]);
+  }, [title, description, keywords, url, image, author, robots]);
 
-  return null;
+  return children || null;
 }
