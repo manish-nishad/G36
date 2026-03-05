@@ -127,21 +127,21 @@
   
   <!-- Blog Pages -->
   <url>
-    <loc>https://genius36.com/blogs/1</loc>
+    <loc>https://genius36.com/blogs/top-10-cybersecurity-threats-in-2025-and-how-to-protect-your-business</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://genius36.com/blogs/why-every-business-needs-cloud-migration-2025</loc>
+    <loc>https://genius36.com/blogs/why-every-business-needs-cloud-migration-in-2025</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://genius36.com/blogs/future-of-ai-in-software-development-2025</loc>
+    <loc>https://genius36.com/blogs/the-future-of-ai-in-software-development</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -155,20 +155,20 @@
   </url>
   
   <url>
-    <loc>https://genius36.com/blogs/network-security-essentials-small-businesses</loc>
+    <loc>https://genius36.com/blogs/network-security-essentials-for-small-businesses</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://genius36.com/blogs/career-opportunities-it-skills-2025</loc>
+    <loc>https://genius36.com/blogs/career-opportunities-in-it-skills-you-need-in-2025</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
-  <url>
+  <!-- <url>
     <loc>https://genius36.com/blogs/responsive-web-design-mobile-first-2025</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -537,6 +537,6 @@
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
+  </url> -->
   
 </urlset>
