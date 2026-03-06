@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default function Seo({
   title = "Genius36 | Trusted IT, Digital Marketing & Software Solutions.",
-  description = "Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs",
+  description = "Genius36 offers the best IT solutions, website design, software development, and digital marketing services in Raipur, Bhilai, and Bilaspur in 2026",
   keywords = "IT company, web development, software solutions, IT training, cloud services, networking, cybersecurity",
   url,
   image = "/G_new.svg",

@@ -60,7 +60,7 @@ export default function Home() {
     <>
       <Seo
         title="Genius36 | Trusted IT, Digital Marketing & Software Solutions."
-        description="Delivering cutting-edge IT solutions, software development, and training across India. We provide comprehensive technology solutions tailored to empower your business and educational needs."
+        description="Genius36 offers the best IT solutions, website design, software development, and digital marketing services in Raipur, Bhilai, and Bilaspur in 2026."
       />
 
       {/* HERO */}
