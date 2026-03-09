@@ -23,21 +23,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Import Flaticons
 import Lottie from "lottie-react";
 import Welcome from "../assets/lottie/Welcome.json";
-import OurMisson from "../assets/flaticons/mission.gif";
-import OurVision from "../assets/flaticons/vision.gif";
-import Excellence from "../assets/flaticons/excellence.gif";
-import Innovation from "../assets/flaticons/innovation.gif";
-import Integrity from "../assets/flaticons/integrity.gif";
-import CustomerFocus from "../assets/flaticons/customer-focus.gif";
-import ExperiencedTeam from "../assets/flaticons/experienced-team.gif";
-import Solutions from "../assets/flaticons/com-solutions.gif";
-import CostEffect from "../assets/flaticons/cost-effective.gif";
-import QualityAssurance from "../assets/flaticons/quality-assurance.gif";
-import TimelyDelivery from "../assets/flaticons/time-deliver.gif";
-import Year from "../assets/flaticons/fireworks.gif";
-import Client from "../assets/flaticons/best-customer-experience.gif";
-import India from "../assets/flaticons/india.gif";
-import Support from "../assets/flaticons/customer-service.gif";
+import OurMisson from "../assets/flaticons/mission.png";
+import OurVision from "../assets/flaticons/vision.png";
+import Excellence from "../assets/flaticons/excellence.png";
+import Innovation from "../assets/flaticons/innovation.png";
+import Integrity from "../assets/flaticons/integrity.png";
+import CustomerFocus from "../assets/flaticons/customer-focus.png";
+import ExperiencedTeam from "../assets/flaticons/experienced-team.png";
+import Solutions from "../assets/flaticons/com-solutions.png";
+import CostEffect from "../assets/flaticons/cost-effective.png";
+import QualityAssurance from "../assets/flaticons/quality-assurance.png";
+import TimelyDelivery from "../assets/flaticons/time-deliver.png";
+import Year from "../assets/flaticons/fireworks.png";
+import Client from "../assets/flaticons/best-customer-experience.png";
+import India from "../assets/flaticons/india.png";
+import Support from "../assets/flaticons/customer-service.png";
 
 gsap.registerPlugin(ScrollTrigger);
 

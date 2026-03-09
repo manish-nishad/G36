@@ -21,10 +21,10 @@ import Youtube from "../assets/lottie/Youtube.json";
 import LinkedIn from "../assets/lottie/Linkdin.json";
 import Whatsapp from "../assets/lottie/Whatsapp.json";
 import ContactUs from "../assets/lottie/Contact Us.json";
-import locationIcon from "../assets/flaticons/location.gif";
-import phoneIcon from "../assets/flaticons/phone-contact.gif";
-import emailIcon from "../assets/flaticons/email.gif";
-import clockIcon from "../assets/flaticons/clock.gif";
+import locationIcon from "../assets/flaticons/location.png";
+import phoneIcon from "../assets/flaticons/phone-contact.png";
+import emailIcon from "../assets/flaticons/email.png";
+import clockIcon from "../assets/flaticons/clock.png";
 
 const Contact = () => {
   const [formData, setFormData] = useState({

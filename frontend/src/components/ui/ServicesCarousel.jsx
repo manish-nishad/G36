@@ -8,16 +8,16 @@ import { Link } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import useEmblaAutoplay from "../../hooks/useEmblaAutoplay";
 import { useRef } from "react";
-import cctv from "../../assets/flaticons/cctv.gif";
-import hardware from "../../assets/flaticons/hardware.gif";
-import cloud from "../../assets/flaticons/cloudcom.gif";
-import training from "../../assets/flaticons/training.gif";
-import recovery from "../../assets/flaticons/recovery.gif";
-import itdigital from "../../assets/flaticons/itdigital.gif";
-import softwareservice from "../../assets/flaticons/software-service.gif";
-import website from "../../assets/flaticons/website.gif";
-import network from "../../assets/flaticons/network.gif";
-import techsupport from "../../assets/flaticons/techsupport.gif";
+import cctv from "../../assets/flaticons/cctv.png";
+import hardware from "../../assets/flaticons/hardware.png";
+import cloud from "../../assets/flaticons/cloudcom.png";
+import training from "../../assets/flaticons/training.png";
+import recovery from "../../assets/flaticons/recovery.png";
+import itdigital from "../../assets/flaticons/itdigital.png";
+import softwareservice from "../../assets/flaticons/software-service.png";
+import website from "../../assets/flaticons/website.png";
+import network from "../../assets/flaticons/network.png";
+import techsupport from "../../assets/flaticons/techsupport.png";
 
 const services = [
   { text: "Custom Website Design & Development", icon: website },

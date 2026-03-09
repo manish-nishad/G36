@@ -27,14 +27,14 @@ import { aboutImages, jobOpenings } from "../mockData";
 import Seo from "../seo/Seo";
 
 // Import Flaticons
-import worklifebalance from "../assets/flaticons/work-life-balance.gif";
-import corporateculture from "../assets/flaticons/corporate-culture.gif";
-import growthopp from "../assets/flaticons/growth-opp.gif";
-import innoprojects from "../assets/flaticons/inno-projects.gif";
-import innovation from "../assets/flaticons/innovation.gif";
-import excellence from "../assets/flaticons/excellence.gif";
-import growth from "../assets/flaticons/growth.gif";
-import teamwork from "../assets/flaticons/teamwork.gif";
+import worklifebalance from "../assets/flaticons/work-life-balance.png";
+import corporateculture from "../assets/flaticons/corporate-culture.png";
+import growthopp from "../assets/flaticons/growth-opp.png";
+import innoprojects from "../assets/flaticons/inno-projects.png";
+import innovation from "../assets/flaticons/innovation.png";
+import excellence from "../assets/flaticons/excellence.png";
+import growth from "../assets/flaticons/growth.png";
+import teamwork from "../assets/flaticons/teamwork.png";
 
 import Lottie from "lottie-react";
 import CareerImg from "../assets/lottie/Colleagues Working Together.json";

@@ -90,7 +90,7 @@ export default function Seo({
       "@id": "https://genius36.com/#organization",
       name: "Genius36 Technologies India LLP",
       url: "https://genius36.com",
-      logo: "https://genius36.com/G_new.svg",
+      image: "https://genius36.com/G_new.svg",
       description: description,
       foundingDate: "2014",
       contactPoint: {
@@ -140,6 +140,7 @@ export default function Seo({
       name: "Genius36 Technologies India LLP",
       url: "https://genius36.com",
       telephone: "+91-82005-93901",
+      image: "https://genius36.com/G_new.svg",
       address: {
         "@type": "PostalAddress",
         addressCountry: "IN",

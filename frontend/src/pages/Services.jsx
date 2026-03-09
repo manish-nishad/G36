@@ -35,10 +35,10 @@ import Ecommerce from "../assets/lottie/Ecommerce.json"
 import UIUXDesign from "../assets/lottie/UI UX designer.json"
 
 // Import Flaticons
-import consultation from "../assets/flaticons/consultation.gif";
-import planning from "../assets/flaticons/planning.gif";
-import implementation from "../assets/flaticons/implementation.gif";
-import support from "../assets/flaticons/customer-service.gif";
+import consultation from "../assets/flaticons/consultation.png";
+import planning from "../assets/flaticons/planning.png";
+import implementation from "../assets/flaticons/implementation.png";
+import support from "../assets/flaticons/customer-service.png";
 
 const handleTiltMove = (e) => {
   const card = e.currentTarget;
